@@ -1,0 +1,20 @@
+{
+  "name": "angular-masonry",
+  "description": "An AngularJS directive for Masonry.",
+  "version": "0.0.0",
+  "main": "angular-masonry.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "masonry": "~3.0.1",
+    "angular": "~1.0.7",
+    "jquery": "~2.0.3",
+    "imagesloaded": "~3.0.1"
+  }
+}

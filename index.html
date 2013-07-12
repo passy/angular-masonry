@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>AngularJS Masonry Directive</title>
+        <link href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/united/bootstrap.min.css" rel="stylesheet">
+        <style>
+            body {
+                margin-top: 1em;
+            }
+
+            .masonry-brick {
+                margin: 1em;
+                display: none;
+            }
+
+            .masonry-brick.loaded {
+                display: block;
+            }
+        </style>
+    </head>
+    <body class="container">
+        <div class="hero-unit">
+            <h1>angular-masonry</h1>
+
+            <p>A directive to use masonry with AngularJS.</p>
+        </div>
+        <div class="row">
+            <div class="span12">
+                <h2>Getting Started</h2>
+                <ol>
+                    <li>Install with bower: <code>bower install --save
+                    angular-masonry</code></li>
+                    <li>Include <code>angular-masonry.js</code>.</li>
+                    <li>Use the <code>masonry</code> directive.</li>
+                </ol>
+            </div>
+        </div>
+        <hr>
+        <div class="row" ng-app="masonryApp" ng-controller="DemoCtrl">
+            <div class="span12">
+                <h2>In Action</h2>
+                <div class="btn-group">
+                    <button class="btn btn-primary" ng-click="add()">Add</button>
+                    <button class="btn btn-danger" ng-click="remove()">Remove</button>
+                </div>
+                <div masonry>
+                    <div class="masonry-brick" ng-repeat="brick in bricks">
+                        <img ng-src="{{ brick.src }}" alt="A masonry brick">
+                    </div>
+                </div>
+
+                <h2>Code</h2>
+                <pre ng-non-bindable>&lt;div <strong>masonry</strong>&gt;
+    &lt;div <strong>class="masonry-brick"</strong> ng-repeat="brick in bricks"&gt;
+        &lt;img ng-src="{{ brick.src }}" alt="A masonry brick"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+            </div>
+        </div>
+        <script src="bower_components/jquery/jquery.js"></script>
+        <script src="bower_components/jquery-bridget/jquery.bridget.js"></script>
+        <script src="bower_components/get-style-property/get-style-property.js"></script>
+        <script src="bower_components/get-size/get-size.js"></script>
+        <script src="bower_components/eventEmitter/EventEmitter.js"></script>
+        <script src="bower_components/eventie/eventie.js"></script>
+        <script src="bower_components/doc-ready/doc-ready.js"></script>
+        <script src="bower_components/matches-selector/matches-selector.js"></script>
+        <script src="bower_components/outlayer/item.js"></script>
+        <script src="bower_components/outlayer/outlayer.js"></script>
+        <script src="bower_components/masonry/masonry.js"></script>
+        <script src="bower_components/imagesloaded/imagesloaded.js"></script>
+
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+        <script src="angular-masonry.js"></script>
+
+        <script>
+            angular.module('masonryApp', ['wu.masonry']).
+                controller('DemoCtrl', function ($scope) {
+                    function genBrick() {
+                        return {
+                            src: 'http://lorempixel.com/g/400/200/?' + ~~(Math.random() * 10000)
+                        };
+                    };
+
+                    $scope.bricks = [
+                        genBrick(),
+                        genBrick(),
+                        genBrick()
+                    ];
+
+                    $scope.add = function add() {
+                        $scope.bricks.push(genBrick());
+                    };
+
+                    $scope.remove = function add() {
+                        $scope.bricks.splice(
+                            ~~(Math.random() * $scope.bricks.length),
+                            1
+                        )
+                    };
+                });
+        </script>
+    </body>
+</html>
