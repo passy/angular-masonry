@@ -1,0 +1,20 @@
+{
+  "name": "get-size",
+  "version": "1.1.3",
+  "main": "get-size.js",
+  "description": "measures element size",
+  "dependencies": {
+    "get-style-property": "desandro/get-style-property"
+  },
+  "devDependencies": {
+    "qunit": "~1.10"
+  },
+  "gitHead": "8c6bfdaee305c2b9180aa0efcf79504af63813ef",
+  "readme": "# getSize\n\nGet the size of elements.\n\n``` js\nvar size = getSize( elem );\n// elem can be an element\nvar size = getSize( document.querySelector('#selector') )\n// elem can be a string, used as a query selector\nvar size = getSize('#selector')\n```\n\nReturns an object with:  `width`, `height`, `innerWidth/Height`, `outerWidth/Height`, `paddingLeft/Top/Right/Bottom`, `marginLeft/Top/Right/Bottom`, `borderLeft/Top/Right/BottomWidth` and `isBorderBox`.\n\nTested in IE8, IE9 and good browsers.\n\n## Bower\n\ngetSize is a [Bower](https://github.com/twitter/bower) package\n\n``` bash\nbower install desandro/get-size\n```\n\n## Fractional values in IE8\n\nFor percentage or `em`-based sizes, IE8 does not support fractional values. getSize will round to the nearest value.\n",
+  "readmeFilename": "README.md",
+  "_id": "get-size@1.1.3",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/desandro/get-size.git"
+  }
+}
