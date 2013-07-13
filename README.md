@@ -1,6 +1,6 @@
 # Angular Masonry Directive
 
-[Homepage](http://passy.github.io/masonry)
+[Homepage](http://passy.github.io/angular-masonry)
 
 An AngularJS directive to work with David Desandro's [Masonry](http://masonry.desandro.com/).
 
@@ -12,7 +12,7 @@ An AngularJS directive to work with David Desandro's [Masonry](http://masonry.de
 
 ## Example
 
-See the [homepage](http://passy.github.io/masonry) for a live example.
+See the [homepage](http://passy.github.io/angular-masonry) for a live example.
 
 ```html
 <div masonry>
