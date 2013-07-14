@@ -24,6 +24,11 @@ module.exports = function (grunt) {
     karma: {
       dist: {
         configFile: 'karma.conf.js'
+      },
+      watch: {
+        configFile: 'karma.conf.js',
+        singleRun: false,
+        autoWatch: true
       }
     }
   });

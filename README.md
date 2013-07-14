@@ -1,8 +1,8 @@
-# Angular Masonry Directive
+# Angular Masonry Directive [![Build Status](https://travis-ci.org/passy/angular-masonry.png)](https://travis-ci.org/passy/angular-masonry)
 
 [Homepage](http://passy.github.io/angular-masonry)
 
-An AngularJS directive to work with David Desandro's [Masonry](http://masonry.desandro.com/).
+An [AngularJS](http://angularjs.org/) directive to work with David Desandro's [Masonry](http://masonry.desandro.com/).
 
 ## Usage
 
