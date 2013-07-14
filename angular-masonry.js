@@ -20,14 +20,16 @@
           var bricks = {};
           var reloadScheduled = false;
 
+          // Make sure it's only executed once within a reasonable time-frame in
+          // case multiple elements are removed or added at once.
           function scheduleReload() {
             if (!reloadScheduled) {
               reloadScheduled = true;
 
-              $scope.$evalAsync(function () {
+              $timeout(function () {
                 reloadScheduled = false;
                 $element.masonry('layout');
-              });
+              }, 0);
             }
           }
 
@@ -56,8 +58,10 @@
             }
           };
 
-          this.removeBrick = function (id) {
+          this.removeBrick = function (id, element) {
             delete bricks[id];
+            $element.masonry('remove', element);
+
             scheduleReload();
           };
         }
@@ -71,7 +75,7 @@
           ctrl.appendBrick(element, id, true);
 
           scope.$on('$destroy', function () {
-            ctrl.removeBrick(id);
+            ctrl.removeBrick(id, element);
           });
         }
       };
