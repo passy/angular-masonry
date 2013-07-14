@@ -1,8 +1,8 @@
-# Angular Masonry Directive
+# Angular Masonry Directive [![Build Status](https://travis-ci.org/passy/angular-masonry.png)](https://travis-ci.org/passy/angular-masonry)
 
 [Homepage](http://passy.github.io/angular-masonry)
 
-An AngularJS directive to work with David Desandro's [Masonry](http://masonry.desandro.com/).
+An [AngularJS](http://angularjs.org/) directive to work with David Desandro's [Masonry](http://masonry.desandro.com/).
 
 ## Usage
 
@@ -26,12 +26,17 @@ You have to include the `masonry` attribute on the element holding the bricks.
 The bricks are registered at the directive through the `masonry-brick` CSS
 classname.
 
-
 ## Credits
 
 The directive is based on
 [a StackOverflow question](http://stackoverflow.com/questions/16504151/masonry-with-angularjs)
 answered by James Sharp.
+
+
+## Contributing
+
+Pull requests welcome. Only change files in `src` and don't bump any versions.
+Please respect the code style in place.
 
 ## License
 
