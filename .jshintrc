@@ -1,4 +1,5 @@
 {
+  "node": true,
   "indent": 2,
   "esnext": true,
   "bitwise": false,

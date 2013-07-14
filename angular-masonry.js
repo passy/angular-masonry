@@ -1,5 +1,5 @@
-/**
- * angular-masonry v0.0.1
+/*!
+ * angular-masonry <%= pkg.version %>
  * Pascal Hartig, weluse GmbH, http://weluse.de/
  * License: MIT
  */
