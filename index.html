@@ -19,7 +19,7 @@
             }
         </style>
     </head>
-    <body class="container">
+    <body class="container" ng-app="masonryApp">
         <div class="hero-unit">
             <h1>angular-masonry</h1>
 
@@ -37,7 +37,7 @@
             </div>
         </div>
         <hr>
-        <div class="row" ng-app="masonryApp" ng-controller="DemoCtrl">
+        <div class="row" ng-controller="DemoCtrl">
             <div class="span12">
                 <h2>In Action</h2>
                 <div class="btn-group">
@@ -95,7 +95,7 @@
                         $scope.bricks.push(genBrick());
                     };
 
-                    $scope.remove = function add() {
+                    $scope.remove = function remove() {
                         $scope.bricks.splice(
                             ~~(Math.random() * $scope.bricks.length),
                             1
