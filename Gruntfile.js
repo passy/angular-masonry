@@ -20,10 +20,17 @@ module.exports = function (grunt) {
         src: '<%= pkg.name %>.min.js',
         dest: '<%= pkg.name %>.min.js'
       }
+    },
+    karma: {
+      dist: {
+        configFile: 'karma.conf.js'
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-karma');
   grunt.registerTask('default', ['uglify', 'concat']);
+  grunt.registerTask('test', ['karma']);
 };
