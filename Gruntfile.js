@@ -17,7 +17,7 @@ module.exports = function (grunt) {
         process: true
       },
       dist: {
-        src: 'src/<%= pkg.name %>.min.js',
+        src: 'src/<%= pkg.name %>.js',
         dest: '<%= pkg.name %>.js'
       }
     },
