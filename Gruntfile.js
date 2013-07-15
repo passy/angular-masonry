@@ -17,8 +17,8 @@ module.exports = function (grunt) {
         process: true
       },
       dist: {
-        src: '<%= pkg.name %>.min.js',
-        dest: '<%= pkg.name %>.min.js'
+        src: 'src/<%= pkg.name %>.min.js',
+        dest: '<%= pkg.name %>.js'
       }
     },
     karma: {
@@ -36,6 +36,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-karma');
-  grunt.registerTask('default', ['uglify', 'concat']);
+  grunt.registerTask('default', ['concat', 'uglify']);
   grunt.registerTask('test', ['karma:dist']);
 };
