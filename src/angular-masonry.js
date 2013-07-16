@@ -1,5 +1,5 @@
 /*!
- * angular-masonry 0.1.0
+ * angular-masonry <%= pkg.version %>
  * Pascal Hartig, weluse GmbH, http://weluse.de/
  * License: MIT
  */
@@ -10,6 +10,7 @@
     .controller('MasonryCtrl', function controller($scope, $element, $timeout) {
       var bricks = {};
       var reloadScheduled = false;
+      var self = this;
 
       // Make sure it's only executed once within a reasonable time-frame in
       // case multiple elements are removed or added at once.
@@ -24,7 +25,11 @@
         }
       }
 
-      this.appendBrick = function appendBrick(element, id, wait) {
+      function defaultLoaded($element) {
+        $element.addClass('loaded');
+      }
+
+      this.appendBrick = function appendBrick(element, id) {
         function _append() {
           if (Object.keys(bricks).length === 0) {
             // Call masonry asynchronously on initialization.
@@ -33,8 +38,13 @@
             });
           }
 
-          element.addClass('loaded');
           if (bricks[id] === undefined) {
+            // I wanted to make this dynamic but ran into huuuge memory leaks
+            // that I couldn't fix. If you know how to dynamically add a
+            // callback so one could say <masonry loaded="callback($element)">
+            // please submit a pull request!
+            defaultLoaded(element);
+
             // Keep track of added elements.
             bricks[id] = true;
             $element.masonry('appended', element, true);
@@ -42,11 +52,7 @@
           }
         }
 
-        if (wait) {
-          element.imagesLoaded(_append);
-        } else {
-          _append();
-        }
+        element.imagesLoaded(_append);
       };
 
       this.removeBrick = function removeBrick(id, element) {
@@ -60,8 +66,12 @@
         restrict: 'AE',
         controller: 'MasonryCtrl',
         link: function postLink(scope, element, attrs) {
-          var itemSelector = attrs.itemSelector || '.masonry-brick';
-          element.masonry({ itemSelector: itemSelector });
+          var attrOptions = scope.$eval(attrs.options);
+          var options = angular.extend(attrOptions || {}, {
+            itemSelector: attrs.itemSelector || '.masonry-brick',
+            columnWidth: attrs.columnWidth
+          });
+          element.masonry(options);
         }
       };
     }).directive('masonryBrick', function () {
@@ -70,8 +80,8 @@
         require: '^masonry',
         link: function postLink(scope, element, attrs, ctrl) {
           var id = scope.$id;
-          ctrl.appendBrick(element, id, true);
 
+          ctrl.appendBrick(element, id);
           scope.$on('$destroy', function () {
             ctrl.removeBrick(id, element);
           });

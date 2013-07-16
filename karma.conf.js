@@ -12,7 +12,7 @@ files = [
   'bower_components/jasmine-sinon/lib/jasmine-sinon.js',
   'bower_components/angular/angular.js',
   'bower_components/angular-mocks/angular-mocks.js',
-  'angular-masonry.js',
+  'src/angular-masonry.js',
   'test/mocks/**/*.js',
   'test/spec/**/*.coffee'
 ];
