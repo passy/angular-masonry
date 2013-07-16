@@ -26,6 +26,11 @@ You have to include the `masonry` attribute on the element holding the bricks.
 The bricks are registered at the directive through the `masonry-brick` CSS
 classname.
 
+The directive uses [`imagesloaded`](https://github.com/desandro/imagesloaded) to
+determine when all images within the `masonry-brick` have been loaded and adds
+the `loaded` CSS class to to the element, so you can add custom styles and
+prevent ghosting effects.
+
 ## Attributes
 
 ### `item-selector`
@@ -44,30 +49,6 @@ directive.
 <masonry item-selector=".mybrick">
     <div masonry-brick class="mybrick">Unicorns</div>
     <div masonry-brick class="mybrick">Sparkles</div>
-</masonry>
-```
-
-### `loaded`
-
-`angular-masonry` waits for all images within the brick to be loaded and applies
-a `loaded` CSS class to the element afterwards, so you can prevent ghosting
-effects. You can override this behavior by providing a `loaded` attribute that
-takes a callback, which gets an `$element` injected referring to the loaded
-element.
-
-*Example:*
-
-```javascript
-$scope.onLoaded = function ($element) {
-    $element.show();
-};
-```
-
-```html
-<masonry loaded="onLoaded($element)">
-    <div class="masonry-brick" style="display: none">
-        <img src="hidden-until-loaded.png">
-    </div>
 </masonry>
 ```
 
