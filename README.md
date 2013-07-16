@@ -71,6 +71,20 @@ $scope.onLoaded = function ($element) {
 </masonry>
 ```
 
+### `column-width`
+
+The `column-width` attribute allows you to override the [the width of a column
+of a horizontal grid](http://masonry.desandro.com/options.html#columnwidth). If
+not set, Masonry will use the outer width of the first element.
+
+*Example:*
+
+```html
+<masonry column-width="200">
+    <div class="masonry-brick">This will be 200px wide max.</div>
+</masonry>
+```
+
 ## Credits
 
 The directive is based on
