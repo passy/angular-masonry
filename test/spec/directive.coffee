@@ -10,6 +10,7 @@ describe 'angular-masonry', ->
 
   beforeEach inject(($rootScope) =>
     @scope = $rootScope.$new()
+    $.fn.masonry.reset()
   )
 
   it 'should initialize', inject(($compile) =>
@@ -22,6 +23,33 @@ describe 'angular-masonry', ->
     element = $compile(element)(@scope)
 
     expect($.fn.masonry).toHaveBeenCalled()
+  )
+
+  it 'should pass on the column-width attribute', inject(($compile) =>
+    element = angular.element '<masonry column-width="200"></masonry>'
+    element = $compile(element)(@scope)
+
+    expect($.fn.masonry).toHaveBeenCalledOnce()
+    call = $.fn.masonry.firstCall
+    expect(call.args[0].columnWidth).toBe '200'
+  )
+
+  it 'should pass on the item-selector attribute', inject(($compile) =>
+    element = angular.element '<masonry item-selector=".mybrick"></masonry>'
+    element = $compile(element)(@scope)
+
+    expect($.fn.masonry).toHaveBeenCalled()
+    call = $.fn.masonry.firstCall
+    expect(call.args[0].itemSelector).toBe '.mybrick'
+  )
+
+  it 'should pass on any options probided', inject(($compile) =>
+    element = angular.element '<masonry options="{ isOriginLeft: true }"></masonry>'
+    element = $compile(element)(@scope)
+
+    expect($.fn.masonry).toHaveBeenCalled()
+    call = $.fn.masonry.firstCall
+    expect(call.args[0].isOriginLeft).toBeTruthy()
   )
 
   describe 'masonry-brick', =>

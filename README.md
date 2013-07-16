@@ -85,6 +85,18 @@ not set, Masonry will use the outer width of the first element.
 </masonry>
 ```
 
+### `options`
+
+You can provide [additional options](http://masonry.desandro.com/options.html)
+as expression.
+
+*Example:*
+
+```html
+<masonry options="{ transitionTransition: '0.4s' }">
+</masonry>
+```
+
 ## Credits
 
 The directive is based on

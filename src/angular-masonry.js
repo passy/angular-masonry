@@ -60,8 +60,12 @@
         restrict: 'AE',
         controller: 'MasonryCtrl',
         link: function postLink(scope, element, attrs) {
-          var itemSelector = attrs.itemSelector || '.masonry-brick';
-          element.masonry({ itemSelector: itemSelector });
+          var attrOptions = scope.$eval(attrs.options);
+          var options = angular.extend(attrOptions || {}, {
+            itemSelector: attrs.itemSelector || '.masonry-brick',
+            columnWidth: attrs.columnWidth
+          });
+          element.masonry(options);
         }
       };
     }).directive('masonryBrick', function () {
