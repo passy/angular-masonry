@@ -10,7 +10,6 @@
     .controller('MasonryCtrl', function controller($scope, $element, $timeout) {
       var bricks = {};
       var reloadScheduled = false;
-      var self = this;
 
       // Make sure it's only executed once within a reasonable time-frame in
       // case multiple elements are removed or added at once.
