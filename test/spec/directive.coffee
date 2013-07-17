@@ -52,6 +52,29 @@ describe 'angular-masonry', ->
     expect(call.args[0].isOriginLeft).toBeTruthy()
   )
 
+  describe 'MasonryCtrl', =>
+    beforeEach inject(($controller, $compile) =>
+      @element = angular.element '<div></div>'
+      @ctrl = $controller 'MasonryCtrl', {
+        $scope: @scope
+        $element: @element
+      }
+    )
+
+    it 'should not remove after destruction', =>
+      @ctrl.destroy()
+      @ctrl.removeBrick()
+
+      expect($.fn.masonry).not.toHaveBeenCalled()
+
+    it 'should not add after destruction', =>
+      @ctrl.destroy()
+      @ctrl.appendBrick()
+
+      expect($.fn.masonry).not.toHaveBeenCalled()
+
+
+
   describe 'masonry-brick', =>
     beforeEach =>
       self = this

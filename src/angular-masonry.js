@@ -10,6 +10,7 @@
     .controller('MasonryCtrl', function controller($scope, $element, $timeout) {
       var bricks = {};
       var reloadScheduled = false;
+      var destroyed = false;
 
       // Make sure it's only executed once within a reasonable time-frame in
       // case multiple elements are removed or added at once.
@@ -29,6 +30,10 @@
       }
 
       this.appendBrick = function appendBrick(element, id) {
+        if (destroyed) {
+          return;
+        }
+
         function _append() {
           if (Object.keys(bricks).length === 0) {
             // Call masonry asynchronously on initialization.
@@ -55,22 +60,40 @@
       };
 
       this.removeBrick = function removeBrick(id, element) {
+        if (destroyed) {
+          return;
+        }
+
         delete bricks[id];
         $element.masonry('remove', element);
 
         scheduleReload();
       };
+
+      this.destroy = function destroy() {
+        destroyed = true;
+
+        if ($element.data('masonry')) {
+          // Gently uninitialize if still present
+          $element.masonry('destroy');
+        }
+
+        bricks = [];
+      };
+
     }).directive('masonry', function () {
       return {
         restrict: 'AE',
         controller: 'MasonryCtrl',
-        link: function postLink(scope, element, attrs) {
+        link: function postLink(scope, element, attrs, ctrl) {
           var attrOptions = scope.$eval(attrs.options);
           var options = angular.extend(attrOptions || {}, {
             itemSelector: attrs.itemSelector || '.masonry-brick',
             columnWidth: attrs.columnWidth
           });
           element.masonry(options);
+
+          scope.$on('$destroy', ctrl.destroy);
         }
       };
     }).directive('masonryBrick', function () {
