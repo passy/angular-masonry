@@ -26,11 +26,8 @@ You have to include the `masonry` attribute on the element holding the bricks.
 The bricks are registered at the directive through the `masonry-brick` CSS
 classname.
 
-The directive uses [`imagesloaded`](https://github.com/desandro/imagesloaded) to
-determine when all images within the `masonry-brick` have been loaded and adds
-the `loaded` CSS class to to the element, so you can add custom styles and
-prevent ghosting effects.
-
+<<<<<<< HEAD
+=======
 ## Attributes
 
 ### `item-selector`
@@ -52,32 +49,31 @@ directive.
 </masonry>
 ```
 
-### `column-width`
+### `loaded`
 
-The `column-width` attribute allows you to override the [the width of a column
-of a horizontal grid](http://masonry.desandro.com/options.html#columnwidth). If
-not set, Masonry will use the outer width of the first element.
-
-*Example:*
-
-```html
-<masonry column-width="200">
-    <div class="masonry-brick">This will be 200px wide max.</div>
-</masonry>
-```
-
-### `options`
-
-You can provide [additional options](http://masonry.desandro.com/options.html)
-as expression.
+`angular-masonry` waits for all images within the brick to be loaded and applies
+a `loaded` CSS class to the element afterwards, so you can prevent ghosting
+effects. You can override this behavior by providing a `loaded` attribute that
+takes a callback, which gets an `$element` injected referring to the loaded
+element.
 
 *Example:*
 
+```javascript
+$scope.onLoaded = function ($element) {
+    $element.show();
+};
+```
+
 ```html
-<masonry options="{ transitionTransition: '0.4s' }">
+<masonry loaded="onLoaded($element)">
+    <div class="masonry-brick" style="display: none">
+        <img src="hidden-until-loaded.png">
+    </div>
 </masonry>
 ```
 
+>>>>>>> doc(readme): add attribute descriptions
 ## Credits
 
 The directive is based on

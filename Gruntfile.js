@@ -30,12 +30,18 @@ module.exports = function (grunt) {
         singleRun: false,
         autoWatch: true
       }
+    },
+    changelog: {
+      options: {
+        github: 'passy/angular-masonry'
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-conventional-changelog');
   grunt.registerTask('default', ['concat', 'uglify']);
   grunt.registerTask('test', ['karma:dist']);
 };
