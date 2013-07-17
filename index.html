@@ -79,7 +79,7 @@
         <script src="bower_components/imagesloaded/imagesloaded.js"></script>
 
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-        <script src="src/angular-masonry.js"></script>
+        <script src="angular-masonry.js"></script>
 
         <script>
             angular.module('masonryApp', ['wu.masonry']).
@@ -105,11 +105,6 @@
                             ~~(Math.random() * $scope.bricks.length),
                             1
                         )
-                    };
-
-                    $scope.woot = function mywoot($element) {
-                        console.log("WOOOOT!", $element);
-                        $element.show();
                     };
                 });
         </script>
