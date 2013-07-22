@@ -1,5 +1,5 @@
 /*!
- * angular-masonry 0.2.0
+ * angular-masonry 0.2.1
  * Pascal Hartig, weluse GmbH, http://weluse.de/
  * License: MIT
  */
@@ -20,8 +20,10 @@
 
           $timeout(function relayout() {
             reloadScheduled = false;
-            $element.masonry('layout');
-          }, 0);
+            if (!destroyed) {
+              $element.masonry('layout');
+            }
+          }, 30);
         }
       }
 
@@ -104,7 +106,7 @@
           var id = scope.$id;
 
           ctrl.appendBrick(element, id);
-          scope.$on('$destroy', function () {
+          element.on('$destroy', function () {
             ctrl.removeBrick(id, element);
           });
         }
