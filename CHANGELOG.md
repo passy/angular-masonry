@@ -1,4 +1,12 @@
-<a name="v0.2.0"></a>
+<a name="v0.2.1"></a>
+## v0.2.0 (2013-07-22)
+
+
+#### Bug Fixes
+
+* **app:** scheduled re-layout too early ([a10b6522](http://github.com/passy/angular-masonry/commit/a10b6522c373e0352f53c54bbbe1004ed1297434))
+
+<a name="v0.2.1"></a>
 ## v0.2.0 (2013-07-17)
 
 
