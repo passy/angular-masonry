@@ -54,7 +54,8 @@
             </div>
         </div>
         <hr>
-        <div class="row" ng-controller="DemoCtrl">
+        <button class="btn btn-primary" ng-click="showing = !showing">Show, bitch!</button>
+        <div class="row" ng-if="showing" ng-controller="DemoCtrl">
             <div class="span12">
                 <h2>In Action</h2>
                 <div class="btn-group">
@@ -90,15 +91,20 @@
         <script src="bower_components/masonry/masonry.js"></script>
         <script src="bower_components/imagesloaded/imagesloaded.js"></script>
 
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
         <script src="angular-masonry.js"></script>
 
         <script>
+            var msnOld = $.fn.masonry;
+            $.fn.masonry = function () {
+                console.log('masonry:', arguments);
+                msnOld.apply(this, arguments);
+            };
             angular.module('masonryApp', ['wu.masonry']).
                 controller('DemoCtrl', function ($scope) {
                     function genBrick() {
                         return {
-                            src: 'http://lorempixel.com/g/400/200/?' + ~~(Math.random() * 10000)
+                            src: 'http://lorempixel.com/g/400/200/'
                         };
                     };
 
