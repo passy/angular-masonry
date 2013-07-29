@@ -31,7 +31,7 @@ describe 'angular-masonry', ->
 
     expect($.fn.masonry).toHaveBeenCalledOnce()
     call = $.fn.masonry.firstCall
-    expect(call.args[0].columnWidth).toBe '200'
+    expect(call.args[0].columnWidth).toBe 200
   )
 
   it 'should pass on the item-selector attribute', inject(($compile) =>
