@@ -19,7 +19,7 @@
     "masonry": "~3.0.1",
     "angular": "~1.0.7",
     "jquery": "~2.0.3",
-    "imagesloaded": "~3.0.1"
+    "imagesloaded": "git://github.com/passy/imagesloaded.git#no-cache"
   },
   "devDependencies": {
     "angular-mocks": "~1.0.7",

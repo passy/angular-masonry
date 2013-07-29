@@ -72,7 +72,7 @@
           }
         }
 
-        element.imagesLoaded(_append);
+        element.imagesLoaded({ cache: false }, _append);
       };
 
       this.removeBrick = function removeBrick(id, element) {
