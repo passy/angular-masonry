@@ -1,5 +1,5 @@
 /*!
- * angular-masonry 0.2.1
+ * angular-masonry 0.3.0
  * Pascal Hartig, weluse GmbH, http://weluse.de/
  * License: MIT
  */
@@ -104,7 +104,7 @@
           var attrOptions = scope.$eval(attrs.options);
           var options = angular.extend(attrOptions || {}, {
             itemSelector: attrs.itemSelector || '.masonry-brick',
-            columnWidth: attrs.columnWidth
+            columnWidth: parseInt(attrs.columnWidth, 10)
           });
           element.masonry(options);
 
