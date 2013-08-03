@@ -1,5 +1,5 @@
 /*!
- * angular-masonry 0.2.1
+ * angular-masonry 0.3.0
  * Pascal Hartig, weluse GmbH, http://weluse.de/
  * License: MIT
  */
@@ -9,22 +9,39 @@
   angular.module('wu.masonry', [])
     .controller('MasonryCtrl', function controller($scope, $element, $timeout) {
       var bricks = {};
-      var reloadScheduled = false;
+      var schedule = [];
       var destroyed = false;
+      var timeout = null;
+
+      function scheduleMasonryOnce() {
+        var args = arguments;
+        var found = schedule.filter(function (item) {
+          return item[0] === args[0];
+        }).length > 0;
+
+        if (!found) {
+          scheduleMasonry.apply(null, arguments);
+        }
+      }
 
       // Make sure it's only executed once within a reasonable time-frame in
       // case multiple elements are removed or added at once.
-      function scheduleReload() {
-        if (!reloadScheduled) {
-          reloadScheduled = true;
-
-          $timeout(function relayout() {
-            reloadScheduled = false;
-            if (!destroyed) {
-              $element.masonry('layout');
-            }
-          }, 30);
+      function scheduleMasonry() {
+        if (timeout) {
+          $timeout.cancel(timeout);
         }
+
+        schedule.push([].slice.call(arguments));
+
+        timeout = $timeout(function runMasonry() {
+          if (destroyed) {
+            return;
+          }
+          schedule.forEach(function (args) {
+            $element.masonry.apply($element, args);
+          });
+          schedule = [];
+        }, 30);
       }
 
       function defaultLoaded($element) {
@@ -38,10 +55,7 @@
 
         function _append() {
           if (Object.keys(bricks).length === 0) {
-            // Call masonry asynchronously on initialization.
-            $timeout(function () {
-              $element.masonry('resize');
-            });
+            $element.masonry('resize');
           }
 
           if (bricks[id] === undefined) {
@@ -54,7 +68,7 @@
             // Keep track of added elements.
             bricks[id] = true;
             $element.masonry('appended', element, true);
-            scheduleReload();
+            scheduleMasonryOnce('layout');
           }
         }
 
@@ -68,8 +82,7 @@
 
         delete bricks[id];
         $element.masonry('remove', element);
-
-        scheduleReload();
+        scheduleMasonryOnce('layout');
       };
 
       this.destroy = function destroy() {
@@ -91,7 +104,7 @@
           var attrOptions = scope.$eval(attrs.options);
           var options = angular.extend(attrOptions || {}, {
             itemSelector: attrs.itemSelector || '.masonry-brick',
-            columnWidth: attrs.columnWidth
+            columnWidth: parseInt(attrs.columnWidth, 10)
           });
           element.masonry(options);
 
