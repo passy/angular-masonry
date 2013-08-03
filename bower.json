@@ -16,7 +16,7 @@
     "package.json"
   ],
   "dependencies": {
-    "masonry": "~3.0.1",
+    "masonry": "~3.1.0",
     "angular": "~1.0.7",
     "jquery": "~2.0.3",
     "imagesloaded": "~3.0.1"
