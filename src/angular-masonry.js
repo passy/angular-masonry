@@ -23,7 +23,7 @@
         if (!found) {
           this.scheduleMasonry.apply(null, arguments);
         }
-      }
+      };
 
       // Make sure it's only executed once within a reasonable time-frame in
       // case multiple elements are removed or added at once.
@@ -43,7 +43,7 @@
           });
           schedule = [];
         }, 30);
-      }
+      };
 
       function defaultLoaded($element) {
         $element.addClass('loaded');
@@ -116,6 +116,7 @@
       return {
         restrict: 'AC',
         require: '^masonry',
+        scope: true,
         link: function postLink(scope, element, attrs, ctrl) {
           var id = scope.$id;
 

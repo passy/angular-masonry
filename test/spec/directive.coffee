@@ -114,3 +114,24 @@ describe 'angular-masonry', ->
       expect(@appendBrick).toHaveBeenCalledThrice()
       expect(@removeBrick).toHaveBeenCalledOnce()
     )
+
+  describe 'masonry-brick internals', =>
+    beforeEach ->
+      $.fn.imagesLoaded = (cb) -> cb()
+
+    afterEach ->
+      delete $.fn.imagesLoaded
+
+    it 'should append three elements to the controller', inject(($compile) =>
+      element = angular.element '''
+        <masonry>
+          <div class="masonry-brick"></div>
+          <div class="masonry-brick"></div>
+          <div class="masonry-brick"></div>
+        </masonry>
+      '''
+      element = $compile(element)(@scope)
+      @scope.$digest()
+      # 2 is resize and one layout, 3 for the elements
+      expect($.fn.masonry.callCount).toBe(2 + 3)
+    )

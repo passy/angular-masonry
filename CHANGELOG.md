@@ -1,3 +1,34 @@
+<a name="v0.3.2"></a>
+### v0.3.2 (2013-08-04)
+
+
+#### Bug Fixes
+
+* **app:** enforce new scope for each brick ([ad854df4](http://github.com/passy/angular-masonry/commit/ad854df4e27e952535a0bca20686abaa6cf771db))
+
+<a name="v0.3.1"></a>
+### v0.3.1 (2013-08-04)
+
+
+#### Features
+
+* **app:** expose scheduleMasonry(Once) methods ([0fad6552](http://github.com/passy/angular-masonry/commit/0fad65527af6f1dd11ebc2b3bb2deb03ebaef34c))
+
+<a name="v0.3.0"></a>
+## v0.3.0 (2013-08-04)
+
+
+#### Bug Fixes
+
+* **app:**
+  * column width is an integer ([f04d3a2e](http://github.com/passy/angular-masonry/commit/f04d3a2e1369b6aa1dfc84de02ba4ab6925968a6))
+  * more careful relayout scheduling ([9b215d6f](http://github.com/passy/angular-masonry/commit/9b215d6f154567823c903319a75fbd13bbc628f9))
+
+
+#### Features
+
+* **app:** upgraded to masonry 3.1 ([e73c3e62](http://github.com/passy/angular-masonry/commit/e73c3e624fc5ef1a023747caffba5da3794abd8f))
+
 <a name="v0.2.1"></a>
 ## v0.2.0 (2013-07-22)
 
