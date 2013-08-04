@@ -11,22 +11,23 @@
       var bricks = {};
       var schedule = [];
       var destroyed = false;
+      var self = this;
       var timeout = null;
 
-      function scheduleMasonryOnce() {
+      this.scheduleMasonryOnce = function scheduleMasonryOnce() {
         var args = arguments;
         var found = schedule.filter(function (item) {
           return item[0] === args[0];
         }).length > 0;
 
         if (!found) {
-          scheduleMasonry.apply(null, arguments);
+          this.scheduleMasonry.apply(null, arguments);
         }
       }
 
       // Make sure it's only executed once within a reasonable time-frame in
       // case multiple elements are removed or added at once.
-      function scheduleMasonry() {
+      this.scheduleMasonry = function scheduleMasonry() {
         if (timeout) {
           $timeout.cancel(timeout);
         }
@@ -68,7 +69,7 @@
             // Keep track of added elements.
             bricks[id] = true;
             $element.masonry('appended', element, true);
-            scheduleMasonryOnce('layout');
+            self.scheduleMasonryOnce('layout');
           }
         }
 
@@ -82,7 +83,7 @@
 
         delete bricks[id];
         $element.masonry('remove', element);
-        scheduleMasonryOnce('layout');
+        this.scheduleMasonryOnce('layout');
       };
 
       this.destroy = function destroy() {
