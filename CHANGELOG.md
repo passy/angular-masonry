@@ -1,3 +1,11 @@
+<a name="v0.3.1"></a>
+### v0.3.1 (2013-08-04)
+
+
+#### Features
+
+* **app:** expose scheduleMasonry(Once) methods ([0fad6552](http://github.com/passy/angular-masonry/commit/0fad65527af6f1dd11ebc2b3bb2deb03ebaef34c))
+
 <a name="v0.3.0"></a>
 ## v0.3.0 (2013-08-04)
 
