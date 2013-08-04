@@ -1,3 +1,11 @@
+<a name="v0.3.2"></a>
+### v0.3.2 (2013-08-04)
+
+
+#### Bug Fixes
+
+* **app:** enforce new scope for each brick ([ad854df4](http://github.com/passy/angular-masonry/commit/ad854df4e27e952535a0bca20686abaa6cf771db))
+
 <a name="v0.3.1"></a>
 ### v0.3.1 (2013-08-04)
 
