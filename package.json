@@ -6,6 +6,7 @@
     "grunt": "~0.4.1",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-karma": "~0.4.5",
-    "grunt-conventional-changelog": "~1.0.0"
+    "grunt-conventional-changelog": "~1.0.0",
+    "grunt-ngmin": "0.0.3"
   }
 }

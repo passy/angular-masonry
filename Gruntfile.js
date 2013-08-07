@@ -8,7 +8,7 @@ module.exports = function (grunt) {
         preserveComments: 'some'
       },
       dist: {
-        src: '<%= pkg.name %>.js',
+        src: '<%= pkg.name %>.min.js',
         dest: '<%= pkg.name %>.min.js'
       }
     },
@@ -35,13 +35,20 @@ module.exports = function (grunt) {
       options: {
         github: 'passy/angular-masonry'
       }
+    },
+    ngmin: {
+      dist: {
+        src: '<%= pkg.name %>.js',
+        dest: '<%= pkg.name %>.min.js'
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-ngmin');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-conventional-changelog');
-  grunt.registerTask('default', ['concat', 'uglify']);
+  grunt.registerTask('default', ['concat', 'ngmin', 'uglify']);
   grunt.registerTask('test', ['karma:dist']);
 };
