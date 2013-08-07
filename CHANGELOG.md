@@ -1,3 +1,16 @@
+<a name="v0.3.3"></a>
+### v0.3.3 (2013-08-07)
+
+
+#### Bug Fixes
+
+* **app:** add explicit DI annotationss ([aea8e530](http://github.com/passy/angular-masonry/commit/aea8e53070942f5554bb9e1aaac22c3e57f3c08e))
+
+
+#### Features
+
+* **build:** use ngmin instead of annotations ([1eee22b9](http://github.com/passy/angular-masonry/commit/1eee22b9d2f9e0294c020d7fa8bd66dd8b91a465))
+
 <a name="v0.3.2"></a>
 ### v0.3.2 (2013-08-04)
 
