@@ -1,3 +1,11 @@
+<a name="v0.3.4"></a>
+### v0.3.4 (2013-08-20)
+
+
+#### Features
+
+* **build:** include DI annotations in build ([a1051997](http://github.com/passy/angular-masonry/commit/a1051997001c0791e6c3deff2cdee5ec4c2ebe96), closes [#6](http://github.com/passy/angular-masonry/issues/6))
+
 <a name="v0.3.3"></a>
 ### v0.3.3 (2013-08-07)
 
