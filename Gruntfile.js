@@ -8,7 +8,7 @@ module.exports = function (grunt) {
         preserveComments: 'some'
       },
       dist: {
-        src: '<%= pkg.name %>.min.js',
+        src: '<%= pkg.name %>.js',
         dest: '<%= pkg.name %>.min.js'
       }
     },
@@ -39,7 +39,7 @@ module.exports = function (grunt) {
     ngmin: {
       dist: {
         src: '<%= pkg.name %>.js',
-        dest: '<%= pkg.name %>.min.js'
+        dest: '<%= pkg.name %>.js'
       }
     }
   });
