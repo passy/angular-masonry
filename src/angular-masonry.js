@@ -93,6 +93,7 @@
           // Gently uninitialize if still present
           $element.masonry('destroy');
         }
+        $scope.$emit('masonry.destroyed');
 
         bricks = [];
       };
@@ -108,6 +109,8 @@
             columnWidth: parseInt(attrs.columnWidth, 10)
           });
           element.masonry(options);
+          
+          scope.$emit('masonry.created', element);
 
           scope.$on('$destroy', ctrl.destroy);
         }
