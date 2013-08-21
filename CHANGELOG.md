@@ -1,3 +1,11 @@
+<a name="v0.3.5"></a>
+### v0.3.5 (2013-08-21)
+
+
+#### Features
+
+* **app:** emit create/destroy events ([6adea921](http://github.com/passy/angular-masonry/commit/6adea921710113f1c0d86339fce919c09ea9c910))
+
 <a name="v0.3.4"></a>
 ### v0.3.4 (2013-08-20)
 
