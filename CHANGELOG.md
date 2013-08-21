@@ -1,3 +1,19 @@
+<a name="v0.3.5"></a>
+### v0.3.5 (2013-08-21)
+
+
+#### Features
+
+* **app:** emit create/destroy events ([6adea921](http://github.com/passy/angular-masonry/commit/6adea921710113f1c0d86339fce919c09ea9c910))
+
+<a name="v0.3.4"></a>
+### v0.3.4 (2013-08-20)
+
+
+#### Features
+
+* **build:** include DI annotations in build ([a1051997](http://github.com/passy/angular-masonry/commit/a1051997001c0791e6c3deff2cdee5ec4c2ebe96), closes [#6](http://github.com/passy/angular-masonry/issues/6))
+
 <a name="v0.3.3"></a>
 ### v0.3.3 (2013-08-07)
 
