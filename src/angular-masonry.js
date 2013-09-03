@@ -109,7 +109,7 @@
             columnWidth: parseInt(attrs.columnWidth, 10)
           });
           element.masonry(options);
-          
+
           scope.$emit('masonry.created', element);
 
           scope.$on('$destroy', ctrl.destroy);
