@@ -1,3 +1,26 @@
+<a name="v0.4.0"></a>
+## v0.4.0 (2013-09-03)
+
+
+#### Features
+
+* **app:** new options attribute ([ad9b92e5](http://github.com/passy/angular-masonry/commit/ad9b92e5d9254e273ac0810253fca23e6fe4b88b), closes [#10](http://github.com/passy/angular-masonry/issues/10))
+
+
+#### Breaking Changes
+
+* Options can no longer be specified via the `options` attribute.
+
+Before:
+
+    <masonry options="{my: 'option'}"></masonry>
+
+After:
+
+    <masonry masonry-options="{my: 'option'}"></masonry>
+
+([ad9b92e5](http://github.com/passy/angular-masonry/commit/ad9b92e5d9254e273ac0810253fca23e6fe4b88b))
+
 <a name="v0.3.6"></a>
 ### v0.3.6 (2013-09-03)
 
