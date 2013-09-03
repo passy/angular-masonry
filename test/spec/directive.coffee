@@ -43,8 +43,17 @@ describe 'angular-masonry', ->
     expect(call.args[0].itemSelector).toBe '.mybrick'
   )
 
-  it 'should pass on any options probided', inject(($compile) =>
-    element = angular.element '<masonry options="{ isOriginLeft: true }"></masonry>'
+  it 'should pass on any options provided via `masonry-options`', inject(($compile) =>
+    element = angular.element '<masonry masonry-options="{ isOriginLeft: true }"></masonry>'
+    element = $compile(element)(@scope)
+
+    expect($.fn.masonry).toHaveBeenCalled()
+    call = $.fn.masonry.firstCall
+    expect(call.args[0].isOriginLeft).toBeTruthy()
+  )
+
+  it 'should pass on any options provided via `masonry`', inject(($compile) =>
+    element = angular.element '<div masonry="{ isOriginLeft: true }"></div>'
     element = $compile(element)(@scope)
 
     expect($.fn.masonry).toHaveBeenCalled()
