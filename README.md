@@ -66,16 +66,23 @@ not set, Masonry will use the outer width of the first element.
 </masonry>
 ```
 
-### `options`
+### `masonry-options`
 
 You can provide [additional options](http://masonry.desandro.com/options.html)
-as expression.
+as expression either as `masonry` or `masonry-options` attribute.
 
 *Example:*
 
 ```html
-<masonry options="{ transitionTransition: '0.4s' }">
+<masonry masonry-options="{ transitionTransition: '0.4s' }">
 </masonry>
+```
+
+Equivalent to:
+
+```html
+<div masonry="{ transitionTransition: '0.4s' }">
+</div>
 ```
 
 ## Credits

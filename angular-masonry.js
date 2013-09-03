@@ -77,7 +77,7 @@
       controller: 'MasonryCtrl',
       link: {
         pre: function preLink(scope, element, attrs, ctrl) {
-          var attrOptions = scope.$eval(attrs.options);
+          var attrOptions = scope.$eval(attrs.masonry || attrs.masonryOptions);
           var options = angular.extend(attrOptions || {}, {
               itemSelector: attrs.itemSelector || '.masonry-brick',
               columnWidth: parseInt(attrs.columnWidth, 10)
