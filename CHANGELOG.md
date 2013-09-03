@@ -1,3 +1,16 @@
+<a name="v0.3.6"></a>
+### v0.3.6 (2013-09-03)
+
+
+#### Bug Fixes
+
+* **app:** pre-link instead of post-link ([7fe3e85f](http://github.com/passy/angular-masonry/commit/7fe3e85f678909d4b35901910dae0c4f59406c77), closes [#11](http://github.com/passy/angular-masonry/issues/11))
+
+
+#### Features
+
+* **app:** emit create/destroy events ([6adea921](http://github.com/passy/angular-masonry/commit/6adea921710113f1c0d86339fce919c09ea9c910))
+
 <a name="v0.3.5"></a>
 ### v0.3.5 (2013-08-21)
 
