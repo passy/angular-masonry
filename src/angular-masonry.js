@@ -102,17 +102,18 @@
       return {
         restrict: 'AE',
         controller: 'MasonryCtrl',
-        link: function postLink(scope, element, attrs, ctrl) {
-          var attrOptions = scope.$eval(attrs.options);
-          var options = angular.extend(attrOptions || {}, {
-            itemSelector: attrs.itemSelector || '.masonry-brick',
-            columnWidth: parseInt(attrs.columnWidth, 10)
-          });
-          element.masonry(options);
+        link: {
+          pre: function preLink(scope, element, attrs, ctrl) {
+            var attrOptions = scope.$eval(attrs.options);
+            var options = angular.extend(attrOptions || {}, {
+              itemSelector: attrs.itemSelector || '.masonry-brick',
+              columnWidth: parseInt(attrs.columnWidth, 10)
+            });
+            element.masonry(options);
 
-          scope.$emit('masonry.created', element);
-
-          scope.$on('$destroy', ctrl.destroy);
+            scope.$emit('masonry.created', element);
+            scope.$on('$destroy', ctrl.destroy);
+          }
         }
       };
     }).directive('masonryBrick', function () {
@@ -120,13 +121,15 @@
         restrict: 'AC',
         require: '^masonry',
         scope: true,
-        link: function postLink(scope, element, attrs, ctrl) {
-          var id = scope.$id;
+        link: {
+          pre: function preLink(scope, element, attrs, ctrl) {
+            var id = scope.$id;
 
-          ctrl.appendBrick(element, id);
-          element.on('$destroy', function () {
-            ctrl.removeBrick(id, element);
-          });
+            ctrl.appendBrick(element, id);
+            element.on('$destroy', function () {
+              ctrl.removeBrick(id, element);
+            });
+          }
         }
       };
     });
