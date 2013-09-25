@@ -98,6 +98,13 @@
         bricks = [];
       };
 
+      this.reload = function reload() {
+            $element.masonry();
+              $scope.$emit('masonry.reloaded');
+
+      };
+
+
     }).directive('masonry', function () {
       return {
         restrict: 'AE',
@@ -129,6 +136,13 @@
             element.on('$destroy', function () {
               ctrl.removeBrick(id, element);
             });
+            
+            
+            // Change to listen to css height changes
+            scope.$on('masonry.reload', function () {
+              ctrl.reload();
+            });
+
           }
         }
       };
