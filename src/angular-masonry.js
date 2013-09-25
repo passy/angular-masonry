@@ -137,8 +137,6 @@
               ctrl.removeBrick(id, element);
             });
             
-            
-            // Change to listen to css height changes
             scope.$on('masonry.reload', function () {
               ctrl.reload();
             });
