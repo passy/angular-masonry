@@ -130,8 +130,8 @@
             element.on('$destroy', function () {
               ctrl.removeBrick(id, element);
             });
-            scope.$watch('$index', function() {
-              if (index != undefined && index != scope.$index) {
+            scope.$watch('$index', function () {
+              if (index !== undefined && index !== scope.$index) {
                 ctrl.scheduleMasonryOnce('reloadItems');
                 ctrl.scheduleMasonryOnce('layout');
               }
