@@ -69,6 +69,7 @@
             // Keep track of added elements.
             bricks[id] = true;
             $element.masonry('appended', element, true);
+            self.scheduleMasonryOnce('reloadItems');
             self.scheduleMasonryOnce('layout');
           }
         }
@@ -123,11 +124,18 @@
         scope: true,
         link: {
           pre: function preLink(scope, element, attrs, ctrl) {
-            var id = scope.$id;
+            var id = scope.$id, index;
 
             ctrl.appendBrick(element, id);
             element.on('$destroy', function () {
               ctrl.removeBrick(id, element);
+            });
+            scope.$watch('$index', function() {
+              if (index != undefined && index != scope.$index) {
+                ctrl.scheduleMasonryOnce('reloadItems');
+                ctrl.scheduleMasonryOnce('layout');
+              }
+              index = scope.$index;
             });
           }
         }
