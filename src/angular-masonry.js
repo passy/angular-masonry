@@ -16,7 +16,7 @@
 
       this.scheduleMasonryOnce = function scheduleMasonryOnce() {
         var args = arguments;
-        var found = schedule.filter(function (item) {
+        var found = schedule.filter(function filterFn(item) {
           return item[0] === args[0];
         }).length > 0;
 
@@ -38,7 +38,7 @@
           if (destroyed) {
             return;
           }
-          schedule.forEach(function (args) {
+          schedule.forEach(function scheduleForEach(args) {
             $element.masonry.apply($element, args);
           });
           schedule = [];
@@ -98,7 +98,7 @@
         bricks = [];
       };
 
-    }).directive('masonry', function () {
+    }).directive('masonry', function masonryDirective() {
       return {
         restrict: 'AE',
         controller: 'MasonryCtrl',
@@ -116,7 +116,7 @@
           }
         }
       };
-    }).directive('masonryBrick', function () {
+    }).directive('masonryBrick', function masonryBrickDirective() {
       return {
         restrict: 'AC',
         require: '^masonry',
