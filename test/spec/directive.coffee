@@ -89,10 +89,14 @@ describe 'angular-masonry', ->
       self = this
       @appendBrick = sinon.spy()
       @removeBrick = sinon.spy()
+      @scheduleMasonry = sinon.spy()
+      @scheduleMasonryOnce = sinon.spy()
 
       controllerProvider.register('MasonryCtrl', ->
         @appendBrick = self.appendBrick
         @removeBrick = self.removeBrick
+        @scheduleMasonry = self.scheduleMasonry
+        @scheduleMasonryOnce = self.scheduleMasonryOnce
       )
 
     it 'should register an element in the parent controller', inject(($compile) =>

@@ -16,7 +16,7 @@
 
       this.scheduleMasonryOnce = function scheduleMasonryOnce() {
         var args = arguments;
-        var found = schedule.filter(function (item) {
+        var found = schedule.filter(function filterFn(item) {
           return item[0] === args[0];
         }).length > 0;
 
@@ -38,7 +38,7 @@
           if (destroyed) {
             return;
           }
-          schedule.forEach(function (args) {
+          schedule.forEach(function scheduleForEach(args) {
             $element.masonry.apply($element, args);
           });
           schedule = [];
@@ -69,6 +69,7 @@
             // Keep track of added elements.
             bricks[id] = true;
             $element.masonry('appended', element, true);
+            self.scheduleMasonryOnce('reloadItems');
             self.scheduleMasonryOnce('layout');
           }
         }
@@ -104,7 +105,7 @@
       };
 
 
-    }).directive('masonry', function () {
+    }).directive('masonry', function masonryDirective() {
       return {
         restrict: 'AE',
         controller: 'MasonryCtrl',
@@ -122,14 +123,14 @@
           }
         }
       };
-    }).directive('masonryBrick', function () {
+    }).directive('masonryBrick', function masonryBrickDirective() {
       return {
         restrict: 'AC',
         require: '^masonry',
         scope: true,
         link: {
           pre: function preLink(scope, element, attrs, ctrl) {
-            var id = scope.$id;
+            var id = scope.$id, index;
 
             ctrl.appendBrick(element, id);
             element.on('$destroy', function () {
@@ -140,6 +141,13 @@
               ctrl.reload();
             });
 
+            scope.$watch('$index', function () {
+              if (index !== undefined && index !== scope.$index) {
+                ctrl.scheduleMasonryOnce('reloadItems');
+                ctrl.scheduleMasonryOnce('layout');
+              }
+              index = scope.$index;
+            });
           }
         }
       };
