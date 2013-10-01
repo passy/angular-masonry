@@ -99,9 +99,8 @@
       };
 
       this.reload = function reload() {
-            $element.masonry();
-              $scope.$emit('masonry.reloaded');
-
+        $element.masonry();
+        $scope.$emit('masonry.reloaded');
       };
 
 
