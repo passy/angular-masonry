@@ -99,6 +99,12 @@
         bricks = [];
       };
 
+      this.reload = function reload() {
+        $element.masonry();
+        $scope.$emit('masonry.reloaded');
+      };
+
+
     }).directive('masonry', function masonryDirective() {
       return {
         restrict: 'AE',
@@ -130,6 +136,11 @@
             element.on('$destroy', function () {
               ctrl.removeBrick(id, element);
             });
+            
+            scope.$on('masonry.reload', function () {
+              ctrl.reload();
+            });
+
             scope.$watch('$index', function () {
               if (index !== undefined && index !== scope.$index) {
                 ctrl.scheduleMasonryOnce('reloadItems');
