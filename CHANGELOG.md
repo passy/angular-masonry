@@ -1,3 +1,17 @@
+<a name="v0.5.0"></a>
+## v0.5.0 (2013-10-11)
+
+
+#### Bug Fixes
+
+* **app:** watch $scope.$index and reloadItems ([44a9ca29](http://github.com/passy/angular-masonry/commit/44a9ca291d5a1ec96ae4c1b76bfb689add107060), closes [#21](http://github.com/passy/angular-masonry/issues/21))
+* **directive:** name anonymous functions ([ca32c03f](http://github.com/passy/angular-masonry/commit/ca32c03f655f20f2b3e7efe9b812f69e76d1e757))
+
+
+#### Features
+
+* **app:** add masonry.reload event ([774f3fc0](http://github.com/passy/angular-masonry/commit/774f3fc0aad7fccd5f07ae6362926bc61ef435fb))
+
 <a name="v0.4.0"></a>
 ## v0.4.0 (2013-09-03)
 
