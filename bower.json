@@ -1,7 +1,7 @@
 {
   "name": "angular-masonry",
   "description": "An AngularJS directive for Masonry.",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "main": "./angular-masonry.js",
   "ignore": [
     "**/.*",

@@ -1,3 +1,11 @@
+<a name="v0.5.1"></a>
+### v0.5.1 (2013-10-29)
+
+
+#### Bug Fixes
+
+* **build:** update build artifacts for v0.5.0 ([e84f99ed](http://github.com/passy/angular-masonry/commit/e84f99ed5035358643a52505f84701d6e0856900))
+
 <a name="v0.5.0"></a>
 ## v0.5.0 (2013-10-11)
 
