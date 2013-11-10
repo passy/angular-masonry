@@ -8,5 +8,8 @@
     "grunt-karma": "~0.7.1",
     "grunt-conventional-changelog": "~1.0.0",
     "grunt-ngmin": "0.0.3"
+  },
+  "scripts": {
+    "test": "grunt test"
   }
 }
