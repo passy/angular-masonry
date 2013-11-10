@@ -1,4 +1,4 @@
-# Angular Masonry Directive [![Build Status](https://travis-ci.org/passy/angular-masonry.png)](https://travis-ci.org/passy/angular-masonry) [![Dependency Status](https://gemnasium.com/passy/angular-masonry.png)](https://gemnasium.com/passy/angular-masonry)
+# Angular Masonry Directive [![Build Status](https://travis-ci.org/passy/angular-masonry.png)](https://travis-ci.org/passy/angular-masonry) [![Dependency Status](https://gemnasium.com/passy/angular-masonry.png)](https://gemnasium.com/passy/angular-masonry) [![Code Climate](https://codeclimate.com/github/passy/angular-masonry.png)](https://codeclimate.com/github/passy/angular-masonry)
 
 [Homepage](http://passy.github.io/angular-masonry)
 

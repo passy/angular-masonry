@@ -1,3 +1,23 @@
+<a name="v0.6.0"></a>
+## v0.6.0 (2013-11-10)
+
+
+#### Bug Fixes
+
+* **test:** correct controller spy ([eddff777](http://github.com/passy/angular-masonry/commit/eddff7772baeb4750c73f67df9716d1d1530236f))
+
+#### Features
+
+* **deps:** Upgrade to Angular 1.2 ([191efb40](http://github.com/passy/angular-masonry/commit/191efb406e3ef1fb2d81b1739d71f26a8578a540))
+
+<a name="v0.5.1"></a>
+### v0.5.1 (2013-10-29)
+
+
+#### Bug Fixes
+
+* **build:** update build artifacts for v0.5.0 ([e84f99ed](http://github.com/passy/angular-masonry/commit/e84f99ed5035358643a52505f84701d6e0856900))
+
 <a name="v0.5.0"></a>
 ## v0.5.0 (2013-10-11)
 

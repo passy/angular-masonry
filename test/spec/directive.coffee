@@ -83,7 +83,6 @@ describe 'angular-masonry', ->
       expect($.fn.masonry).not.toHaveBeenCalled()
 
 
-
   describe 'masonry-brick', =>
     beforeEach =>
       self = this
@@ -97,6 +96,7 @@ describe 'angular-masonry', ->
         @removeBrick = self.removeBrick
         @scheduleMasonry = self.scheduleMasonry
         @scheduleMasonryOnce = self.scheduleMasonryOnce
+        this
       )
 
     it 'should register an element in the parent controller', inject(($compile) =>

@@ -136,7 +136,7 @@
             element.on('$destroy', function () {
               ctrl.removeBrick(id, element);
             });
-            
+
             scope.$on('masonry.reload', function () {
               ctrl.reload();
             });
