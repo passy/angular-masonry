@@ -23,7 +23,8 @@ module.exports = function (grunt) {
     },
     karma: {
       dist: {
-        configFile: 'karma.conf.js'
+        configFile: 'karma.conf.js',
+        browsers: ['PhantomJS']
       },
       watch: {
         configFile: 'karma.conf.js',
