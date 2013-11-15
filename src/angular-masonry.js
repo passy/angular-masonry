@@ -54,27 +54,24 @@
           return;
         }
 
-        function _append() {
-          if (Object.keys(bricks).length === 0) {
-            $element.masonry('resize');
-          }
-
-          if (bricks[id] === undefined) {
-            // I wanted to make this dynamic but ran into huuuge memory leaks
-            // that I couldn't fix. If you know how to dynamically add a
-            // callback so one could say <masonry loaded="callback($element)">
-            // please submit a pull request!
-            defaultLoaded(element);
-
-            // Keep track of added elements.
-            bricks[id] = true;
-            $element.masonry('appended', element, true);
-            self.scheduleMasonryOnce('reloadItems');
-            self.scheduleMasonryOnce('layout');
-          }
+        if (Object.keys(bricks).length === 0) {
+          $element.masonry('resize');
+        }
+        if (bricks[id] === undefined) {
+          // Keep track of added elements.
+          bricks[id] = true;
+          $element.masonry('appended', element, true);
         }
 
-        element.imagesLoaded(_append);
+        function _layout() {
+          // I wanted to make this dynamic but ran into huuuge memory leaks
+          // that I couldn't fix. If you know how to dynamically add a
+          // callback so one could say <masonry loaded="callback($element)">
+          // please submit a pull request!
+          defaultLoaded(element);
+          self.scheduleMasonryOnce('layout');
+        }
+        element.imagesLoaded(_layout);
       };
 
       this.removeBrick = function removeBrick(id, element) {
