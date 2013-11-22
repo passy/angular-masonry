@@ -119,6 +119,9 @@
             element.masonry(options);
 
             scope.$emit('masonry.created', element);
+            scope.$on('masonry.reload', function () {
+              ctrl.reload();
+            });
             scope.$on('$destroy', ctrl.destroy);
           }
         }
@@ -135,10 +138,6 @@
             ctrl.appendBrick(element, id);
             element.on('$destroy', function () {
               ctrl.removeBrick(id, element);
-            });
-
-            scope.$on('masonry.reload', function () {
-              ctrl.reload();
             });
 
             scope.$watch('$index', function () {
