@@ -47,6 +47,7 @@
 
       function defaultLoaded($element) {
         $element.addClass('loaded');
+        $scope.$emit('masonry.imagesLoaded', $element);
       }
 
       this.appendBrick = function appendBrick(element, id) {
