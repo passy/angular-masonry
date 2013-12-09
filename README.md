@@ -67,6 +67,22 @@ not set, Masonry will use the outer width of the first element.
 </masonry>
 ```
 
+### `preserve-order`
+
+The `preserve-order` attributes disables the `imagesLoaded` logic and will
+instead display bricks by the order in the DOM instead of by the time they are
+loaded. Be aware that this can lead to visual glitches if the size of the
+elements isn't set at the time they are inserted.
+
+*Example:*
+
+```html
+<masonry preserve-order>
+    <div class="masonry-brick"><img src="..." alt="Will always be shown 1st"></div>
+    <div class="masonry-brick"><img src="..." alt="Will always be shown 2nd"></div>
+</masonry>
+```
+
 ### `masonry-options`
 
 You can provide [additional options](http://masonry.desandro.com/options.html)
