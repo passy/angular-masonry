@@ -14,12 +14,18 @@ Returns an object with:  `width`, `height`, `innerWidth/Height`, `outerWidth/Hei
 
 Tested in IE8, IE9 and good browsers.
 
-## Bower
+## Install
 
-getSize is a [Bower](https://github.com/twitter/bower) package
+Install with [Bower](http://bower.io) :bird:
 
 ``` bash
 bower install desandro/get-size
+```
+
+Or [Component](http://github.com/component/component)
+
+``` bash
+component install desandro/get-size
 ```
 
 ## Fractional values in IE8

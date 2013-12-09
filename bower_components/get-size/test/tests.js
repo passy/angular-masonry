@@ -144,5 +144,17 @@ test( 'display: none', function() {
 
 });
 
+test( 'percent values', function() {
+  var size = getSize( document.querySelector('#percent .box') );
+  strictEqual( size.marginLeft, 40, 'marginLeft' );
+  strictEqual( size.marginTop, 80, 'marginTop' );
+  strictEqual( size.width, 200, 'width' );
+  strictEqual( size.height, 100, 'height' );
+  strictEqual( size.innerWidth, 200, 'innerWidth' );
+  strictEqual( size.innerHeight, 100, 'innerHeight' );
+  strictEqual( size.outerWidth, 240, 'outerWidth' );
+  strictEqual( size.outerHeight, 180, 'outerHeight' );
+});
+
 
 })( window );

@@ -1,5 +1,5 @@
 /*!
- * Masonry v3.0.1
+ * Masonry v3.1.2
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
@@ -9,9 +9,6 @@
 ( function( window ) {
 
 'use strict';
-
-// vars
-// var document = window.document;
 
 // -------------------------- helpers -------------------------- //
 
@@ -53,19 +50,30 @@ function masonryDefinition( Outlayer, getSize ) {
   };
 
   Masonry.prototype.measureColumns = function() {
+    this.getContainerWidth();
     // if columnWidth is 0, default to outerWidth of first item
-    var firstItem = this.items[0];
-    var firstItemElem = firstItem && firstItem.element;
     if ( !this.columnWidth ) {
+      var firstItem = this.items[0];
+      var firstItemElem = firstItem && firstItem.element;
       // columnWidth fall back to item of first element
-      this.columnWidth = firstItemElem ? getSize( firstItemElem ).outerWidth :
-        // or size of container
-        this.size.innerWidth;
+      this.columnWidth = firstItemElem && getSize( firstItemElem ).outerWidth ||
+        // if first elem has no width, default to size of container
+        this.containerWidth;
     }
+
     this.columnWidth += this.gutter;
 
-    this.cols = Math.floor( ( this.size.innerWidth + this.gutter ) / this.columnWidth );
+    this.cols = Math.floor( ( this.containerWidth + this.gutter ) / this.columnWidth );
     this.cols = Math.max( this.cols, 1 );
+  };
+
+  Masonry.prototype.getContainerWidth = function() {
+    // container is parent if fit width
+    var container = this.options.isFitWidth ? this.element.parentNode : this.element;
+    // check that this.size and size are there
+    // IE8 triggers resize on body size change, so they might not be
+    var size = getSize( container );
+    this.containerWidth = size && size.innerWidth;
   };
 
   Masonry.prototype._getItemLayoutPosition = function( item ) {
@@ -100,7 +108,7 @@ function masonryDefinition( Outlayer, getSize ) {
    * @returns {Array} colGroup
    */
   Masonry.prototype._getColGroup = function( colSpan ) {
-    if ( colSpan === 1 ) {
+    if ( colSpan < 2 ) {
       // if brick spans only one column, use all the column Ys
       return this.colYs;
     }
@@ -138,9 +146,43 @@ function masonryDefinition( Outlayer, getSize ) {
 
   Masonry.prototype._getContainerSize = function() {
     this.maxY = Math.max.apply( Math, this.colYs );
-    return {
+    var size = {
       height: this.maxY
     };
+
+    if ( this.options.isFitWidth ) {
+      size.width = this._getContainerFitWidth();
+    }
+
+    return size;
+  };
+
+  Masonry.prototype._getContainerFitWidth = function() {
+    var unusedCols = 0;
+    // count unused columns
+    var i = this.cols;
+    while ( --i ) {
+      if ( this.colYs[i] !== 0 ) {
+        break;
+      }
+      unusedCols++;
+    }
+    // fit container to columns that have been used
+    return ( this.cols - unusedCols ) * this.columnWidth - this.gutter;
+  };
+
+  // debounced, layout on resize
+  // HEADS UP this overwrites Outlayer.resize
+  // Any changes in Outlayer.resize need to be manually added here
+  Masonry.prototype.resize = function() {
+    // don't trigger if size did not change
+    var previousWidth = this.containerWidth;
+    this.getContainerWidth();
+    if ( previousWidth === this.containerWidth ) {
+      return;
+    }
+
+    this.layout();
   };
 
   return Masonry;
@@ -151,8 +193,8 @@ function masonryDefinition( Outlayer, getSize ) {
 if ( typeof define === 'function' && define.amd ) {
   // AMD
   define( [
-      'outlayer',
-      'get-size'
+      'outlayer/outlayer',
+      'get-size/get-size'
     ],
     masonryDefinition );
 } else {

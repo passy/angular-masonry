@@ -5,13 +5,5 @@
   "main": "matches-selector.js",
   "devDependencies": {
     "qunit": "~1.10"
-  },
-  "gitHead": "b24986bbf33e44d0a8664b1f3f777d7c7d0d1b2a",
-  "readme": "# matchesSelector helper\n\n[`matchesSelector`](https://developer.mozilla.org/en-US/docs/DOM/Element.mozMatchesSelector) is pretty hot :fire:, but has [vendor-prefix baggage](http://caniuse.com/#search=matchesSelector) :handbag: :pouch:. This helper function takes care of that, without augmenting `Element.prototype`.\n\n``` js\nmatchesSelector( elem, selector );\n\nmatchesSelector( myElem, 'div.my-hawt-selector' );\n\n// this DOES NOT polyfill myElem.matchesSelector\n```\n\n## Bower\n\nInstall matchesSelector as [Bower component](http://bower.io)\n\n``` bash\nbower install desandro/matches-selector\n```\n",
-  "readmeFilename": "README.md",
-  "_id": "matches-selector@1.0.1",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/desandro/matches-selector.git"
   }
 }

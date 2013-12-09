@@ -12,6 +12,12 @@ function Outlayer( element, options ) {}
 ## Prototype methods
 
 ``` js
+/**
+ * set options
+ * @param {Object} opts
+ */
+Outlayer.prototype.option = function( opts ) {}
+
 Outlayer.prototype._create = function() {}
 
 // goes through all children again and gets bricks in proper order

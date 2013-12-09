@@ -1,18 +1,10 @@
 {
   "name": "jquery-bridget",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "jquery.bridget.js",
   "description": "Bridget makes jQuery widgets",
   "devDependencies": {
     "jquery": ">=1.4.2",
     "qunit": "~1.10"
-  },
-  "gitHead": "e223cd26ae508ecdc686e195251168c8009131fa",
-  "readme": "# Bridget makes jQuery plugins\n\nBridget makes a jQuery plugin out of a constructor.\n\nIt's based off of the [jQuery UI widget factory](http://jqueryui.com/widget/). You should probably use that, since it's very good. I use this, since it's a bit simpler. Used for [Masonry](http://masonry.desandro.com), [Isotope](http://isotope.metafizzy.co), and  [Packery](http://packery.metafizzy.co).\n\n## Plugin constructor\n\nA plugin constructor uses Prototypal pattern. It needs to have a `._init()` method used for its main logic.\n\n``` js\n// plugin constructor\n// accepts two argments, element and options object\nfunction NiceGreeter( element, options ) {\n  this.element = $( element );\n  this.options = $.extend( true, {}, this.options, options );\n  this._init();\n}\n// defaults for plugin options\nNiceGreeter.prototype.options = {\n  greeting: 'hello',\n  recipient: 'world'\n};\n// main plugin logic\nNiceGreeter.prototype._init = function() {\n  var message = this.getMessage();\n  this.element.text( message );\n};\n// getter method\nNiceGreeter.prototype.getMessage = function() {\n  return this.options.greeting + ' ' + this.options.recipient;\n};\n```\n\n## Usage\n\nBridget can make this constructor work as a jQuery plugin. The `namespace` is the plugin method - `$elem.namespace()`.\n\n``` js\n// convert constructor to jQuery plugin\n$.bridget( 'niceGreeter', NiceGreeter );\n\n// now the constructor can be used as a jQuery plugin\nvar $elem = $('#elem');\n$elem.niceGreeter();\n// >> h1 text will be 'hello world'\n\n// set options\n$elem.niceGreeter({\n  greeting: 'bonjour',\n  recipient: 'mon ami'\n});\n// >> text will be 'bonjour mon ami'\n\n// access constructor instance via .data()\nvar myGreeter = $elem.data('niceGreeter');\n```\n\nGetter methods can still be used. For jQuery objects with multiple elements, getter methods will return the value of the first element.\n\n## Bower\n\nBridget is a [Bower](http://bower.io) component.\n\n``` bash\nbower install desandro/jquery-bridget\n```\n",
-  "readmeFilename": "README.md",
-  "_id": "jquery-bridget@1.0.0",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/desandro/jquery-bridget.git"
   }
 }

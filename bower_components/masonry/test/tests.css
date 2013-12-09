@@ -83,3 +83,19 @@ body {
   bottom: 0;
 }
 
+/* ---- fit width ---- */
+
+#fit-width {
+  width: 160px;
+  background: #CCC;
+}
+
+#fit-width .container {
+  margin: 0 auto;
+}
+
+/* ----  ---- */
+
+#zero-column-width .hidden {
+  display: none;
+}

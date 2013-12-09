@@ -130,7 +130,7 @@ imgLoad.on( 'always', function() {
   for ( var i = 0, len = imgLoad.images.length; i < len; i++ ) {
     var image = imgLoad.images[i];
     var result = image.isLoaded ? 'loaded' : 'broken';
-    console.log( 'image is ' + result + ' for ' + image.img.src + );
+    console.log( 'image is ' + result + ' for ' + image.img.src );
   }
 });
 ```
@@ -162,9 +162,27 @@ $('#container').imagesLoaded()
   })
   .progress( function( instance, image ) {
     var result = image.isLoaded ? 'loaded' : 'broken';
-    console.log( 'image is ' + result + ' for ' + image.img.src + );
+    console.log( 'image is ' + result + ' for ' + image.img.src );
   });
 ```
+
+## RequireJS
+
+imagesLoaded works with RequireJS.
+
+1. Install imagesLoaded and its dependencies
+2. Update your [RequireJS paths config](http://requirejs.org/docs/api.html#config-paths) so it can find those modules
+
+``` js
+requirejs.config({
+  paths: {
+    "eventie": "components/eventie/eventie",
+    "eventEmitter": "components/eventEmitter/EventEmitter"
+  }
+});
+```
+
+Consider taking a look at the [Grunt Bower RequireJS task](https://github.com/yeoman/grunt-bower-requirejs) to "Automagically wire-up installed Bower components into your RequireJS config."
 
 ## Contributors
 

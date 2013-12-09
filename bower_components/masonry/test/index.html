@@ -6,20 +6,18 @@
   <title>Masonry tests</title>
 
   <link rel="stylesheet" href="tests.css" />
-  <link rel="stylesheet" href="../components/qunit/qunit.css" />
+  <link rel="stylesheet" href="../bower_components/qunit/qunit/qunit.css" />
 
-<script src="../components/classie/classie.js"></script>
-<script src="../components/eventie/eventie.js"></script>
-<script src="../components/doc-ready/doc-ready.js"></script>
-<script src="../components/eventEmitter/EventEmitter.js"></script>
-<script src="../components/eventEmitter/EventEmitter.min.js"></script>
-<script src="../components/get-style-property/get-style-property.js"></script>
-<script src="../components/get-size/get-size.js"></script>
-<script src="../components/jquery-bridget/jquery.bridget.js"></script>
-<script src="../components/matches-selector/matches-selector.js"></script>
-<script src="../components/outlayer/item.js"></script>
-<script src="../components/outlayer/outlayer.js"></script>
-<script src="../components/qunit/qunit.js"></script>
+<script src="../bower_components/eventie/eventie.js"></script>
+<script src="../bower_components/doc-ready/doc-ready.js"></script>
+<script src="../bower_components/eventEmitter/EventEmitter.js"></script>
+<script src="../bower_components/get-style-property/get-style-property.js"></script>
+<script src="../bower_components/get-size/get-size.js"></script>
+<script src="../bower_components/jquery-bridget/jquery.bridget.js"></script>
+<script src="../bower_components/matches-selector/matches-selector.js"></script>
+<script src="../bower_components/outlayer/item.js"></script>
+<script src="../bower_components/outlayer/outlayer.js"></script>
+<script src="../bower_components/qunit/qunit/qunit.js"></script>
 <script src="../masonry.js"></script>
 
 <script src="helpers.js"></script>
@@ -27,7 +25,9 @@
 <script src="basic-layout.js"></script>
 <script src="gutter.js"></script>
 <script src="stamp.js"></script>
+<script src="fit-width.js"></script>
 <script src="empty.js"></script>
+<script src="zero-column-width.js"></script>
 
 </head>
 <body>
@@ -100,8 +100,26 @@
     <div class="item"></div>
   </div>
 
+  <h2>fit width</h2>
+  <div id="fit-width">
+    <div class="container">
+      <div class="item"></div>
+      <div class="item h2"></div>
+      <div class="item h3"></div>
+    </div>
+  </div>
+
   <h2>Empty</h2>
   <div id="empty" class="container"></div>
+
+  <h2>zero columnWidth</h2>
+  <div id="zero-column-width" class="container">
+    <div class="item hidden"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+  </div>
 
 </body>
 </html>

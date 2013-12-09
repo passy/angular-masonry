@@ -12,7 +12,7 @@ docReady( function() {
 
 ## Bower
 
-docReady is a [Bower](https://github.com/twitter/bower) component
+docReady is a [Bower](http://bower.io) component
 
 ``` bash
 bower install desandro/doc-ready

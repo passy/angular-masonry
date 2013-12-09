@@ -86,3 +86,10 @@ body {
   padding: 10px 20px 30px 40px;
   margin: 10px 20px 30px 40px;
 }
+
+#percent .box {
+  width: 200px;
+  height: 100px;
+  margin-top: 20%;
+  margin-left: 10%;
+}

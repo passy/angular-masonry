@@ -1,10 +1,11 @@
 /*!
- * getStyleProperty by kangax
+ * getStyleProperty v1.0.3
+ * original by kangax
  * http://perfectionkills.com/feature-testing-css-properties/
  */
 
 /*jshint browser: true, strict: true, undef: true */
-/*globals define: false */
+/*global define: false, exports: false, module: false */
 
 ( function( window ) {
 
@@ -42,6 +43,9 @@ if ( typeof define === 'function' && define.amd ) {
   define( function() {
     return getStyleProperty;
   });
+} else if ( typeof exports === 'object' ) {
+  // CommonJS for Component
+  module.exports = getStyleProperty;
 } else {
   // browser global
   window.getStyleProperty = getStyleProperty;

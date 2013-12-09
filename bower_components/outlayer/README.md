@@ -50,7 +50,8 @@ An Outlayer layout class can be initialized via HTML, by setting a class of `.js
 
 ``` html
 <!-- var Masonry = Outlayer.create('masonry') -->
-<div id="container" class="js-masonry" data-masonry-options='{ "itemSelector": ".item", "columnWidth": 200 }'>
+<div id="container" class="js-masonry"
+  data-masonry-options='{ "itemSelector": ".item", "columnWidth": 200 }'>
   ...
 </div>
 ```
@@ -82,3 +83,36 @@ $( function() {
   $container.masonry( 'reveal', elems );
 });
 ```
+
+## RequireJS
+
+To use Outlayer with [RequireJS](http://requirejs.org/), you'll need to set some config.
+
+Set [baseUrl](http://requirejs.org/docs/api.html#config-baseUrl) to bower_components and set a [path config](http://requirejs.org/docs/api.html#config-paths) for all your application code.
+
+``` js
+requirejs.config({
+  baseUrl: 'bower_components',
+  paths: {
+    app: '../'
+  }
+});
+
+requirejs( [ 'outlayer/outlayer', 'app/my-component.js' ], function( Outlayer, myComp ) {
+  new Outlayer( /*...*/ )
+});
+```
+
+Or set a path config for all Outlayer dependencies.
+
+``` js
+requirejs.config({
+  paths: {
+    eventie: 'bower_components/eventie',
+    'doc-ready': 'bower_components/doc-ready',
+    eventEmitter: 'bower_components/eventEmitter',
+    'get-style-property': 'bower_components/get-style-property',
+    'get-size': 'bower_components/get-size',
+    'matches-selector': 'bower_components/matches-selector'
+  }
+});

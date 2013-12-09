@@ -6,9 +6,9 @@
 
 'use strict';
 
-var Outlayer = window.Outlayer;
+function cellsByRowDefinition( Outlayer ) {
 
-var CellsByRow = window.CellsByRow = Outlayer.create( 'cellsByRow', {
+var CellsByRow = Outlayer.create( 'cellsByRow', {
   columnWidth: 100,
   rowHeight: 100
 });
@@ -43,5 +43,25 @@ CellsByRow.prototype._getContainerSize = function() {
     height: Math.ceil( this.itemIndex / this.cols ) * this.rowHeight
   };
 };
+
+return CellsByRow;
+
+}
+
+// -------------------------- transport -------------------------- //
+
+
+if ( typeof define === 'function' && define.amd ) {
+  // AMD
+  define( [
+      '../outlayer'
+    ],
+    cellsByRowDefinition );
+} else {
+  // browser global
+  window.CellsByRow = cellsByRowDefinition(
+    window.Outlayer
+  );
+}
 
 })( window );

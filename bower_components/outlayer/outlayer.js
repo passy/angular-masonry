@@ -1,22 +1,11 @@
 /*!
- * Outlayer v1.0.0
+ * Outlayer v1.1.9
  * the brains and guts of a layout library
  */
 
 ( function( window ) {
 
 'use strict';
-
-// Outlayer classes
-var _Outlayer = window.Outlayer;
-var Item = _Outlayer.Item;
-
-// dependencies
-var docReady = window.docReady;
-var EventEmitter = window.EventEmitter;
-var eventie = window.eventie;
-var getSize = window.getSize;
-var matchesSelector = window.matchesSelector;
 
 // ----- vars ----- //
 
@@ -48,7 +37,7 @@ function makeArray( obj ) {
   if ( isArray( obj ) ) {
     // use object if already an array
     ary = obj;
-  } else if ( typeof obj.length === 'number' ) {
+  } else if ( obj && typeof obj.length === 'number' ) {
     // convert nodeList to array
     for ( var i=0, len = obj.length; i < len; i++ ) {
       ary.push( obj[i] );
@@ -82,6 +71,13 @@ var indexOf = Array.prototype.indexOf ? function( ary, obj ) {
     return -1;
   };
 
+function removeFrom( obj, ary ) {
+  var index = indexOf( ary, obj );
+  if ( index !== -1 ) {
+    ary.splice( index, 1 );
+  }
+}
+
 // http://jamesroberts.name/blog/2010/02/22/string-functions-for-javascript-trim-to-camel-case-to-dashed-and-to-underscore/
 function toDashed( str ) {
   return str.replace( /(.)([A-Z])/g, function( match, $1, $2 ) {
@@ -89,6 +85,8 @@ function toDashed( str ) {
   }).toLowerCase();
 }
 
+
+function outlayerDefinition( eventie, docReady, EventEmitter, getSize, matchesSelector, Item ) {
 
 // -------------------------- Outlayer -------------------------- //
 
@@ -121,7 +119,7 @@ function Outlayer( element, options ) {
 
   // options
   this.options = extend( {}, this.options );
-  extend( this.options, options );
+  this.option( options );
 
   // add id for Outlayer.getFromElement
   var id = ++GUID;
@@ -139,7 +137,7 @@ function Outlayer( element, options ) {
 // settings are for internal use only
 Outlayer.prototype.settings = {
   namespace: 'outlayer',
-  item: _Outlayer.Item
+  item: Item
 };
 
 // default options
@@ -166,6 +164,14 @@ Outlayer.prototype.options = {
 // inherit EventEmitter
 extend( Outlayer.prototype, EventEmitter.prototype );
 
+/**
+ * set options
+ * @param {Object} opts
+ */
+Outlayer.prototype.option = function( opts ) {
+  extend( this.options, opts );
+};
+
 Outlayer.prototype._create = function() {
   // get items from children
   this.reloadItems();
@@ -184,16 +190,16 @@ Outlayer.prototype._create = function() {
 // goes through all children again and gets bricks in proper order
 Outlayer.prototype.reloadItems = function() {
   // collection of item elements
-  this.items = this._getItems( this.element.children );
+  this.items = this._itemize( this.element.children );
 };
 
 
 /**
- * get item elements to be used in layout
+ * turn elements into Outlayer.Items to be used in layout
  * @param {Array or NodeList or HTMLElement} elems
  * @returns {Array} items - collection of new Outlayer Items
  */
-Outlayer.prototype._getItems = function( elems ) {
+Outlayer.prototype._itemize = function( elems ) {
 
   var itemElems = this._filterFindItemElements( elems );
   var Item = this.settings.item;
@@ -202,7 +208,7 @@ Outlayer.prototype._getItems = function( elems ) {
   var items = [];
   for ( var i=0, len = itemElems.length; i < len; i++ ) {
     var elem = itemElems[i];
-    var item = new Item( elem, this, this.options.itemOptions );
+    var item = new Item( elem, this );
     items.push( item );
   }
 
@@ -218,25 +224,28 @@ Outlayer.prototype._filterFindItemElements = function( elems ) {
   // make array of elems
   elems = makeArray( elems );
   var itemSelector = this.options.itemSelector;
-
-  if ( !itemSelector ) {
-    return elems;
-  }
-
   var itemElems = [];
 
-  // filter & find items if we have an item selector
   for ( var i=0, len = elems.length; i < len; i++ ) {
     var elem = elems[i];
-    // filter siblings
-    if ( matchesSelector( elem, itemSelector ) ) {
-      itemElems.push( elem );
+    // check that elem is an actual element
+    if ( !isElement( elem ) ) {
+      continue;
     }
-    // find children
-    var childElems = elem.querySelectorAll( itemSelector );
-    // concat childElems to filterFound array
-    for ( var j=0, jLen = childElems.length; j < jLen; j++ ) {
-      itemElems.push( childElems[j] );
+    // filter & find items if we have an item selector
+    if ( itemSelector ) {
+      // filter siblings
+      if ( matchesSelector( elem, itemSelector ) ) {
+        itemElems.push( elem );
+      }
+      // find children
+      var childElems = elem.querySelectorAll( itemSelector );
+      // concat childElems to filterFound array
+      for ( var j=0, jLen = childElems.length; j < jLen; j++ ) {
+        itemElems.push( childElems[j] );
+      }
+    } else {
+      itemElems.push( elem );
     }
   }
 
@@ -540,10 +549,7 @@ Outlayer.prototype.unstamp = function( elems ) {
   for ( var i=0, len = elems.length; i < len; i++ ) {
     var elem = elems[i];
     // filter out removed stamp elements
-    var index = indexOf( this.stamps, elem );
-    if ( index !== -1 ) {
-      this.stamps.splice( index, 1 );
-    }
+    removeFrom( elem, this.stamps );
     this.unignore( elem );
   }
 
@@ -658,6 +664,7 @@ Outlayer.prototype.onresize = function() {
   var _this = this;
   function delayed() {
     _this.resize();
+    delete _this.resizeTimeout;
   }
 
   this.resizeTimeout = setTimeout( delayed, 100 );
@@ -675,8 +682,6 @@ Outlayer.prototype.resize = function() {
   }
 
   this.layout();
-
-  delete this.resizeTimeout;
 };
 
 
@@ -688,12 +693,11 @@ Outlayer.prototype.resize = function() {
  * @returns {Array} items - Outlayer.Items
 **/
 Outlayer.prototype.addItems = function( elems ) {
-  var items = this._getItems( elems );
-  if ( !items.length ) {
-    return;
-  }
+  var items = this._itemize( elems );
   // add items to collection
-  this.items = this.items.concat( items );
+  if ( items.length ) {
+    this.items = this.items.concat( items );
+  }
   return items;
 };
 
@@ -716,7 +720,7 @@ Outlayer.prototype.appended = function( elems ) {
  * @param {Array or NodeList or Element} elems
  */
 Outlayer.prototype.prepended = function( elems ) {
-  var items = this._getItems( elems );
+  var items = this._itemize( elems );
   if ( !items.length ) {
     return;
   }
@@ -725,6 +729,7 @@ Outlayer.prototype.prepended = function( elems ) {
   this.items = items.concat( previousItems );
   // start new layout
   this._resetLayout();
+  this._manageStamps();
   // layout new stuff without transition
   this.layoutItems( items, true );
   this.reveal( items );
@@ -806,6 +811,10 @@ Outlayer.prototype.remove = function( elems ) {
   elems = makeArray( elems );
 
   var removeItems = this.getItems( elems );
+  // bail if no items to remove
+  if ( !removeItems || !removeItems.length ) {
+    return;
+  }
 
   this._itemsOn( removeItems, 'remove', function() {
     this.emitEvent( 'removeComplete', [ this, removeItems ] );
@@ -815,8 +824,7 @@ Outlayer.prototype.remove = function( elems ) {
     var item = removeItems[i];
     item.remove();
     // remove item from collection
-    var index = indexOf( this.items, item );
-    this.items.splice( index, 1 );
+    removeFrom( item, this.items );
   }
 };
 
@@ -838,6 +846,11 @@ Outlayer.prototype.destroy = function() {
   this.unbindResize();
 
   delete this.element.outlayerGUID;
+  // remove data for jQuery
+  if ( jQuery ) {
+    jQuery.removeData( this.element, this.settings.namespace );
+  }
+
 };
 
 // -------------------------- data -------------------------- //
@@ -888,7 +901,7 @@ Outlayer.create = function( namespace, options ) {
     Item.apply( this, arguments );
   };
 
-  Layout.Item.prototype = new Outlayer.Item();
+  Layout.Item.prototype = new Item();
 
   Layout.prototype.settings.item = Layout.Item;
 
@@ -937,10 +950,38 @@ Outlayer.create = function( namespace, options ) {
   return Layout;
 };
 
-// -------------------------- transport -------------------------- //
+// ----- fin ----- //
 
 // back in global
 Outlayer.Item = Item;
-window.Outlayer = Outlayer;
+
+return Outlayer;
+
+}
+
+// -------------------------- transport -------------------------- //
+
+if ( typeof define === 'function' && define.amd ) {
+  // AMD
+  define( [
+      'eventie/eventie',
+      'doc-ready/doc-ready',
+      'eventEmitter/EventEmitter',
+      'get-size/get-size',
+      'matches-selector/matches-selector',
+      './item'
+    ],
+    outlayerDefinition );
+} else {
+  // browser global
+  window.Outlayer = outlayerDefinition(
+    window.eventie,
+    window.docReady,
+    window.EventEmitter,
+    window.getSize,
+    window.matchesSelector,
+    window.Outlayer.Item
+  );
+}
 
 })( window );

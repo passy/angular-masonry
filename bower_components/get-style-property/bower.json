@@ -1,14 +1,5 @@
 {
   "name": "get-style-property",
-  "main": "./get-style-property.js",
-  "version": "1.0.2",
-  "gitHead": "56ac45055de30b345fffc7ca4ccbf6fff5b212f7",
-  "readme": "# getStyleProperty - quick & dirty CSS property testing\n\nby [@kangax](https://github.com/kangax) :heart_eyes: :zap: :star2:\n\nSee [perfectionkills.com/feature-testing-css-properties/](http://perfectionkills.com/feature-testing-css-properties/)\n\n``` js\nvar transformProp = getStyleProperty('transform');\n// returns WebkitTransform on Chrome / Safari\n// or transform on Firefox, or MozTransform on old firefox\n\n// then you can use it when setting CSS\nelement.style[ transformProp ] = 'translate( 12px, 34px )';\n\n// or simply check if its supported\nvar supportsTranforms = !!transformProp;\n```\n\n## Bower\n\n:bird: This script is a [Bower](https://github.com/twitter/bower) component :bird:\n\n``` bash\nbower install desandro/get-style-property\n```\n",
-  "readmeFilename": "README.md",
-  "_id": "get-style-property@1.0.2",
-  "description": "by [@kangax](https://github.com/kangax) :heart_eyes: :zap: :star2:",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/desandro/get-style-property.git"
-  }
+  "main": "get-style-property.js",
+  "version": "1.0.3"
 }

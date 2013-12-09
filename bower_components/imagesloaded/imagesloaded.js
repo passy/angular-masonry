@@ -1,5 +1,5 @@
 /*!
- * imagesLoaded v3.0.1
+ * imagesLoaded v3.0.4
  * JavaScript is all like "You images are done yet or what?"
  */
 
@@ -127,6 +127,12 @@ function defineImagesLoaded( EventEmitter, eventie ) {
     var checkedCount = 0;
     var length = this.images.length;
     this.hasAnyBroken = false;
+    // complete if no images
+    if ( !length ) {
+      this.complete();
+      return;
+    }
+
     function onConfirm( image, message ) {
       if ( _this.options.debug && hasConsole ) {
         console.log( 'confirm', image, message );
@@ -149,21 +155,29 @@ function defineImagesLoaded( EventEmitter, eventie ) {
 
   ImagesLoaded.prototype.progress = function( image ) {
     this.hasAnyBroken = this.hasAnyBroken || !image.isLoaded;
-    this.emit( 'progress', this, image );
-    if ( this.jqDeferred ) {
-      this.jqDeferred.notify( this, image );
-    }
+    // HACK - Chrome triggers event before object properties have changed. #83
+    var _this = this;
+    setTimeout( function() {
+      _this.emit( 'progress', _this, image );
+      if ( _this.jqDeferred ) {
+        _this.jqDeferred.notify( _this, image );
+      }
+    });
   };
 
   ImagesLoaded.prototype.complete = function() {
     var eventName = this.hasAnyBroken ? 'fail' : 'done';
     this.isComplete = true;
-    this.emit( eventName, this );
-    this.emit( 'always', this );
-    if ( this.jqDeferred ) {
-      var jqMethod = this.hasAnyBroken ? 'reject' : 'resolve';
-      this.jqDeferred[ jqMethod ]( this );
-    }
+    var _this = this;
+    // HACK - another setTimeout so that confirm happens after progress
+    setTimeout( function() {
+      _this.emit( eventName, _this );
+      _this.emit( 'always', _this );
+      if ( _this.jqDeferred ) {
+        var jqMethod = _this.hasAnyBroken ? 'reject' : 'resolve';
+        _this.jqDeferred[ jqMethod ]( _this );
+      }
+    });
   };
 
   // -------------------------- jquery -------------------------- //
@@ -262,8 +276,8 @@ function defineImagesLoaded( EventEmitter, eventie ) {
 if ( typeof define === 'function' && define.amd ) {
   // AMD
   define( [
-      'eventEmitter',
-      'eventie'
+      'eventEmitter/EventEmitter',
+      'eventie/eventie'
     ],
     defineImagesLoaded );
 } else {
