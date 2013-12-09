@@ -49,6 +49,7 @@
 
       function defaultLoaded($element) {
         $element.addClass('loaded');
+        $scope.$emit('masonry.imagesLoaded', $element);
       }
 
       this.appendBrick = function appendBrick(element, id) {
@@ -131,6 +132,9 @@
             ctrl.preserveOrder = (preserveOrder !== false && attrs.preserveOrder !== undefined);
 
             scope.$emit('masonry.created', element);
+            scope.$on('masonry.reload', function () {
+              ctrl.reload();
+            });
             scope.$on('$destroy', ctrl.destroy);
           }
         }
@@ -147,10 +151,6 @@
             ctrl.appendBrick(element, id);
             element.on('$destroy', function () {
               ctrl.removeBrick(id, element);
-            });
-
-            scope.$on('masonry.reload', function () {
-              ctrl.reload();
             });
 
             scope.$watch('$index', function () {
