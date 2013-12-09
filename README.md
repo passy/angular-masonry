@@ -1,4 +1,4 @@
-# Angular Masonry Directive [![Build Status](https://travis-ci.org/passy/angular-masonry.png)](https://travis-ci.org/passy/angular-masonry) [![Dependency Status](https://gemnasium.com/passy/angular-masonry.png)](https://gemnasium.com/passy/angular-masonry) [![Code Climate](https://codeclimate.com/github/passy/angular-masonry.png)](https://codeclimate.com/github/passy/angular-masonry)
+# AngularJS Masonry Directive [![Build Status](https://travis-ci.org/passy/angular-masonry.png)](https://travis-ci.org/passy/angular-masonry) [![Dependency Status](https://gemnasium.com/passy/angular-masonry.png)](https://gemnasium.com/passy/angular-masonry) [![Code Climate](https://codeclimate.com/github/passy/angular-masonry.png)](https://codeclimate.com/github/passy/angular-masonry)
 
 [Homepage](http://passy.github.io/angular-masonry)
 
@@ -7,6 +7,7 @@ An [AngularJS](http://angularjs.org/) directive to work with David Desandro's [M
 ## Usage
 
 1. `bower install --save angular-masonry`
+2. Add `wu.masonry` to your application's module dependencies.
 2. Include dependencies in your HTML.
 3. Use the `masonry` directive.
 
@@ -66,6 +67,22 @@ not set, Masonry will use the outer width of the first element.
 </masonry>
 ```
 
+### `preserve-order`
+
+The `preserve-order` attributes disables the `imagesLoaded` logic and will
+instead display bricks by the order in the DOM instead of by the time they are
+loaded. Be aware that this can lead to visual glitches if the size of the
+elements isn't set at the time they are inserted.
+
+*Example:*
+
+```html
+<masonry preserve-order>
+    <div class="masonry-brick"><img src="..." alt="Will always be shown 1st"></div>
+    <div class="masonry-brick"><img src="..." alt="Will always be shown 2nd"></div>
+</masonry>
+```
+
 ### `masonry-options`
 
 You can provide [additional options](http://masonry.desandro.com/options.html)
@@ -100,3 +117,7 @@ Please respect the code style in place.
 ## License
 
 MIT
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/passy/angular-masonry/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+

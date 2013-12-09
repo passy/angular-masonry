@@ -1,3 +1,11 @@
+<a name="v0.7.0"></a>
+## v0.7.0 (2013-12-09)
+
+
+#### Features
+
+* **directive:** add preserveLayout option ([a84e0aa0](http://github.com/passy/angular-masonry/commit/a84e0aa07cd30c0b9832d2ccdc72e5e99faf1f76))
+
 <a name="v0.6.0"></a>
 ## v0.6.0 (2013-11-10)
 

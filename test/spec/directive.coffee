@@ -148,3 +148,32 @@ describe 'angular-masonry', ->
       # 2 is resize and one layout, 3 for the elements
       expect($.fn.masonry.callCount).toBe(2 + 3)
     )
+
+    it 'should append before imagesLoaded when preserve-order is set', inject(($compile) =>
+      element = angular.element '''
+        <masonry preserve-order>
+          <div class="masonry-brick"></div>
+        </masonry>
+      '''
+      imagesLoadedCb = undefined
+      $.fn.imagesLoaded = (cb) -> imagesLoadedCb = cb
+      element = $compile(element)(@scope)
+      @scope.$digest()
+      expect($.fn.masonry.calledWith('appended', sinon.match.any, sinon.match.any)).toBe(true)
+    )
+
+    it 'should call layout after imagesLoaded when preserve-order is set', inject(($compile, $timeout) =>
+      element = angular.element '''
+        <masonry preserve-order>
+          <div class="masonry-brick"></div>
+        </masonry>
+      '''
+      imagesLoadedCb = undefined
+      $.fn.imagesLoaded = (cb) -> imagesLoadedCb = cb
+      element = $compile(element)(@scope)
+      @scope.$digest()
+      expect($.fn.masonry.calledWith('layout', sinon.match.any, sinon.match.any)).toBe(false)
+      imagesLoadedCb()
+      $timeout.flush()
+      expect($.fn.masonry.calledWith('layout', sinon.match.any, sinon.match.any)).toBe(true)
+    )
