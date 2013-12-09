@@ -170,6 +170,7 @@ describe 'angular-masonry', ->
       $.fn.imagesLoaded = (cb) -> imagesLoadedCb = cb
       element = $compile(element)(@scope)
       @scope.$digest()
+      expect($.fn.masonry.calledWith('layout', sinon.match.any, sinon.match.any)).toBe(false)
       imagesLoadedCb()
       $timeout.flush()
       expect($.fn.masonry.calledWith('layout', sinon.match.any, sinon.match.any)).toBe(true)
