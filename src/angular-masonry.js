@@ -14,6 +14,8 @@
       var self = this;
       var timeout = null;
 
+      this.preserveOrder = false;
+
       this.scheduleMasonryOnce = function scheduleMasonryOnce() {
         var args = arguments;
         var found = schedule.filter(function filterFn(item) {
@@ -58,23 +60,31 @@
           if (Object.keys(bricks).length === 0) {
             $element.masonry('resize');
           }
-
           if (bricks[id] === undefined) {
-            // I wanted to make this dynamic but ran into huuuge memory leaks
-            // that I couldn't fix. If you know how to dynamically add a
-            // callback so one could say <masonry loaded="callback($element)">
-            // please submit a pull request!
-            defaultLoaded(element);
-
             // Keep track of added elements.
             bricks[id] = true;
+            defaultLoaded(element);
             $element.masonry('appended', element, true);
-            self.scheduleMasonryOnce('reloadItems');
-            self.scheduleMasonryOnce('layout');
           }
         }
 
-        element.imagesLoaded(_append);
+        function _layout() {
+          // I wanted to make this dynamic but ran into huuuge memory leaks
+          // that I couldn't fix. If you know how to dynamically add a
+          // callback so one could say <masonry loaded="callback($element)">
+          // please submit a pull request!
+          self.scheduleMasonryOnce('layout');
+        }
+
+        if (self.preserveOrder) {
+          _append();
+          element.imagesLoaded(_layout);
+        } else {
+          element.imagesLoaded(function imagesLoaded() {
+            _append();
+            _layout();
+          });
+        }
       };
 
       this.removeBrick = function removeBrick(id, element) {
@@ -117,6 +127,8 @@
               columnWidth: parseInt(attrs.columnWidth, 10)
             });
             element.masonry(options);
+            var preserveOrder = scope.$eval(attrs.preserveOrder);
+            ctrl.preserveOrder = (preserveOrder !== false && attrs.preserveOrder !== undefined);
 
             scope.$emit('masonry.created', element);
             scope.$on('$destroy', ctrl.destroy);
