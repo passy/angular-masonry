@@ -1,6 +1,8 @@
 module.exports = function (grunt) {
   'use strict';
 
+  require('load-grunt-tasks')(grunt);
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('bower.json'),
     uglify: {
@@ -45,11 +47,6 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-ngmin');
-  grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-conventional-changelog');
   grunt.registerTask('default', ['concat', 'ngmin', 'uglify']);
   grunt.registerTask('test', ['karma:dist']);
 };
