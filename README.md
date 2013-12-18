@@ -91,14 +91,14 @@ as expression either as `masonry` or `masonry-options` attribute.
 *Example:*
 
 ```html
-<masonry masonry-options="{ transitionTransition: '0.4s' }">
+<masonry masonry-options="{ transitionDuration: '0.4s' }">
 </masonry>
 ```
 
 Equivalent to:
 
 ```html
-<div masonry="{ transitionTransition: '0.4s' }">
+<div masonry="{ transitionDuration: '0.4s' }">
 </div>
 ```
 
