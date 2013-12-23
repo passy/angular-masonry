@@ -122,10 +122,10 @@
         link: {
           pre: function preLink(scope, element, attrs, ctrl) {
             var attrOptions = scope.$eval(attrs.masonry || attrs.masonryOptions);
-            var options = angular.extend(attrOptions || {}, {
+            var options = angular.extend({
               itemSelector: attrs.itemSelector || '.masonry-brick',
               columnWidth: parseInt(attrs.columnWidth, 10)
-            });
+            }, attrOptions || {});
             element.masonry(options);
             var preserveOrder = scope.$eval(attrs.preserveOrder);
             ctrl.preserveOrder = (preserveOrder !== false && attrs.preserveOrder !== undefined);
