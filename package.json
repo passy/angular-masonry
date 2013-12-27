@@ -10,6 +10,7 @@
     "grunt-ngmin": "0.0.3",
     "load-grunt-tasks": "~0.2.0"
   },
+  "repository": "passy/angular-masonry",
   "scripts": {
     "test": "grunt test"
   }
