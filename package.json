@@ -8,7 +8,9 @@
     "grunt-karma": "~0.7.1",
     "grunt-conventional-changelog": "~1.0.0",
     "grunt-ngmin": "0.0.3",
-    "load-grunt-tasks": "~0.2.0"
+    "load-grunt-tasks": "~0.2.0",
+    "karma-jasmine": "~0.1.5",
+    "karma-phantomjs-launcher": "~0.1.1"
   },
   "repository": "passy/angular-masonry",
   "scripts": {
