@@ -10,6 +10,7 @@
       var destroyed = false;
       var self = this;
       var timeout = null;
+      this.preserveOrder = false;
       this.scheduleMasonryOnce = function scheduleMasonryOnce() {
         var args = arguments;
         var found = schedule.filter(function filterFn(item) {
@@ -46,14 +47,23 @@
             $element.masonry('resize');
           }
           if (bricks[id] === undefined) {
-            defaultLoaded(element);
             bricks[id] = true;
+            defaultLoaded(element);
             $element.masonry('appended', element, true);
-            self.scheduleMasonryOnce('reloadItems');
-            self.scheduleMasonryOnce('layout');
           }
         }
-        element.imagesLoaded(_append);
+        function _layout() {
+          self.scheduleMasonryOnce('layout');
+        }
+        if (self.preserveOrder) {
+          _append();
+          element.imagesLoaded(_layout);
+        } else {
+          element.imagesLoaded(function imagesLoaded() {
+            _append();
+            _layout();
+          });
+        }
       };
       this.removeBrick = function removeBrick(id, element) {
         if (destroyed) {
@@ -83,11 +93,13 @@
       link: {
         pre: function preLink(scope, element, attrs, ctrl) {
           var attrOptions = scope.$eval(attrs.masonry || attrs.masonryOptions);
-          var options = angular.extend(attrOptions || {}, {
+          var options = angular.extend({
               itemSelector: attrs.itemSelector || '.masonry-brick',
               columnWidth: parseInt(attrs.columnWidth, 10)
-            });
+            }, attrOptions || {});
           element.masonry(options);
+          var preserveOrder = scope.$eval(attrs.preserveOrder);
+          ctrl.preserveOrder = preserveOrder !== false && attrs.preserveOrder !== undefined;
           scope.$emit('masonry.created', element);
           scope.$on('$destroy', ctrl.destroy);
         }
