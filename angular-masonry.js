@@ -53,7 +53,11 @@
             self.scheduleMasonryOnce('layout');
           }
         }
-        element.imagesLoaded(_append);
+        if($element.data('masonry-options') == undefined){
+          element.imagesLoaded(_append);
+        }else{
+          _append();
+        }
       };
       this.removeBrick = function removeBrick(id, element) {
         if (destroyed) {
@@ -87,6 +91,7 @@
               itemSelector: attrs.itemSelector || '.masonry-brick',
               columnWidth: parseInt(attrs.columnWidth, 10)
             });
+          element.data('masonry-options', options);
           element.masonry(options);
           scope.$emit('masonry.created', element);
           scope.$on('$destroy', ctrl.destroy);
