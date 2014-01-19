@@ -13,6 +13,7 @@
       var destroyed = false;
       var self = this;
       var timeout = null;
+      var masonryOptions = {};
 
       this.preserveOrder = false;
 
@@ -76,6 +77,12 @@
           self.scheduleMasonryOnce('layout');
         }
 
+        if (self.masonryOptions.images === false){
+          _append();
+          _layout();
+          return true;
+        }
+
         if (self.preserveOrder) {
           _append();
           element.imagesLoaded(_layout);
@@ -126,6 +133,7 @@
               itemSelector: attrs.itemSelector || '.masonry-brick',
               columnWidth: parseInt(attrs.columnWidth, 10)
             }, attrOptions || {});
+            ctrl.masonryOptions = options;
             element.masonry(options);
             var preserveOrder = scope.$eval(attrs.preserveOrder);
             ctrl.preserveOrder = (preserveOrder !== false && attrs.preserveOrder !== undefined);
