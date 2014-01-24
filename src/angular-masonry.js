@@ -19,7 +19,7 @@
 
       // Masonry object created... use away
       $scope.$on('masonry.created', function () {
-        mason = $scope.masonry;
+        mason = $scope.mason;
       });
 
       this.scheduleMasonryOnce = function scheduleMasonryOnce() {
@@ -123,6 +123,7 @@
       return {
         restrict: 'AE',
         controller: 'MasonryCtrl',
+        scope: true,
         link: {
           pre: function preLink(scope, element, attrs, ctrl) {
             var attrOptions = scope.$eval(attrs.masonry || attrs.masonryOptions);
@@ -132,7 +133,7 @@
             }, attrOptions || {});
             
             // Assign to scope to share with the controller
-            scope.masonry = new Masonry(element[0], options)
+            scope.mason = new Masonry(element[0], options)
             var preserveOrder = scope.$eval(attrs.preserveOrder);
             ctrl.preserveOrder = (preserveOrder !== false && attrs.preserveOrder !== undefined);
 
