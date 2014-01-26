@@ -1,10 +1,48 @@
 module.exports = function (grunt) {
   'use strict';
 
+  var liveReloadPort = 35729;
+
   require('load-grunt-tasks')(grunt);
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('bower.json'),
+    // Files to watch for changes in order to make the browser reload
+    watch: {
+      options: {
+        livereload: liveReloadPort
+      },
+      js: {
+        files: [
+          'src/**/*.js'
+        ],
+      },
+      livereload: {
+        files: [
+          'index.html', // index file
+        ]
+      },
+    },
+
+    // Fires up a simple connect server - useful for development
+    connect: {
+      options: {
+        port: 9999,
+        hostname: 'localhost',
+        livereload: liveReloadPort
+      },
+      livereload: {
+        options: {
+          open: true,
+          base: [
+            // Directories to serve static files from
+            '.',
+            'app',
+            'src',
+          ]
+        }
+      }
+    },
     uglify: {
       options: {
         preserveComments: 'some'
@@ -47,6 +85,6 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('default', ['concat', 'ngmin', 'uglify']);
+  grunt.registerTask('default', ['concat', 'ngmin', 'uglify', 'connect:livereload', 'watch']);
   grunt.registerTask('test', ['karma:dist']);
 };
