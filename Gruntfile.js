@@ -12,14 +12,10 @@ module.exports = function (grunt) {
       options: {
         livereload: liveReloadPort
       },
-      js: {
-        files: [
-          'src/**/*.js'
-        ],
-      },
       livereload: {
         files: [
-          'index.html', // index file
+          'index.html',
+          'src/**/*.js'
         ]
       },
     },
