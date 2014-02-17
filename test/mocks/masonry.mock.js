@@ -1,4 +1,4 @@
 (function () {
   'use strict';
-  $.fn.masonry = sinon.spy();
+  // $.fn.masonry = sinon.spy();
 }());
