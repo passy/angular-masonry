@@ -85,7 +85,7 @@
           var attrOptions = scope.$eval(attrs.masonry || attrs.masonryOptions);
           var options = angular.extend(attrOptions || {}, {
               itemSelector: attrs.itemSelector || '.masonry-brick',
-              columnWidth: parseInt(attrs.columnWidth, 10)
+              columnWidth: parseInt(attrs.columnWidth, 10) || attrs.columnWidth
             });
           element.masonry(options);
           scope.$emit('masonry.created', element);
