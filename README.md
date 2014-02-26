@@ -112,7 +112,8 @@ answered by James Sharp.
 ## Contributing
 
 Pull requests welcome. Only change files in `src` and don't bump any versions.
-Please respect the code style in place.
+Please respect the code style in place. Follow the
+[AngularJS commit guidelines](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit-message-format).
 
 ## License
 
