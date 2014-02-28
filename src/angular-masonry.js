@@ -150,7 +150,8 @@
             });
 
             scope.$on('masonry.reload', function () {
-              ctrl.reload();
+              ctrl.scheduleMasonryOnce('reloadItems');
+              ctrl.scheduleMasonryOnce('layout');
             });
 
             scope.$watch('$index', function () {
