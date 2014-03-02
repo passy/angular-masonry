@@ -68,11 +68,7 @@ module.exports = function (grunt) {
         autoWatch: true
       }
     },
-    changelog: {
-      options: {
-        github: 'passy/angular-masonry'
-      }
-    },
+    changelog: {},
     ngmin: {
       dist: {
         src: '<%= pkg.name %>.js',
