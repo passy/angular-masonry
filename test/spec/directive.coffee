@@ -177,3 +177,30 @@ describe 'angular-masonry', ->
       $timeout.flush()
       expect($.fn.masonry.calledWith('layout', sinon.match.any, sinon.match.any)).toBe(true)
     )
+    
+    it 'should append before imagesLoaded when load-images is set to "false"', inject(($compile) =>
+      element = angular.element '''
+        <masonry load-images="false">
+          <div class="masonry-brick"></div>
+        </masonry>
+      '''
+      imagesLoadedCb = undefined
+      $.fn.imagesLoaded = (cb) -> imagesLoadedCb = cb
+      element = $compile(element)(@scope)
+      @scope.$digest()
+      expect($.fn.masonry.calledWith('appended', sinon.match.any, sinon.match.any)).toBe(true)
+    )
+
+    it 'should call layout before imagesLoaded when load-images is set to "false"', inject(($compile, $timeout) =>
+      element = angular.element '''
+        <masonry load-images="false">
+          <div class="masonry-brick"></div>
+        </masonry>
+      '''
+      imagesLoadedCb = undefined
+      $.fn.imagesLoaded = (cb) -> imagesLoadedCb = cb
+      element = $compile(element)(@scope)
+      @scope.$digest()
+      $timeout.flush()
+      expect($.fn.masonry.calledWith('layout', sinon.match.any, sinon.match.any)).toBe(true)
+    )
