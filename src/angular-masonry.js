@@ -132,7 +132,7 @@
             }, attrOptions || {});
             element.masonry(options);
             var loadImages = scope.$eval(attrs.loadImages);
-            ctrl.loadImages = loadImages !== false && attrs.loadImages !== undefined;
+            ctrl.loadImages = loadImages !== false;
             var preserveOrder = scope.$eval(attrs.preserveOrder);
             ctrl.preserveOrder = (preserveOrder !== false && attrs.preserveOrder !== undefined);
 
