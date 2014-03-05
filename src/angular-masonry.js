@@ -124,7 +124,7 @@
             var attrOptions = scope.$eval(attrs.masonry || attrs.masonryOptions);
             var options = angular.extend({
               itemSelector: attrs.itemSelector || '.masonry-brick',
-              columnWidth: parseInt(attrs.columnWidth, 10)
+              columnWidth: parseInt(attrs.columnWidth, 10) || attrs.columnWidth
             }, attrOptions || {});
             element.masonry(options);
             var preserveOrder = scope.$eval(attrs.preserveOrder);
