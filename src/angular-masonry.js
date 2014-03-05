@@ -15,7 +15,7 @@
       var timeout = null;
 
       this.preserveOrder = false;
-      this.loadImages = false;
+      this.loadImages = true;
 
       this.scheduleMasonryOnce = function scheduleMasonryOnce() {
         var args = arguments;
