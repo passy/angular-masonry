@@ -15,7 +15,7 @@
       var timeout = null;
 
       this.preserveOrder = false;
-      this.containImages = false;
+      this.loadImages = false;
 
       this.scheduleMasonryOnce = function scheduleMasonryOnce() {
         var args = arguments;
@@ -77,13 +77,10 @@
           self.scheduleMasonryOnce('layout');
         }
         
-        if (!self.containImages){
+        if (!self.loadImages){
           _append();
           _layout();
-          return true;
-        }
-
-        if (self.preserveOrder) {
+        } else if (self.preserveOrder) {
           _append();
           element.imagesLoaded(_layout);
         } else {
@@ -134,8 +131,8 @@
               columnWidth: parseInt(attrs.columnWidth, 10)
             }, attrOptions || {});
             element.masonry(options);
-            var containImages = scope.$eval(attrs.containImages);
-            ctrl.containImages = containImages !== false && attrs.containImages !== undefined;
+            var loadImages = scope.$eval(attrs.loadImages);
+            ctrl.loadImages = loadImages !== false && attrs.loadImages !== undefined;
             var preserveOrder = scope.$eval(attrs.preserveOrder);
             ctrl.preserveOrder = (preserveOrder !== false && attrs.preserveOrder !== undefined);
 
