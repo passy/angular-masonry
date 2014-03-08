@@ -1,3 +1,14 @@
+<a name="0.8.1"></a>
+### 0.8.1 (2014-03-08)
+
+
+#### Bug Fixes
+
+* **directive:**
+  * allow passing 'loadImages' ((3296b5a3))
+  * allow selectors as columnWidth ((b5df5bbd))
+
+
 <a name="0.8.0"></a>
 ## 0.8.0 (2014-03-02)
 
