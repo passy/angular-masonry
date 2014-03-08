@@ -83,6 +83,21 @@ elements isn't set at the time they are inserted.
 </masonry>
 ```
 
+### `load-images`
+
+This attribute defaults to `true` and allows to disable the use of `imagesLoaded`
+altogether, so you don't have to include the dependency if your masonry layout
+doesn't actually make use of images.
+
+*Example:*
+
+```html
+<masonry load-images="false">
+    <div class="masonry-brick"><p>Only text.</p></div>
+    <div class="masonry-brick"><p>And nothing but text.</p></div>
+</masonry>
+```
+
 ### `masonry-options`
 
 You can provide [additional options](http://masonry.desandro.com/options.html)
