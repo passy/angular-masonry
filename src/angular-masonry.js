@@ -52,7 +52,7 @@
         $element.addClass('loaded');
       }
 
-      this.appendBrick = function appendBrick(element, id) {
+      this.appendBrick = function appendBrick(element, id, scope) {
         if (destroyed) {
           return;
         }
@@ -65,7 +65,11 @@
             // Keep track of added elements.
             bricks[id] = true;
             defaultLoaded(element);
-            $element.masonry('appended', element, true);
+            if (scope && scope.$first && !scope.$last) {
+                $element.masonry('prepended', element, true);
+            } else {
+                $element.masonry('appended', element, true);
+            }
           }
         }
 
@@ -150,7 +154,7 @@
           pre: function preLink(scope, element, attrs, ctrl) {
             var id = scope.$id, index;
 
-            ctrl.appendBrick(element, id);
+            ctrl.appendBrick(element, id, scope);
             element.on('$destroy', function () {
               ctrl.removeBrick(id, element);
             });
