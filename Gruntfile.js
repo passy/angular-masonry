@@ -17,7 +17,7 @@ module.exports = function (grunt) {
           'index.html',
           'src/**/*.js'
         ]
-      },
+      }
     },
 
     // Fires up a simple connect server - useful for development
@@ -34,7 +34,7 @@ module.exports = function (grunt) {
             // Directories to serve static files from
             '.',
             'app',
-            'src',
+            'src'
           ]
         }
       }

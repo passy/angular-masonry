@@ -65,7 +65,7 @@
             // Keep track of added elements.
             bricks[id] = true;
             defaultLoaded(element);
-            if (scope && scope.$first) {
+            if (scope && scope.$first && !scope.$last) {
                 $element.masonry('prepended', element, true);
             } else {
                 $element.masonry('appended', element, true);
