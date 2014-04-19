@@ -5,7 +5,7 @@ module.exports = function (config) {
     basePath: '',
     frameworks: ['jasmine'],
     files: [
-      'bower_components/jquery/jquery.js',
+      'bower_components/jquery/dist/jquery.js',
       'bower_components/sinonjs/sinon.js',
       'bower_components/jasmine-sinon/lib/jasmine-sinon.js',
       'bower_components/angular/angular.js',
