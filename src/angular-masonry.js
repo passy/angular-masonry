@@ -7,7 +7,7 @@
   'use strict';
 
   angular.module('wu.masonry', [])
-    .controller('MasonryCtrl', function controller($scope, $element, $timeout) {
+    .controller('MasonryCtrl', [ '$scope', '$element', '$timeout', function controller($scope, $element, $timeout) {
       var bricks = {};
       var schedule = [];
       var destroyed = false;
@@ -119,7 +119,7 @@
       };
 
 
-    }).directive('masonry', function masonryDirective() {
+    }]).directive('masonry', function masonryDirective() {
       return {
         restrict: 'AE',
         controller: 'MasonryCtrl',
