@@ -61,6 +61,22 @@ describe 'angular-masonry', ->
     expect(call.args[0].isOriginLeft).toBeTruthy()
   )
 
+  it 'should setup a $watch when the reload-on-show is present', inject(($compile) =>
+    sinon.spy(@scope, '$watch')
+    element = angular.element '<masonry reload-on-show></masonry>'
+    element = $compile(element)(@scope)
+
+    expect(@scope.$watch).toHaveBeenCalled()
+  )
+
+  it 'should not setup a $watch when the reload-on-show is missing', inject(($compile) =>
+    sinon.spy(@scope, '$watch')
+    element = angular.element '<masonry></masonry>'
+    element = $compile(element)(@scope)
+
+    expect(@scope.$watch).not.toHaveBeenCalled()
+  )
+
   describe 'MasonryCtrl', =>
     beforeEach inject(($controller, $compile) =>
       @element = angular.element '<div></div>'
