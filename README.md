@@ -98,6 +98,24 @@ doesn't actually make use of images.
 </masonry>
 ```
 
+### `reload-on-show`
+
+The `reload-on-show` attribute triggers a reload when the masonry element (or an
+ancestor element) is shown after being hidden, useful when using `ng-show` or 
+`ng-hide`. Without this if the viewport is resized while the masonry element is 
+hidden it may not render properly when shown again.
+
+*Example:*
+
+```html
+<masonry reload-on-show ng-show="showList">
+    <div class="masonry-brick">...</div>
+    <div class="masonry-brick">...</div>
+</masonry>
+```
+
+When `showList` changes from falsey to truthy `ctrl.reload` will be called.
+
 ### `masonry-options`
 
 You can provide [additional options](http://masonry.desandro.com/options.html)
