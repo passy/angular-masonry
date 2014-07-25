@@ -1,3 +1,25 @@
+<a name="0.8.1"></a>
+### 0.8.1 (2014-03-08)
+
+
+#### Bug Fixes
+
+* **directive:**
+  * allow passing 'loadImages' ((3296b5a3))
+  * allow selectors as columnWidth ((b5df5bbd))
+
+
+<a name="0.8.0"></a>
+## 0.8.0 (2014-03-02)
+
+
+#### Bug Fixes
+
+* **directive:**
+  * re-layout on masonry.reload ([a522364e](passy/angular-masonry/commit/a522364e087c826e735a5e2ef7924ae76efe33e1))
+  * allow overriding of options ([676823c6](passy/angular-masonry/commit/676823c6444019487c774df44a49199de568f073))
+
+
 <a name="v0.7.0"></a>
 ## v0.7.0 (2013-12-09)
 

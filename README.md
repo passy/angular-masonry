@@ -83,6 +83,39 @@ elements isn't set at the time they are inserted.
 </masonry>
 ```
 
+### `load-images`
+
+This attribute defaults to `true` and allows to disable the use of `imagesLoaded`
+altogether, so you don't have to include the dependency if your masonry layout
+doesn't actually make use of images.
+
+*Example:*
+
+```html
+<masonry load-images="false">
+    <div class="masonry-brick"><p>Only text.</p></div>
+    <div class="masonry-brick"><p>And nothing but text.</p></div>
+</masonry>
+```
+
+### `reload-on-show`
+
+The `reload-on-show` attribute triggers a reload when the masonry element (or an
+ancestor element) is shown after being hidden, useful when using `ng-show` or 
+`ng-hide`. Without this if the viewport is resized while the masonry element is 
+hidden it may not render properly when shown again.
+
+*Example:*
+
+```html
+<masonry reload-on-show ng-show="showList">
+    <div class="masonry-brick">...</div>
+    <div class="masonry-brick">...</div>
+</masonry>
+```
+
+When `showList` changes from falsey to truthy `ctrl.reload` will be called.
+
 ### `masonry-options`
 
 You can provide [additional options](http://masonry.desandro.com/options.html)
@@ -112,7 +145,8 @@ answered by James Sharp.
 ## Contributing
 
 Pull requests welcome. Only change files in `src` and don't bump any versions.
-Please respect the code style in place.
+Please respect the code style in place. Follow the
+[AngularJS commit guidelines](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit-message-format).
 
 ## License
 

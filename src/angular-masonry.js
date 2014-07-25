@@ -15,6 +15,7 @@
       var timeout = null;
 
       this.preserveOrder = false;
+      this.loadImages = true;
 
       this.scheduleMasonryOnce = function scheduleMasonryOnce() {
         var args = arguments;
@@ -76,7 +77,10 @@
           self.scheduleMasonryOnce('layout');
         }
 
-        if (self.preserveOrder) {
+        if (!self.loadImages){
+          _append();
+          _layout();
+        } else if (self.preserveOrder) {
           _append();
           element.imagesLoaded(_layout);
         } else {
@@ -124,11 +128,23 @@
             var attrOptions = scope.$eval(attrs.masonry || attrs.masonryOptions);
             var options = angular.extend({
               itemSelector: attrs.itemSelector || '.masonry-brick',
-              columnWidth: parseInt(attrs.columnWidth, 10)
+              columnWidth: parseInt(attrs.columnWidth, 10) || attrs.columnWidth
             }, attrOptions || {});
             element.masonry(options);
+            var loadImages = scope.$eval(attrs.loadImages);
+            ctrl.loadImages = loadImages !== false;
             var preserveOrder = scope.$eval(attrs.preserveOrder);
             ctrl.preserveOrder = (preserveOrder !== false && attrs.preserveOrder !== undefined);
+            var reloadOnShow = scope.$eval(attrs.reloadOnShow);
+            if (reloadOnShow !== false && attrs.reloadOnShow !== undefined) {
+              scope.$watch(function () {
+                return element.prop('offsetParent');
+              }, function (isVisible, wasVisible) {
+                if (isVisible && !wasVisible) {
+                  ctrl.reload();
+                }
+              });
+            }
 
             scope.$emit('masonry.created', element);
             scope.$on('$destroy', ctrl.destroy);
@@ -150,7 +166,8 @@
             });
 
             scope.$on('masonry.reload', function () {
-              ctrl.reload();
+              ctrl.scheduleMasonryOnce('reloadItems');
+              ctrl.scheduleMasonryOnce('layout');
             });
 
             scope.$watch('$index', function () {
