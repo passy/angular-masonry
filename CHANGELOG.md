@@ -1,3 +1,17 @@
+<a name="0.9.0"></a>
+## 0.9.0 (2014-07-25)
+
+
+#### Bug Fixes
+
+* **deps:** upgrade jQuery and ImagesLoaded ((b9ee26c3), closes (#57))
+
+
+#### Features
+
+* **directive:** add `reload-on-show` option ((1b6e2b0b))
+
+
 <a name="0.8.1"></a>
 ### 0.8.1 (2014-03-08)
 
