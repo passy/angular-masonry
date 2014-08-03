@@ -1,6 +1,6 @@
 /**
  * Outlayer Item
-**/
+ */
 
 ( function( window ) {
 
@@ -8,11 +8,10 @@
 
 // ----- get style ----- //
 
-var defView = document.defaultView;
-
-var getStyle = defView && defView.getComputedStyle ?
+var getComputedStyle = window.getComputedStyle;
+var getStyle = getComputedStyle ?
   function( elem ) {
-    return defView.getComputedStyle( elem, null );
+    return getComputedStyle( elem, null );
   } :
   function( elem ) {
     return elem.currentStyle;
@@ -104,7 +103,7 @@ extend( Item.prototype, EventEmitter.prototype );
 
 Item.prototype._create = function() {
   // transition objects
-  this._transition = {
+  this._transn = {
     ingProperties: {},
     clean: {},
     onEnd: {}
@@ -285,7 +284,7 @@ Item.prototype._transition = function( args ) {
     return;
   }
 
-  var _transition = this._transition;
+  var _transition = this._transn;
   // keep track of onTransitionEnd callback by css property
   for ( var prop in args.onTransitionEnd ) {
     _transition.onEnd[ prop ] = args.onTransitionEnd[ prop ];
@@ -368,7 +367,7 @@ Item.prototype.ontransitionend = function( event ) {
   if ( event.target !== this.element ) {
     return;
   }
-  var _transition = this._transition;
+  var _transition = this._transn;
   // get property name of transitioned property, convert to prefix-free
   var propertyName = dashedVendorProperties[ event.propertyName ] || event.propertyName;
 

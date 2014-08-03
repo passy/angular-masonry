@@ -54,6 +54,17 @@ window.onload = function() {
   eventie.bind( window, 'resize', onResize );
   eventie.unbind( window, 'resize', onResize );
 
+  ( function() {
+    var img = new Image();
+    eventie.bind( img, 'load', function( event ) {
+      var isImg = event.target === img;
+      addText('img event.target is img: ' + isImg );
+    });
+    var w = Math.floor( Math.random() * 200 ) + 400;
+    var h = Math.floor( Math.random() * 200 ) + 400;
+    img.src = 'http://lorempixel.com/' + w + '/' + h;
+  })();
+
 };
 
 })();

@@ -1,5 +1,5 @@
 /*!
- * Masonry v3.1.2
+ * Masonry v3.1.5
  * Cascading grid layout library
  * http://masonry.desandro.com
  * MIT License
@@ -79,7 +79,10 @@ function masonryDefinition( Outlayer, getSize ) {
   Masonry.prototype._getItemLayoutPosition = function( item ) {
     item.getSize();
     // how many columns does this brick span
-    var colSpan = Math.ceil( item.size.outerWidth / this.columnWidth );
+    var remainder = item.size.outerWidth % this.columnWidth;
+    var mathMethod = remainder && remainder < 1 ? 'round' : 'ceil';
+    // round if off by 1 pixel, otherwise use ceil
+    var colSpan = Math[ mathMethod ]( item.size.outerWidth / this.columnWidth );
     colSpan = Math.min( colSpan, this.cols );
 
     var colGroup = this._getColGroup( colSpan );
@@ -135,6 +138,8 @@ function masonryDefinition( Outlayer, getSize ) {
     var firstCol = Math.floor( firstX / this.columnWidth );
     firstCol = Math.max( 0, firstCol );
     var lastCol = Math.floor( lastX / this.columnWidth );
+    // lastCol should not go over if multiple of columnWidth #425
+    lastCol -= lastX % this.columnWidth ? 0 : 1;
     lastCol = Math.min( this.cols - 1, lastCol );
     // set colYs to bottom of the stamp
     var stampMaxY = ( this.options.isOriginTop ? offset.top : offset.bottom ) +
@@ -171,18 +176,10 @@ function masonryDefinition( Outlayer, getSize ) {
     return ( this.cols - unusedCols ) * this.columnWidth - this.gutter;
   };
 
-  // debounced, layout on resize
-  // HEADS UP this overwrites Outlayer.resize
-  // Any changes in Outlayer.resize need to be manually added here
-  Masonry.prototype.resize = function() {
-    // don't trigger if size did not change
+  Masonry.prototype.needsResizeLayout = function() {
     var previousWidth = this.containerWidth;
     this.getContainerWidth();
-    if ( previousWidth === this.containerWidth ) {
-      return;
-    }
-
-    this.layout();
+    return previousWidth !== this.containerWidth;
   };
 
   return Masonry;

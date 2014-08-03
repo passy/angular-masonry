@@ -1,0 +1,14 @@
+.idea/
+.svn/
+.DS_Store
+site/
+.bundle/
+.pairs
+.rvmrc
+*.gem
+.bundle
+tags
+Gemfile.lock
+pkg/*
+.sass-cache/*
+src/html/.sass-cache/*

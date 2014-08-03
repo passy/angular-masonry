@@ -1,6 +1,7 @@
 /*!
- * docReady
+ * docReady v1.0.3
  * Cross browser DOMContentLoaded event emitter
+ * MIT license
  */
 
 /*jshint browser: true, strict: true, undef: true, unused: true*/
@@ -61,9 +62,11 @@ if ( typeof define === 'function' && define.amd ) {
   // if RequireJS, then doc is already ready
   docReady.isReady = typeof requirejs === 'function';
   define( [ 'eventie/eventie' ], defineDocReady );
+} else if ( typeof exports === 'object' ) {
+  module.exports = defineDocReady( require('eventie') );
 } else {
   // browser global
   window.docReady = defineDocReady( window.eventie );
 }
 
-})( this );
+})( window );

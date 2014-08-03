@@ -2,7 +2,7 @@
 
 <p class="tagline">JavaScript is all like "You images done yet or what?"</p>
 
-[desandro.github.io/imagesloaded](http://desandro.github.io/imagesloaded/)
+[imagesloaded.desandro.com](http://imagesloaded.desandro.com)
 
 Detect when images have been loaded.
 
@@ -12,13 +12,19 @@ Detect when images have been loaded.
 
 Get a packaged source file:
 
-+ [imagesloaded.pkgd.min.js](http://desandro.github.io/imagesloaded/imagesloaded.pkgd.min.js)
-+ [imagesloaded.pkgd.js](http://desandro.github.io/imagesloaded/imagesloaded.pkgd.js)
++ [imagesloaded.pkgd.min.js](http://imagesloaded.desandro.com/imagesloaded.pkgd.min.js)
++ [imagesloaded.pkgd.js](http://imagesloaded.desandro.com/imagesloaded.pkgd.js)
 
 Or install via [Bower](http://bower.io):
 
 ``` bash
 bower install imagesloaded
+```
+
+Or install via [Component](https://github.com/component/component):
+
+``` js
+component install desandro/imagesloaded
 ```
 
 ## Usage
@@ -168,21 +174,35 @@ $('#container').imagesLoaded()
 
 ## RequireJS
 
-imagesLoaded works with RequireJS.
+imagesLoaded works with [RequireJS](http://requirejs.org).
 
-1. Install imagesLoaded and its dependencies
-2. Update your [RequireJS paths config](http://requirejs.org/docs/api.html#config-paths) so it can find those modules
+You can require [imagesloaded.pkgd.js](http://imagesloaded.desandro.com/imagesloaded.pkgd.js).
 
 ``` js
-requirejs.config({
-  paths: {
-    "eventie": "components/eventie/eventie",
-    "eventEmitter": "components/eventEmitter/EventEmitter"
-  }
+requirejs( [
+  'path/to/imagesloaded.pkgd.js',
+], function( imagesLoaded ) {
+  imagesLoaded( '#container', function() { ... });
 });
 ```
 
-Consider taking a look at the [Grunt Bower RequireJS task](https://github.com/yeoman/grunt-bower-requirejs) to "Automagically wire-up installed Bower components into your RequireJS config."
+Or, you can manage dependencies with [Bower](http://bower.io). Set `baseUrl` to `bower_components` and set a path config for all your application code.
+
+``` js
+requirejs.config({
+  baseUrl: 'bower_components/',
+  paths: { // path to your app
+    app: '../'
+  }
+});
+
+requirejs( [
+  'imagesloaded/imagesloaded',
+  'app/my-component.js'
+], function( imagesLoaded, myComp ) {
+  imagesLoaded( '#container', function() { ... });
+});
+```
 
 ## Contributors
 

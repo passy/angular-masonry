@@ -101,7 +101,7 @@ test( 'ex8: 66.666% values', function() {
   if ( size.width % 1 ) {
     ok( size.width > 266.6 && size.width < 266.7, 'width is between 266.6 and 266.7' );
   } else {
-    // IE8
+    // IE8 and Safari
     equal( size.width, 267, 'width is 267' );
   }
 

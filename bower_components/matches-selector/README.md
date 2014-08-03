@@ -10,10 +10,20 @@ matchesSelector( myElem, 'div.my-hawt-selector' );
 // this DOES NOT polyfill myElem.matchesSelector
 ```
 
-## Bower
+## Package managers
 
-Install matchesSelector as [Bower component](http://bower.io)
+Install with [:bird: Bower](http://bower.io)
 
 ``` bash
 bower install desandro/matches-selector
 ```
+
+Install with [:nut_and_bolt: component](https://github.com/component/component)
+
+``` bash
+component install desandro/matches-selector
+```
+
+## MIT license
+
+matchesSelector is released under the [MIT license](http://desandro.mit-license.org)

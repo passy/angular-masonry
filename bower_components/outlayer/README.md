@@ -116,3 +116,8 @@ requirejs.config({
     'matches-selector': 'bower_components/matches-selector'
   }
 });
+```
+
+## MIT license
+
+Outlayer is released under the [MIT license](http://desandro.mit-license.org).
