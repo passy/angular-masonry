@@ -58,6 +58,11 @@
         }
 
         function _append() {
+          if (!$element || !$element.data() || !$element.data().masonry){
+            //masonry doesn't initialized yet for the element
+            return;
+          }
+
           if (Object.keys(bricks).length === 0) {
             $element.masonry('resize');
           }
