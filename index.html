@@ -98,12 +98,16 @@
             angular.module('masonryApp', ['wu.masonry']).
                 controller('DemoCtrl', function ($scope) {
                     function genBrick() {
+                        var height = ~~(Math.random() * 500) + 100;
+                        var id = ~~(Math.random() * 10000);
                         return {
-                            src: 'http://lorempixel.com/g/400/200/?' + ~~(Math.random() * 10000)
+                            src: 'http://lorempixel.com/g/280/' + height + '/?' + id
                         };
                     };
 
                     $scope.bricks = [
+                        genBrick(),
+                        genBrick(),
                         genBrick(),
                         genBrick(),
                         genBrick()
