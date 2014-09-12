@@ -1,5 +1,5 @@
 /*!
- * angular-masonry 0.8.1
+ * angular-masonry 0.9.0
  * Pascal Hartig, weluse GmbH, http://weluse.de/
  * License: MIT
  */
@@ -119,6 +119,16 @@
           ctrl.loadImages = loadImages !== false;
           var preserveOrder = scope.$eval(attrs.preserveOrder);
           ctrl.preserveOrder = preserveOrder !== false && attrs.preserveOrder !== undefined;
+          var reloadOnShow = scope.$eval(attrs.reloadOnShow);
+          if (reloadOnShow !== false && attrs.reloadOnShow !== undefined) {
+            scope.$watch(function () {
+              return element.prop('offsetParent');
+            }, function (isVisible, wasVisible) {
+              if (isVisible && !wasVisible) {
+                ctrl.reload();
+              }
+            });
+          }
           scope.$emit('masonry.created', element);
           scope.$on('$destroy', ctrl.destroy);
         }

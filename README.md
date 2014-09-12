@@ -29,7 +29,7 @@ classname.
 
 The directive uses [`imagesloaded`](https://github.com/desandro/imagesloaded) to
 determine when all images within the `masonry-brick` have been loaded and adds
-the `loaded` CSS class to to the element, so you can add custom styles and
+the `loaded` CSS class to the element, so you can add custom styles and
 prevent ghosting effects.
 
 ## Attributes
