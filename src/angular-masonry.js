@@ -6,6 +6,7 @@
 (function () {
   'use strict';
 
+  var loadedjQuery = typeof jQuery !== 'undefined';
   angular.module('wu.masonry', [])
     .controller('MasonryCtrl', function controller($scope, $element, $timeout) {
       var bricks = {};
@@ -16,6 +17,7 @@
 
       this.preserveOrder = false;
       this.loadImages = true;
+      this.masonry = null;
 
       this.scheduleMasonryOnce = function scheduleMasonryOnce() {
         var args = arguments;
@@ -41,9 +43,17 @@
           if (destroyed) {
             return;
           }
-          schedule.forEach(function scheduleForEach(args) {
-            $element.masonry.apply($element, args);
-          });
+          if (loadedjQuery) {
+            schedule.forEach(function scheduleForEach(args) {
+              $element.masonry.apply($element, args);
+            });
+          } else {
+            schedule.forEach(function scheduleForEach(args) {
+              for (var i=0,n=args.length;i<n;i++) {
+                self.masonry[args[i]]();
+              }
+            });
+          }
           schedule = [];
         }, 30);
       };
@@ -59,13 +69,21 @@
 
         function _append() {
           if (Object.keys(bricks).length === 0) {
-            $element.masonry('resize');
+            if (loadedjQuery) {
+              $element.masonry('resize');
+            } else {
+              self.masonry.resize();
+            }
           }
           if (bricks[id] === undefined) {
             // Keep track of added elements.
             bricks[id] = true;
             defaultLoaded(element);
-            $element.masonry('appended', element, true);
+            if (loadedjQuery) {
+              $element.masonry('appended', element, true);
+            } else {
+              self.masonry.appended(element, true);
+            }
           }
         }
 
@@ -82,12 +100,23 @@
           _layout();
         } else if (self.preserveOrder) {
           _append();
-          element.imagesLoaded(_layout);
+          if (loadedjQuery) {
+            element.imagesLoaded(_layout);
+          } else {
+            imagesLoaded(element[0], _layout);
+          }
         } else {
-          element.imagesLoaded(function imagesLoaded() {
-            _append();
-            _layout();
-          });
+          if (loadedjQuery) {
+            element.imagesLoaded(function imagesLoaded() {
+              _append();
+              _layout();
+            });
+          } else {
+            imagesLoaded(element[0], function imagesLoaded() {
+              _append();
+              _layout();
+            });
+          }
         }
       };
 
@@ -97,7 +126,12 @@
         }
 
         delete bricks[id];
-        $element.masonry('remove', element);
+
+        if (loadedjQuery) {
+          $element.masonry('remove', element);
+        } else {
+          self.masonry.remove(element);
+        }
         this.scheduleMasonryOnce('layout');
       };
 
@@ -106,7 +140,11 @@
 
         if ($element.data('masonry')) {
           // Gently uninitialize if still present
-          $element.masonry('destroy');
+          if (loadedjQuery) {
+            $element.masonry('destroy');
+          } else {
+            self.masonry.destroy();
+          }
         }
         $scope.$emit('masonry.destroyed');
 
@@ -114,7 +152,11 @@
       };
 
       this.reload = function reload() {
-        $element.masonry();
+        if (loadedjQuery) {
+          $element.masonry();
+        } else {
+          self.masonry($element[0]);
+        }
         $scope.$emit('masonry.reloaded');
       };
 
@@ -130,7 +172,11 @@
               itemSelector: attrs.itemSelector || '.masonry-brick',
               columnWidth: parseInt(attrs.columnWidth, 10) || attrs.columnWidth
             }, attrOptions || {});
-            element.masonry(options);
+            if (loadedjQuery) {
+              element.masonry(options);
+            } else {
+              ctrl.masonry = new Masonry(element[0], options);
+            }
             var loadImages = scope.$eval(attrs.loadImages);
             ctrl.loadImages = loadImages !== false;
             var preserveOrder = scope.$eval(attrs.preserveOrder);
