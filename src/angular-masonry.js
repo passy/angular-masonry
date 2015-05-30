@@ -110,7 +110,7 @@
         }
         $scope.$emit('masonry.destroyed');
 
-        bricks = [];
+        bricks = {};
       };
 
       this.reload = function reload() {
