@@ -1,3 +1,12 @@
+<a name="0.11.1"></a>
+### 0.11.1 (2015-06-18)
+
+
+#### Bug Fixes
+
+* **app:** reset to correct data type (fix #90) ((dad67c82))
+
+
 <a name="0.11.0"></a>
 ## 0.11.0 (2014-11-28)
 
