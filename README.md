@@ -6,7 +6,9 @@ An [AngularJS](http://angularjs.org/) directive to work with David Desandro's [M
 
 ## Usage
 
-1. `bower install --save angular-masonry`
+1. Install via either [bower](http://bower.io/) or [npm](https://www.npmjs.com/):
+1a. `bower install --save angular-masonry`
+1b. `npm install --save angular-masonry`
 2. Add `wu.masonry` to your application's module dependencies.
 2. Include dependencies in your HTML.
 3. Use the `masonry` directive.
