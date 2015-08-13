@@ -145,6 +145,16 @@
                 }
               });
             }
+            var reloadOnResize = scope.$eval(attrs.reloadOnResize);
+            if (reloadOnResize !== false && attrs.reloadOnResize !== undefined) {
+              scope.$watch(function () {
+                return element.prop('offsetWidth');
+              }, function (newWidth, oldWidth) {
+                if (newWidth != oldWidth) {
+                  ctrl.reload();
+                }
+              });
+            }
 
             scope.$emit('masonry.created', element);
             scope.$on('$destroy', ctrl.destroy);
