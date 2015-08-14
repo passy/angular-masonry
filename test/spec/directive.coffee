@@ -82,7 +82,7 @@ describe 'angular-masonry', ->
     element = angular.element '<masonry reload-on-resize></masonry>'
     element = $compile(element)(@scope)
 
-    expect(@scope.$watch).toHaveBeenCalled()
+    expect(@scope.$watch).toHaveBeenCalledWith('masonryContainer.offsetWidth', sinon.match.func );
   )
 
   it 'should not setup a $watch when the reload-on-resize is missing', inject(($compile) =>
@@ -90,7 +90,7 @@ describe 'angular-masonry', ->
     element = angular.element '<masonry></masonry>'
     element = $compile(element)(@scope)
 
-    expect(@scope.$watch).not.toHaveBeenCalled()
+    expect(@scope.$watch).not.toHaveBeenCalledWith('masonryContainer.offsetWidth', sinon.match.func );
   )
 
   describe 'MasonryCtrl', =>
