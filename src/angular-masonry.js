@@ -131,16 +131,25 @@
               columnWidth: parseInt(attrs.columnWidth, 10) || attrs.columnWidth
             }, attrOptions || {});
             element.masonry(options);
+            scope.masonryContainer = element[0];
             var loadImages = scope.$eval(attrs.loadImages);
             ctrl.loadImages = loadImages !== false;
             var preserveOrder = scope.$eval(attrs.preserveOrder);
-            ctrl.preserveOrder = (preserveOrder !== false && attrs.preserveOrder !== undefined);
+            ctrl.preserveOrder = (preserveOrder !== false && attrs.preserveOrder !== undefined); 
             var reloadOnShow = scope.$eval(attrs.reloadOnShow);
             if (reloadOnShow !== false && attrs.reloadOnShow !== undefined) {
               scope.$watch(function () {
                 return element.prop('offsetParent');
               }, function (isVisible, wasVisible) {
                 if (isVisible && !wasVisible) {
+                  ctrl.reload();
+                }
+              });
+            }
+            var reloadOnResize = scope.$eval(attrs.reloadOnResize);
+            if (reloadOnResize !== false && attrs.reloadOnResize !== undefined) {
+              scope.$watch('masonryContainer.offsetWidth', function (newWidth, oldWidth) {
+                if (newWidth != oldWidth) {
                   ctrl.reload();
                 }
               });

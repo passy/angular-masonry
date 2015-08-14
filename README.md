@@ -118,6 +118,24 @@ hidden it may not render properly when shown again.
 
 When `showList` changes from falsey to truthy `ctrl.reload` will be called.
 
+
+### `reload-on-resize`
+
+The `reload-on-resize` attribute triggers a reload when the masonry element changes
+its width, useful when only the parent element is resized (and not the window) and 
+you want the elements to be rearranged. Without this if the parent is resized then 
+some blank space may be left on the sides.
+
+*Example:*
+
+```html
+<masonry reload-on-resize>
+    <div class="masonry-brick">...</div>
+    <div class="masonry-brick">...</div>
+</masonry>
+```
+
+
 ### `masonry-options`
 
 You can provide [additional options](http://masonry.desandro.com/options.html)
