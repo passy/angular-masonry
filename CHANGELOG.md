@@ -1,3 +1,36 @@
+<a name="0.12.0"></a>
+# [0.12.0](https://github.com/passy/angular-masonry/compare/v0.11.1...v0.12.0) (2015-09-09)
+
+
+### Bug Fixes
+
+* **test:** make reload-on-resize tests more specific ([bf280d0](https://github.com/passy/angular-masonry/commit/bf280d0))
+
+### Features
+
+* **bower:** make the module compatible with angular 1.4 ([38c9fee](https://github.com/passy/angular-masonry/commit/38c9fee))
+* **directive:** add `reload-on-resize` option ([6065e18](https://github.com/passy/angular-masonry/commit/6065e18))
+
+
+
+<a name="0.11.1"></a>
+### 0.11.1 (2015-06-18)
+
+
+#### Bug Fixes
+
+* **app:** reset to correct data type (fix #90) ((dad67c82))
+
+
+<a name="0.11.0"></a>
+## 0.11.0 (2014-11-28)
+
+
+#### Bug Fixes
+
+* **deps:** update to masonry ~3.2 ((19ec6c4d))
+
+
 <a name="0.10.0"></a>
 ## 0.10.0 (2014-11-18)
 
