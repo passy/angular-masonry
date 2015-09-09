@@ -68,7 +68,17 @@ module.exports = function (grunt) {
         autoWatch: true
       }
     },
-    changelog: {},
+    conventionalChangelog: {
+      options: {
+        changelogOpts: {
+          // conventional-changelog options go here
+          preset: 'angular'
+        },
+      },
+      release: {
+        src: 'CHANGELOG.md'
+      }
+    },
     ngmin: {
       dist: {
         src: '<%= pkg.name %>.js',
