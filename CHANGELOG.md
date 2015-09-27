@@ -1,3 +1,13 @@
+<a name="0.13.0"></a>
+# [0.13.0](https://github.com/passy/angular-masonry/compare/v0.12.0...v0.13.0) (2015-09-27)
+
+
+### Features
+
+* **deps:** upgrade to Masonry 3.3 ([3267e4c](https://github.com/passy/angular-masonry/commit/3267e4c))
+
+
+
 <a name="0.12.0"></a>
 # [0.12.0](https://github.com/passy/angular-masonry/compare/v0.11.1...v0.12.0) (2015-09-09)
 

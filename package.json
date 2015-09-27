@@ -1,6 +1,6 @@
 {
   "name": "angular-masonry",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "main": "angular-masonry.js",
   "devDependencies": {
     "grunt": "~0.4.1",
