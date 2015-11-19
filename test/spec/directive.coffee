@@ -110,7 +110,7 @@ describe 'angular-masonry', ->
 
     it 'should not add after destruction', =>
       @ctrl.destroy()
-      @ctrl.appendBrick()
+      @ctrl.addBrick()
 
       expect($.fn.masonry).not.toHaveBeenCalled()
 
@@ -118,13 +118,13 @@ describe 'angular-masonry', ->
   describe 'masonry-brick', =>
     beforeEach =>
       self = this
-      @appendBrick = sinon.spy()
+      @addBrick = sinon.spy()
       @removeBrick = sinon.spy()
       @scheduleMasonry = sinon.spy()
       @scheduleMasonryOnce = sinon.spy()
 
       controllerProvider.register('MasonryCtrl', ->
-        @appendBrick = self.appendBrick
+        @addBrick = self.addBrick
         @removeBrick = self.removeBrick
         @scheduleMasonry = self.scheduleMasonry
         @scheduleMasonryOnce = self.scheduleMasonryOnce
@@ -139,7 +139,7 @@ describe 'angular-masonry', ->
       '''
       element = $compile(element)(@scope)
 
-      expect(@appendBrick).toHaveBeenCalledOnce()
+      expect(@addBrick).toHaveBeenCalledOnce()
     )
 
     it 'should remove an element in the parent controller if destroyed', inject(($compile) =>
@@ -156,7 +156,7 @@ describe 'angular-masonry', ->
         @scope.bricks.splice(0, 1)
       )
 
-      expect(@appendBrick).toHaveBeenCalledThrice()
+      expect(@addBrick).toHaveBeenCalledThrice()
       expect(@removeBrick).toHaveBeenCalledOnce()
     )
 
@@ -179,6 +179,18 @@ describe 'angular-masonry', ->
       @scope.$digest()
       # 2 is resize and one layout, 3 for the elements
       expect($.fn.masonry.callCount).toBe(2 + 3)
+    )
+
+    it 'should prepend elements when specified by attribute', inject(($compile) =>
+      element = angular.element '''
+        <masonry>
+          <div class="masonry-brick" prepend="{{true}}"></div>
+        </masonry>
+      '''
+      element = $compile(element)(@scope)
+      @scope.$digest()
+
+      expect($.fn.masonry.calledWith('prepended', sinon.match.any, sinon.match.any)).toBe(true)
     )
 
     it 'should append before imagesLoaded when preserve-order is set', inject(($compile) =>
