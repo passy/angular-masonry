@@ -157,6 +157,7 @@
 
             scope.$emit('masonry.created', element);
             scope.$on('$destroy', ctrl.destroy);
+            scope.$on('masonry.full-reload', ctrl.reload);
           }
         }
       };
