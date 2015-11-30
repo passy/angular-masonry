@@ -11,7 +11,7 @@ packed version of [passy/angular-masonry](https://github.com/passy/angular-mason
         ```html
         <script src="bower_components/jquery/dist/jquery.js"></script>
 	    <script src="bower_components/angular/angular.js"></script>
-	    <script src="bower_components/angular-masonry-packed/angular-masonry-packed.js"></script>
+	    <script src="bower_components/angular-masonry-packed/dist/angular-masonry-packed.js"></script>
         ```
         
 4. read docs on this page: [passy/angular-masonry](https://github.com/passy/angular-masonry)
