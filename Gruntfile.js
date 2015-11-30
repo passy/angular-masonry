@@ -1,93 +1,47 @@
-module.exports = function (grunt) {
-  'use strict';
-
-  var liveReloadPort = 35729;
-
-  require('load-grunt-tasks')(grunt);
+module.exports = function(grunt) {
 
   grunt.initConfig({
-    pkg: grunt.file.readJSON('bower.json'),
-    // Files to watch for changes in order to make the browser reload
-    watch: {
-      options: {
-        livereload: liveReloadPort
-      },
-      livereload: {
-        files: [
-          'index.html',
-          'src/**/*.js'
-        ]
-      },
-    },
-
-    // Fires up a simple connect server - useful for development
-    connect: {
-      options: {
-        port: 9999,
-        hostname: 'localhost',
-        livereload: liveReloadPort
-      },
-      livereload: {
-        options: {
-          open: true,
-          base: [
-            // Directories to serve static files from
-            '.',
-            'app',
-            'src',
+    pkg: grunt.file.readJSON('package.json'),
+    uglify: {
+      js: {
+        files : {
+          'dist/angular-masonry-packed.min.js' : [
+            'bower_components/jquery-bridget/jquery.bridget.js',
+            'bower_components/get-style-property/get-style-property.js',
+            'bower_components/get-size/get-size.js',
+            'bower_components/eventEmitter/EventEmitter.js',
+            'bower_components/eventie/eventie.js',
+            'bower_components/doc-ready/doc-ready.js',
+            'bower_components/matches-selector/matches-selector.js',
+            'bower_components/fizzy-ui-utils/utils.js',
+            'bower_components/outlayer/item.js',
+            'bower_components/outlayer/outlayer.js',
+            'bower_components/masonry/masonry.js',
+            'bower_components/imagesloaded/imagesloaded.js',
+            'src/angular-masonry-packed.js'
           ]
         }
-      }
-    },
-    uglify: {
-      options: {
-        preserveComments: 'some'
       },
-      dist: {
-        src: '<%= pkg.name %>.js',
-        dest: '<%= pkg.name %>.min.js'
-      }
-    },
-    concat: {
       options: {
-        process: true
-      },
-      dist: {
-        src: 'src/<%= pkg.name %>.js',
-        dest: '<%= pkg.name %>.js'
+        banner: '\n/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n',
       }
     },
-    karma: {
-      dist: {
-        configFile: 'karma.conf.js',
-        browsers: ['PhantomJS']
-      },
-      watch: {
-        configFile: 'karma.conf.js',
-        singleRun: false,
-        autoWatch: true
-      }
-    },
-    conventionalChangelog: {
-      options: {
-        changelogOpts: {
-          // conventional-changelog options go here
-          preset: 'angular'
+    watch: {
+      minifiyJs: {
+        files: [
+          'src/angular-masonry-packed.js'
+        ],
+        tasks: ['uglify'],
+        options: {
+          spawn: true,
         },
       },
-      release: {
-        src: 'CHANGELOG.md'
-      }
     },
-    ngmin: {
-      dist: {
-        src: '<%= pkg.name %>.js',
-        dest: '<%= pkg.name %>.js'
-      }
-    }
   });
 
-  grunt.registerTask('default', ['concat', 'ngmin', 'uglify']);
-  grunt.registerTask('server', ['default', 'connect:livereload', 'watch']);
-  grunt.registerTask('test', ['karma:dist']);
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+
+  grunt.registerTask('default', ['watch']);
+
 };
