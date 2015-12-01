@@ -1,4 +1,4 @@
-packed version of [passy/angular-masonry](https://github.com/passy/angular-masonry)
+packed version of [passy/angular-masonry](https://github.com/passy/angular-masonry) including the most dependencies
 
 ## Usage
 

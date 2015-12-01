@@ -18,7 +18,7 @@ module.exports = function(grunt) {
             'bower_components/outlayer/outlayer.js',
             'bower_components/masonry/masonry.js',
             'bower_components/imagesloaded/imagesloaded.js',
-            'src/angular-masonry-packed.js'
+            'src/angular-masonry.js'
           ]
         }
       },
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
     watch: {
       minifiyJs: {
         files: [
-          'src/angular-masonry-packed.js'
+          'src/angular-masonry.js'
         ],
         tasks: ['uglify'],
         options: {
