@@ -195,6 +195,19 @@ Equivalent to:
 </div>
 ```
 
+### `prepend`
+
+Bricks are appended by default. This behavior can be specified for each brick by
+providing the `prepend` attribute.
+
+*Example:*
+
+```html
+<div masonry>
+    <div class="masonry-brick" prepend="isPrepended()">...</div>
+</div>
+```
+
 ## Credits
 
 The directive is based on

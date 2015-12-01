@@ -52,12 +52,12 @@
         $element.addClass('loaded');
       }
 
-      this.appendBrick = function appendBrick(element, id) {
+      this.addBrick = function addBrick(method, element, id) {
         if (destroyed) {
           return;
         }
 
-        function _append() {
+        function _add() {
           if (Object.keys(bricks).length === 0) {
             $element.masonry('resize');
           }
@@ -65,7 +65,7 @@
             // Keep track of added elements.
             bricks[id] = true;
             defaultLoaded(element);
-            $element.masonry('appended', element, true);
+            $element.masonry(method, element, true);
           }
         }
 
@@ -78,14 +78,14 @@
         }
 
         if (!self.loadImages){
-          _append();
+          _add();
           _layout();
         } else if (self.preserveOrder) {
-          _append();
+          _add();
           element.imagesLoaded(_layout);
         } else {
           element.imagesLoaded(function imagesLoaded() {
-            _append();
+            _add();
             _layout();
           });
         }
@@ -168,8 +168,10 @@
         link: {
           pre: function preLink(scope, element, attrs, ctrl) {
             var id = scope.$id, index;
+            var prependBrick = scope.$eval(attrs.prepend);
+            var method = prependBrick ? 'prepended' : 'appended';
 
-            ctrl.appendBrick(element, id);
+            ctrl.addBrick(method, element, id);
             element.on('$destroy', function () {
               ctrl.removeBrick(id, element);
             });
