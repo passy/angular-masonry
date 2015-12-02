@@ -3,7 +3,7 @@ packed version of [passy/angular-masonry](https://github.com/passy/angular-mason
 ## Usage
 
 1. Install via either [bower](http://bower.io/)
-    `--save angular-masonry`
+    `--save angular-masonry-packed`
 2. Add `wu.masonry` to your application's module dependencies.
 3. Include dependencies in your HTML.
     1. When using bower:
