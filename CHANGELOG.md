@@ -1,3 +1,13 @@
+<a name="0.14.0"></a>
+# [0.14.0](https://github.com/passy/angular-masonry/compare/v0.13.0...v0.14.0) (2015-12-03)
+
+
+### Features
+
+* **directive:** allow to prepend bricks ([a5e73aa](https://github.com/passy/angular-masonry/commit/a5e73aa))
+
+
+
 <a name="0.13.0"></a>
 # [0.13.0](https://github.com/passy/angular-masonry/compare/v0.12.0...v0.13.0) (2015-09-27)
 
