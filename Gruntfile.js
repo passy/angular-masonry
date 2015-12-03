@@ -23,7 +23,7 @@ module.exports = function(grunt) {
         }
       },
       options: {
-        banner: '\n/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n',
+        banner: '\n/*! <%= pkg.name %> v<%= pkg.version %> (<%= grunt.template.today("dd-mm-yyyy") %>) by <%= pkg.author %> */\n',
       }
     },
     watch: {
