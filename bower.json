@@ -1,6 +1,6 @@
 {
   "name": "angular-masonry-packed",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "main": "dist/angular-masonry-packed.min.js",
   "repository": "https://github.com/JohnnyTheTank/angular-masonry-packed.git",
   "description": "packed version uf passys angular-masonry, including the most dependencies",
@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "masonry": "~3.3.0",
+    "angular-masonry":"*",
     "imagesloaded": "~3.1.0",
     "jquery-bridget": "~1.1.0"
   }

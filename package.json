@@ -1,12 +1,12 @@
 {
     "name": "angular-masonry-packed",
-    "version": "0.14.0",
+    "version": "0.14.1",
     "main": "dist/angular-masonry-packed.min.js",
     "repository": "https://github.com/JohnnyTheTank/angular-masonry-packed.git",
     "license": "MIT",
     "devDependencies": {
         "grunt": "~0.4.1",
-        "grunt-contrib-uglify": "^0.9.1",
+        "grunt-contrib-uglify": "^0.11.0",
         "grunt-contrib-watch": "^0.6.1"
     }
 }
