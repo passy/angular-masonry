@@ -1,3 +1,10 @@
+<a name="0.14.1"></a>
+# [0.14.1](https://github.com/passy/angular-masonry/compare/v0.14.0...v0.14.1) (2015-09-09)
+
+### Bug Fixes
+
+* **dist:** fix missing build artifacts
+
 <a name="0.14.0"></a>
 # [0.14.0](https://github.com/passy/angular-masonry/compare/v0.13.0...v0.14.0) (2015-12-03)
 
