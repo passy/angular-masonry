@@ -1,18 +1,22 @@
 {
-  "name": "angular-masonry-packed",
-  "version": "0.14.1",
-  "main": "dist/angular-masonry-packed.min.js",
-  "repository": "https://github.com/JohnnyTheTank/angular-masonry-packed.git",
-  "description": "packed version uf passys angular-masonry, including the most dependencies",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "src"
-  ],
-  "dependencies": {
-    "angular": "^1.3.0",
-    "jquery": "~2.1.0"
-  }
+    "name": "angular-masonry-packed",
+    "version": "0.14.3",
+    "main": "dist/angular-masonry-packed.min.js",
+    "repository": "https://github.com/JohnnyTheTank/angular-masonry-packed.git",
+    "description": "packed version uf passys angular-masonry, including the most dependencies",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "src"
+    ],
+    "dependencies": {
+        "angular": "^1.3.0",
+        "jquery": "~2.1.0"
+    },
+    "devDependencies": {
+        "imagesloaded": "^3.1.8",
+        "jquery-bridget": "^1.1.0"
+    }
 }

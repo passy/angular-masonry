@@ -8,18 +8,18 @@ module.exports = function (grunt) {
             js: {
                 files: {
                     'dist/angular-masonry-packed.min.js': [
-                        'node_modules/jquery-bridget/jquery.bridget.js',
-                        'node_modules/get-style-property/get-style-property.js',
-                        'node_modules/get-size/get-size.js',
-                        'node_modules/eventEmitter/EventEmitter.js',
-                        'node_modules/eventie/eventie.js',
-                        'node_modules/doc-ready/doc-ready.js',
-                        'node_modules/matches-selector/matches-selector.js',
-                        'node_modules/fizzy-ui-utils/utils.js',
-                        'node_modules/outlayer/item.js',
-                        'node_modules/outlayer/outlayer.js',
-                        'node_modules/masonry/masonry.js',
-                        'node_modules/imagesloaded/imagesloaded.js',
+                        'bower_components/jquery-bridget/jquery.bridget.js',
+                        'bower_components/get-style-property/get-style-property.js',
+                        'bower_components/get-size/get-size.js',
+                        'bower_components/eventEmitter/EventEmitter.js',
+                        'bower_components/eventie/eventie.js',
+                        'bower_components/doc-ready/doc-ready.js',
+                        'bower_components/matches-selector/matches-selector.js',
+                        'bower_components/fizzy-ui-utils/utils.js',
+                        'bower_components/outlayer/item.js',
+                        'bower_components/outlayer/outlayer.js',
+                        'bower_components/masonry/masonry.js',
+                        'bower_components/imagesloaded/imagesloaded.js',
                         'src/*.js'
                     ]
                 }
@@ -36,18 +36,18 @@ module.exports = function (grunt) {
             dist: {
                 files: {
                     'dist/angular-masonry-packed.js': [
-                        'node_modules/jquery-bridget/jquery.bridget.js',
-                        'node_modules/get-style-property/get-style-property.js',
-                        'node_modules/get-size/get-size.js',
-                        'node_modules/eventEmitter/EventEmitter.js',
-                        'node_modules/eventie/eventie.js',
-                        'node_modules/doc-ready/doc-ready.js',
-                        'node_modules/matches-selector/matches-selector.js',
-                        'node_modules/fizzy-ui-utils/utils.js',
-                        'node_modules/outlayer/item.js',
-                        'node_modules/outlayer/outlayer.js',
-                        'node_modules/masonry/masonry.js',
-                        'node_modules/imagesloaded/imagesloaded.js',
+                        'bower_components/jquery-bridget/jquery.bridget.js',
+                        'bower_components/get-style-property/get-style-property.js',
+                        'bower_components/get-size/get-size.js',
+                        'bower_components/eventEmitter/EventEmitter.js',
+                        'bower_components/eventie/eventie.js',
+                        'bower_components/doc-ready/doc-ready.js',
+                        'bower_components/matches-selector/matches-selector.js',
+                        'bower_components/fizzy-ui-utils/utils.js',
+                        'bower_components/outlayer/item.js',
+                        'bower_components/outlayer/outlayer.js',
+                        'bower_components/masonry/masonry.js',
+                        'bower_components/imagesloaded/imagesloaded.js',
                         'src/*.js'
                     ]
                 }

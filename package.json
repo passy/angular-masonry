@@ -1,9 +1,9 @@
 {
     "name": "angular-masonry-packed",
-    "version": "0.14.1",
+    "version": "0.14.3",
     "main": "dist/angular-masonry-packed.min.js",
     "repository": "https://github.com/JohnnyTheTank/angular-masonry-packed.git",
-    "homepage": "https://github.com/JohnnyTheTank/angular-masonry-packed.#readme",
+    "homepage": "https://github.com/JohnnyTheTank/angular-masonry-packed#readme",
     "license": "MIT",
     "dependencies": {
         "angular": "^1.3.0",
