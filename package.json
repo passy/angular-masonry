@@ -26,8 +26,8 @@
   },
   "dependencies": {
     "angular": "^1.4.1",
-    "imagesloaded": "^3.1.8",
-    "jquery-bridget": "^1.1.0",
-    "masonry-layout": "^3.3.0"
+    "imagesloaded": "^4.1.0",
+    "jquery-bridget": "^2.0.0",
+    "masonry-layout": "^4.0.0"
   }
 }

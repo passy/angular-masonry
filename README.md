@@ -11,45 +11,19 @@ An [AngularJS](http://angularjs.org/) directive to work with David Desandro's [M
     2. `npm install --save angular-masonry`
 2. Add `wu.masonry` to your application's module dependencies.
 3. Include dependencies in your HTML.
-    1. When using bower:
-        
-        ```html
-        <script src="bower_components/jquery/dist/jquery.js"></script>
-	    <script src="bower_components/jquery-bridget/jquery.bridget.js"></script>
-	    <script src="bower_components/get-style-property/get-style-property.js"></script>
-	    <script src="bower_components/get-size/get-size.js"></script>
-	    <script src="bower_components/eventEmitter/EventEmitter.js"></script>
-	    <script src="bower_components/eventie/eventie.js"></script>
-	    <script src="bower_components/doc-ready/doc-ready.js"></script>
-	    <script src="bower_components/matches-selector/matches-selector.js"></script>
-	    <script src="bower_components/fizzy-ui-utils/utils.js"></script>
-	    <script src="bower_components/outlayer/item.js"></script>
-	    <script src="bower_components/outlayer/outlayer.js"></script>
-	    <script src="bower_components/masonry/masonry.js"></script>
-	    <script src="bower_components/imagesloaded/imagesloaded.js"></script>
-	    <script src="bower_components/angular/angular.js"></script>
-	    <script src="bower_components/angular-masonry/angular-masonry.js"></script>
-        ```
-    
-    2. When using npm:
-        
-        ```html
-        <script src="node_modules/jquery/dist/jquery.js"></script>
-        <script src="node_modules/jquery-bridget/jquery.bridget.js"></script>
-        <script src="node_modules/desandro-get-style-property/get-style-property.js"></script>
-        <script src="node_modules/get-size/get-size.js"></script>
-        <script src="node_modules/wolfy87-eventemitter/EventEmitter.js"></script>
-        <script src="node_modules/eventie/eventie.js"></script>
-        <script src="node_modules/doc-ready/doc-ready.js"></script>
-        <script src="node_modules/desandro-matches-selector/matches-selector.js"></script>
-        <script src="node_modules/fizzy-ui-utils/utils.js"></script>
-        <script src="node_modules/outlayer/item.js"></script>
-        <script src="node_modules/outlayer/outlayer.js"></script>
-        <script src="node_modules/masonry-layout/masonry.js"></script>
-        <script src="node_modules/imagesloaded/imagesloaded.js"></script>
-        <script src="node_modules/angular/angular.js"></script>
-        <script src="node_modules/angular-masonry/angular-masonry.js"></script>
-        ```
+      ```html
+      <script src="bower_components/jquery/dist/jquery.js"></script>
+      <script src="bower_components/jquery-bridget/jquery-bridget.js"></script>
+      <script src="bower_components/ev-emitter/ev-emitter.js"></script>
+      <script src="bower_components/desandro-matches-selector/matches-selector.js"></script>
+      <script src="bower_components/fizzy-ui-utils/utils.js"></script>
+      <script src="bower_components/outlayer/item.js"></script>
+      <script src="bower_components/outlayer/outlayer.js"></script>
+      <script src="bower_components/masonry/masonry.js"></script>
+      <script src="bower_components/imagesloaded/imagesloaded.js"></script>
+      <script src="bower_components/angular/angular.js"></script>
+      <script src="bower_components/angular-masonry/angular-masonry.js"></script>
+      ```
     
 4. Use the `masonry` directive.
 
