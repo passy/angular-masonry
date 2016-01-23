@@ -1,6 +1,6 @@
 /*!
  * angular-masonry <%= pkg.version %>
- * Pascal Hartig, weluse GmbH, http://weluse.de/
+ * Pascal Hartig, https://passy.me/
  * License: MIT
  */
 (function () {

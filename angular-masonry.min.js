@@ -1,5 +1,5 @@
 /*!
- * angular-masonry 0.14.1
+ * angular-masonry 0.15.0
  * Pascal Hartig, weluse GmbH, http://weluse.de/
  * License: MIT
  */
