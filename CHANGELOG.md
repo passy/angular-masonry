@@ -1,3 +1,13 @@
+<a name="0.15.0"></a>
+# [0.15.0](https://github.com/passy/angular-masonry/compare/v0.14.1...v0.15.0) (2016-01-23)
+
+
+### Features
+
+* **deps:** masonry v4, imagesloaded v4 ([81ec0dc](https://github.com/passy/angular-masonry/commit/81ec0dc))
+
+
+
 <a name="0.14.1"></a>
 # [0.14.1](https://github.com/passy/angular-masonry/compare/v0.14.0...v0.14.1) (2015-09-09)
 
