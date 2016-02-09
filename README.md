@@ -1,8 +1,8 @@
 # AngularJS Masonry Directive [![Build Status](https://travis-ci.org/passy/angular-masonry.png)](https://travis-ci.org/passy/angular-masonry) [![Dependency Status](https://gemnasium.com/passy/angular-masonry.png)](https://gemnasium.com/passy/angular-masonry) [![Code Climate](https://codeclimate.com/github/passy/angular-masonry.png)](https://codeclimate.com/github/passy/angular-masonry)
 
-[Homepage](http://passy.github.io/angular-masonry)
+[Homepage](https://passy.github.io/angular-masonry)
 
-An [AngularJS](http://angularjs.org/) directive to work with David Desandro's [Masonry](http://masonry.desandro.com/).
+An [AngularJS 1](https://angularjs.org/) directive to work with David Desandro's [Masonry](http://masonry.desandro.com/).
 
 ## Usage
 
