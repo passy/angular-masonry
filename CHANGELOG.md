@@ -1,3 +1,13 @@
+<a name="0.16.0"></a>
+# [0.16.0](https://github.com/passy/angular-masonry/compare/v0.15.0...v0.16.0) (2016-02-14)
+
+
+### Features
+
+* **deps:** update AngularJS to 1.5 ([c043a9f](https://github.com/passy/angular-masonry/commit/c043a9f))
+
+
+
 <a name="0.15.0"></a>
 # [0.15.0](https://github.com/passy/angular-masonry/compare/v0.14.1...v0.15.0) (2016-01-23)
 

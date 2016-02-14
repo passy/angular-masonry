@@ -1,5 +1,5 @@
 /*!
- * angular-masonry 0.15.0
+ * angular-masonry 0.16.0
  * Pascal Hartig, https://passy.me/
  * License: MIT
  */
