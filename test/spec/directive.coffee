@@ -177,8 +177,10 @@ describe 'angular-masonry', ->
       '''
       element = $compile(element)(@scope)
       @scope.$digest()
-      # 2 is resize and one layout, 3 for the elements
-      expect($.fn.masonry.callCount).toBe(2 + 3)
+      # 2 is resize and one layout
+      # 3 is for checking whether the element is already added
+      # 3 is for appending the elements
+      expect($.fn.masonry.callCount).toBe(2 + 3 + 3)
     )
 
     it 'should prepend elements when specified by attribute', inject(($compile) =>
@@ -247,4 +249,16 @@ describe 'angular-masonry', ->
       @scope.$digest()
       $timeout.flush()
       expect($.fn.masonry.calledWith('layout', sinon.match.any, sinon.match.any)).toBe(true)
+    )
+
+    it 'should not append if masonry already has the element', inject(($compile) =>
+      element = angular.element '''
+        <masonry load-images="false">
+          <div class="masonry-brick"></div>
+        </masonry>
+      '''
+      $.fn.masonry.withArgs('getItemElements').returns indexOf: -> 0
+      element = $compile(element)(@scope)
+      @scope.$digest()
+      expect($.fn.masonry.calledWith('appended', sinon.match.any, sinon.match.any)).toBe(false)
     )

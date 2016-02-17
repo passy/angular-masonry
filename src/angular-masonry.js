@@ -65,7 +65,10 @@
             // Keep track of added elements.
             bricks[id] = true;
             defaultLoaded(element);
-            $element.masonry(method, element, true);
+            // Don't add element to Masonry if it already has it.
+            if ($element.masonry('getItemElements').indexOf(element.get(0)) === -1) {
+              $element.masonry(method, element, true);
+            }
           }
         }
 

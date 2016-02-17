@@ -1,4 +1,5 @@
 (function () {
   'use strict';
-  $.fn.masonry = sinon.spy();
+  $.fn.masonry = sinon.stub();
+  $.fn.masonry.withArgs('getItemElements').returns([]);
 }());
