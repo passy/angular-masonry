@@ -17,6 +17,7 @@ An [AngularJS 1](https://angularjs.org/) directive to work with David Desandro's
       <script src="bower_components/ev-emitter/ev-emitter.js"></script>
       <script src="bower_components/desandro-matches-selector/matches-selector.js"></script>
       <script src="bower_components/fizzy-ui-utils/utils.js"></script>
+      <script src="bower_components/get-size/get-size.js"></script>
       <script src="bower_components/outlayer/item.js"></script>
       <script src="bower_components/outlayer/outlayer.js"></script>
       <script src="bower_components/masonry/masonry.js"></script>
