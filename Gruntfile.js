@@ -79,10 +79,6 @@ module.exports = function (grunt) {
         src: 'CHANGELOG.md'
       }
     },
-    ngmin: {
-      dist: {
-        src: '<%= pkg.name %>.js',
-        dest: '<%= pkg.name %>.js'
       }
     }
   });
