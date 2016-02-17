@@ -79,15 +79,21 @@ module.exports = function (grunt) {
         src: 'CHANGELOG.md'
       }
     },
-    ngmin: {
-      dist: {
-        src: '<%= pkg.name %>.js',
-        dest: '<%= pkg.name %>.js'
+    ngAnnotate: {
+      app: {
+        options: {
+          singleQuotes: true,
+        },
+        files: [
+          {
+            '<%= pkg.name %>.js': ['<%= pkg.name %>.js']
+          }
+        ]
       }
     }
   });
 
-  grunt.registerTask('default', ['concat', 'ngmin', 'uglify']);
+  grunt.registerTask('default', ['concat', 'ngAnnotate', 'uglify']);
   grunt.registerTask('server', ['default', 'connect:livereload', 'watch']);
   grunt.registerTask('test', ['karma:dist']);
 };
