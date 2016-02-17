@@ -83,7 +83,6 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('default', ['concat', 'ngmin', 'uglify']);
   grunt.registerTask('server', ['default', 'connect:livereload', 'watch']);
   grunt.registerTask('test', ['karma:dist']);
 };
