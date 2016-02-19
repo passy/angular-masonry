@@ -135,7 +135,7 @@
             }, attrOptions || {});
             element.masonry(options);
             element.children().each(function () {
-              $(this).data('angularMasonryStatic', true);
+              angular.element(this).data('angularMasonryStatic', true);
             });
             scope.masonryContainer = element[0];
             var loadImages = scope.$eval(attrs.loadImages);
