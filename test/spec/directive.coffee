@@ -132,12 +132,14 @@ describe 'angular-masonry', ->
       )
 
     it 'should register an element in the parent controller', inject(($compile) =>
+      @scope.bricks = [1]
       element = angular.element '''
         <masonry>
-          <div class="masonry-brick"></div>
+          <div class="masonry-brick" ng-repeat="brick in bricks"></div>
         </masonry>
       '''
       element = $compile(element)(@scope)
+      @scope.$digest() # Needed for initial ng-repeat
 
       expect(@addBrick).toHaveBeenCalledOnce()
     )
@@ -161,32 +163,30 @@ describe 'angular-masonry', ->
     )
 
   describe 'masonry-brick internals', =>
-    beforeEach ->
+    beforeEach =>
       $.fn.imagesLoaded = (cb) -> cb()
+      @scope.bricks = [1]
 
     afterEach ->
       delete $.fn.imagesLoaded
 
     it 'should append three elements to the controller', inject(($compile) =>
+      @scope.bricks = [1, 2, 3]
       element = angular.element '''
         <masonry>
-          <div class="masonry-brick"></div>
-          <div class="masonry-brick"></div>
-          <div class="masonry-brick"></div>
+          <div class="masonry-brick" ng-repeat="brick in bricks"></div>
         </masonry>
       '''
       element = $compile(element)(@scope)
       @scope.$digest()
-      # 2 is resize and one layout
-      # 3 is for checking whether the element is already added
-      # 3 is for appending the elements
-      expect($.fn.masonry.callCount).toBe(2 + 3 + 3)
+      # 2 is resize and one layout, 3 for the elements
+      expect($.fn.masonry.callCount).toBe(2 + 3)
     )
 
     it 'should prepend elements when specified by attribute', inject(($compile) =>
       element = angular.element '''
         <masonry>
-          <div class="masonry-brick" prepend="{{true}}"></div>
+          <div class="masonry-brick" prepend="{{true}}" ng-repeat="brick in bricks"></div>
         </masonry>
       '''
       element = $compile(element)(@scope)
@@ -198,7 +198,7 @@ describe 'angular-masonry', ->
     it 'should append before imagesLoaded when preserve-order is set', inject(($compile) =>
       element = angular.element '''
         <masonry preserve-order>
-          <div class="masonry-brick"></div>
+          <div class="masonry-brick" ng-repeat="brick in bricks"></div>
         </masonry>
       '''
       imagesLoadedCb = undefined
@@ -211,7 +211,7 @@ describe 'angular-masonry', ->
     it 'should call layout after imagesLoaded when preserve-order is set', inject(($compile, $timeout) =>
       element = angular.element '''
         <masonry preserve-order>
-          <div class="masonry-brick"></div>
+          <div class="masonry-brick" ng-repeat="brick in bricks"></div>
         </masonry>
       '''
       imagesLoadedCb = undefined
@@ -227,7 +227,7 @@ describe 'angular-masonry', ->
     it 'should append before imagesLoaded when load-images is set to "false"', inject(($compile) =>
       element = angular.element '''
         <masonry load-images="false">
-          <div class="masonry-brick"></div>
+          <div class="masonry-brick" ng-repeat="brick in bricks"></div>
         </masonry>
       '''
       imagesLoadedCb = undefined
@@ -240,7 +240,7 @@ describe 'angular-masonry', ->
     it 'should call layout before imagesLoaded when load-images is set to "false"', inject(($compile, $timeout) =>
       element = angular.element '''
         <masonry load-images="false">
-          <div class="masonry-brick"></div>
+          <div class="masonry-brick" ng-repeat="brick in bricks"></div>
         </masonry>
       '''
       imagesLoadedCb = undefined
@@ -257,7 +257,6 @@ describe 'angular-masonry', ->
           <div class="masonry-brick"></div>
         </masonry>
       '''
-      $.fn.masonry.withArgs('getItemElements').returns indexOf: -> 0
       element = $compile(element)(@scope)
       @scope.$digest()
       expect($.fn.masonry.calledWith('appended', sinon.match.any, sinon.match.any)).toBe(false)
