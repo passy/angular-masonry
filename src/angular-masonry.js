@@ -65,7 +65,10 @@
             // Keep track of added elements.
             bricks[id] = true;
             defaultLoaded(element);
-            $element.masonry(method, element, true);
+            // Don't add element to Masonry if it already has it.
+            if (element.data('angularMasonryStatic') !== true) {
+              $element.masonry(method, element, true);
+            }
           }
         }
 
@@ -131,6 +134,9 @@
               columnWidth: parseInt(attrs.columnWidth, 10) || attrs.columnWidth
             }, attrOptions || {});
             element.masonry(options);
+            element.children().each(function () {
+              angular.element(this).data('angularMasonryStatic', true);
+            });
             scope.masonryContainer = element[0];
             var loadImages = scope.$eval(attrs.loadImages);
             ctrl.loadImages = loadImages !== false;
