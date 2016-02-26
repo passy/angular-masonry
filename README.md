@@ -1,4 +1,4 @@
-# AngularJS Masonry Directive [![Build Status](https://travis-ci.org/passy/angular-masonry.png)](https://travis-ci.org/passy/angular-masonry) [![Dependency Status](https://gemnasium.com/passy/angular-masonry.png)](https://gemnasium.com/passy/angular-masonry) [![Code Climate](https://codeclimate.com/github/passy/angular-masonry.png)](https://codeclimate.com/github/passy/angular-masonry)
+# AngularJS Masonry Directive [![Build Status](https://travis-ci.org/passy/angular-masonry.svg?branch=master)](https://travis-ci.org/passy/angular-masonry)[![Dependency Status](https://gemnasium.com/passy/angular-masonry.svg)](https://gemnasium.com/passy/angular-masonry) [![Code Climate](https://codeclimate.com/github/passy/angular-masonry/badges/gpa.svg)](https://codeclimate.com/github/passy/angular-masonry)
 
 [Homepage](https://passy.github.io/angular-masonry)
 
