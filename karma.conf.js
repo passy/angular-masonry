@@ -5,6 +5,7 @@ module.exports = function (config) {
     basePath: '',
     frameworks: ['jasmine'],
     files: [
+      'bower_components/masonry/dist/masonry.pkgd.js',
       'bower_components/jquery/dist/jquery.js',
       'bower_components/sinonjs/sinon.js',
       'bower_components/jasmine-sinon/lib/jasmine-sinon.js',

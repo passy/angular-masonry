@@ -1,7 +1,10 @@
-/*!
- * angular-masonry <%= pkg.version %>
- * Pascal Hartig, https://passy.me/
- * License: MIT
+/**
+ * angular-masonry
+ *
+ * @external 'angular.module'
+ * @version <%= pkg.version %>
+ * @author {@link https://passy.me/|Pascal Hartig}
+ * @license: MIT
  */
 (function () {
   'use strict';
@@ -15,7 +18,7 @@
       var timeout = null;
 
       this.preserveOrder = false;
-      this.loadImages = true;
+      this.loadImages = false;
 
       this.scheduleMasonryOnce = function scheduleMasonryOnce() {
         var args = arguments;
@@ -42,7 +45,10 @@
             return;
           }
           schedule.forEach(function scheduleForEach(args) {
-            $element.masonry.apply($element, args);
+            var method = args[0];
+            args = args.slice(1);
+
+            self.masonry[method].apply(self.masonry, args);
           });
           schedule = [];
         }, 30);
@@ -59,13 +65,13 @@
 
         function _add() {
           if (Object.keys(bricks).length === 0) {
-            $element.masonry('resize');
+            self.masonry.resize();
           }
           if (bricks[id] === undefined) {
             // Keep track of added elements.
             bricks[id] = true;
             defaultLoaded(element);
-            $element.masonry(method, element, true);
+            self.masonry[method](element, true);
           }
         }
 
@@ -97,7 +103,7 @@
         }
 
         delete bricks[id];
-        $element.masonry('remove', element);
+        self.masonry.remove(element);
         this.scheduleMasonryOnce('layout');
       };
 
@@ -106,7 +112,7 @@
 
         if ($element.data('masonry')) {
           // Gently uninitialize if still present
-          $element.masonry('destroy');
+          self.masonry.destroy();
         }
         $scope.$emit('masonry.destroyed');
 
@@ -114,7 +120,7 @@
       };
 
       this.reload = function reload() {
-        $element.masonry();
+        self.masonry.reload();
         $scope.$emit('masonry.reloaded');
       };
 
@@ -123,6 +129,7 @@
       return {
         restrict: 'AE',
         controller: 'MasonryCtrl',
+        controllerAs: 'msnry',
         link: {
           pre: function preLink(scope, element, attrs, ctrl) {
             var attrOptions = scope.$eval(attrs.masonry || attrs.masonryOptions);
@@ -130,13 +137,18 @@
               itemSelector: attrs.itemSelector || '.masonry-brick',
               columnWidth: parseInt(attrs.columnWidth, 10) || attrs.columnWidth
             }, attrOptions || {});
-            element.masonry(options);
+
             scope.masonryContainer = element[0];
+            ctrl.masonry = new Masonry(scope.masonryContainer, options);
+
             var loadImages = scope.$eval(attrs.loadImages);
-            ctrl.loadImages = loadImages !== false;
+            ctrl.loadImages = !!loadImages;
+
             var preserveOrder = scope.$eval(attrs.preserveOrder);
-            ctrl.preserveOrder = (preserveOrder !== false && attrs.preserveOrder !== undefined); 
+            ctrl.preserveOrder = (preserveOrder !== false && attrs.preserveOrder !== undefined);
+
             var reloadOnShow = scope.$eval(attrs.reloadOnShow);
+
             if (reloadOnShow !== false && attrs.reloadOnShow !== undefined) {
               scope.$watch(function () {
                 return element.prop('offsetParent');
@@ -146,10 +158,11 @@
                 }
               });
             }
+
             var reloadOnResize = scope.$eval(attrs.reloadOnResize);
             if (reloadOnResize !== false && attrs.reloadOnResize !== undefined) {
               scope.$watch('masonryContainer.offsetWidth', function (newWidth, oldWidth) {
-                if (newWidth != oldWidth) {
+                if (newWidth !== oldWidth) {
                   ctrl.reload();
                 }
               });
