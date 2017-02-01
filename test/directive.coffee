@@ -8,105 +8,79 @@ describe 'angular-masonry', ->
     null
   )
 
-  beforeEach inject(($rootScope) =>
+  beforeEach inject(($rootScope, $compile) =>
+    @compile = $compile
     @scope = $rootScope.$new()
   )
 
   describe 'directive initialization', =>
     beforeEach =>
-      @Masonry = window.Masonry;
-      window.Masonry = sinon.spy();
+      @Masonry = window.Masonry
+      window.Masonry = sinon.spy()
 
     afterEach =>
-      window.Masonry = @Masonry;
+      window.Masonry = @Masonry
 
-    it 'should initialize', inject(($compile) =>
-      element = angular.element '<masonry></masonry>'
-      element = $compile(element)(@scope)
-    )
+    it 'should initialize', =>
+      @compile('<masonry></masonry>')(@scope)
 
-    it 'should call masonry on init', inject(($compile) =>
-      element = angular.element '<div masonry></div>'
-      element = $compile(element)(@scope)
-
+    it 'should call masonry on init', =>
+      @compile('<div masonry></div>')(@scope)
       expect(window.Masonry).toHaveBeenCalled()
-    )
 
-    it 'should pass on the column-width attribute', inject(($compile) =>
-      element = angular.element '<masonry column-width="200"></masonry>'
-      element = $compile(element)(@scope)
-
+    it 'should pass on the column-width attribute', =>
+      @compile('<masonry column-width="200"></masonry>')(@scope)
       expect(window.Masonry).toHaveBeenCalledOnce()
+
       call = window.Masonry.firstCall
       expect(call.args[1].columnWidth).toBe 200
-    )
 
-    it 'should pass on the item-selector attribute', inject(($compile) =>
-      element = angular.element '<masonry item-selector=".mybrick"></masonry>'
-      element = $compile(element)(@scope)
-
+    it 'should pass on the item-selector attribute', =>
+      @compile('<masonry item-selector=".mybrick"></masonry>')(@scope)
       expect(window.Masonry).toHaveBeenCalled()
+
       call = window.Masonry.firstCall
       expect(call.args[1].itemSelector).toBe '.mybrick'
-    )
 
-    it 'should pass on any options provided via `masonry-options`', inject(($compile) =>
-      element = angular.element '<masonry masonry-options="{ isOriginLeft: true }"></masonry>'
-      element = $compile(element)(@scope)
-
+    it 'should pass on any options provided via `masonry-options`', =>
+      @compile('<masonry masonry-options="{ isOriginLeft: true }"></masonry>')(@scope)
       expect(window.Masonry).toHaveBeenCalled()
+
       call = window.Masonry.firstCall
       expect(call.args[1].isOriginLeft).toBeTruthy()
-    )
 
-    it 'should pass on any options provided via `masonry`', inject(($compile) =>
-      element = angular.element '<div masonry="{ isOriginLeft: true }"></div>'
-      element = $compile(element)(@scope)
-
+    it 'should pass on any options provided via `masonry`', =>
+      @compile('<div masonry="{ isOriginLeft: true }"></div>')(@scope)
       expect(window.Masonry).toHaveBeenCalled()
+
       call = window.Masonry.firstCall
       expect(call.args[1].isOriginLeft).toBeTruthy()
-    )
 
   describe 'directive watchers', =>
-    it 'should setup a $watch when the reload-on-show is present', inject(($compile) =>
+    beforeEach =>
       sinon.spy(@scope, '$watch')
-      element = angular.element '<masonry reload-on-show></masonry>'
-      element = $compile(element)(@scope)
 
+    it 'should setup a $watch when the reload-on-show is present', =>
+      @compile('<masonry reload-on-show></masonry>')(@scope)
       expect(@scope.$watch).toHaveBeenCalled()
-    )
 
-    it 'should not setup a $watch when the reload-on-show is missing', inject(($compile) =>
-      sinon.spy(@scope, '$watch')
-      element = angular.element '<masonry></masonry>'
-      element = $compile(element)(@scope)
-
+    it 'should not setup a $watch when the reload-on-show is missing', =>
+      @compile('<masonry></masonry>')(@scope)
       expect(@scope.$watch).not.toHaveBeenCalled()
-    )
 
-    it 'should setup a $watch when the reload-on-resize is present', inject(($compile) =>
-      sinon.spy(@scope, '$watch')
-      element = angular.element '<masonry reload-on-resize></masonry>'
-      element = $compile(element)(@scope)
+    it 'should setup a $watch when the reload-on-resize is present', =>
+      @compile('<masonry reload-on-resize></masonry>')(@scope)
+      expect(@scope.$watch).toHaveBeenCalledWith('masonryContainer.offsetWidth', sinon.match.func);
 
-      expect(@scope.$watch).toHaveBeenCalledWith('masonryContainer.offsetWidth', sinon.match.func );
-    )
-
-    it 'should not setup a $watch when the reload-on-resize is missing', inject(($compile) =>
-      sinon.spy(@scope, '$watch')
-      element = angular.element '<masonry></masonry>'
-      element = $compile(element)(@scope)
-
-      expect(@scope.$watch).not.toHaveBeenCalledWith('masonryContainer.offsetWidth', sinon.match.func );
-    )
+    it 'should not setup a $watch when the reload-on-resize is missing', =>
+      @compile('<masonry></masonry>')(@scope)
+      expect(@scope.$watch).not.toHaveBeenCalledWith('masonryContainer.offsetWidth', sinon.match.func);
 
   describe 'MasonryCtrl', =>
-    beforeEach inject(($compile) =>
-      $compile('<masonry></masonry>')(@scope)
+    beforeEach =>
+      @compile('<masonry></masonry>')(@scope)
       @ctrl = @scope.msnry
       @ctrl.destroy()
-    )
 
     it 'should not remove after destruction', =>
       @ctrl.remove = sinon.spy();
@@ -131,25 +105,24 @@ describe 'angular-masonry', ->
         this
       )
 
-    it 'should register an element in the parent controller', inject(($compile) =>
-      element = angular.element '''
+    it 'should register an element in the parent controller', =>
+      @compile('''
         <masonry>
           <div class="masonry-brick"></div>
         </masonry>
-      '''
-      element = $compile(element)(@scope)
+      ''')(@scope)
 
       expect(@scope.msnry.addBrick).toHaveBeenCalledOnce()
-    )
 
-    it 'should remove an element in the parent controller if destroyed', inject(($compile) =>
+    it 'should remove an element in the parent controller if destroyed', =>
       @scope.bricks = [1, 2, 3]
-      element = angular.element '''
+
+      @compile('''
         <masonry>
           <div class="masonry-brick" ng-repeat="brick in bricks"></div>
         </masonry>
-      '''
-      element = $compile(element)(@scope)
+      ''')(@scope)
+
       @scope.$digest() # Needed for initial ng-repeat
 
       @scope.$apply(=>
@@ -158,7 +131,6 @@ describe 'angular-masonry', ->
 
       expect(@scope.msnry.addBrick).toHaveBeenCalledThrice()
       expect(@scope.msnry.removeBrick).toHaveBeenCalledOnce()
-    )
 
   describe 'MasonryCtrl.addBrick', =>
     beforeEach ->
@@ -167,56 +139,49 @@ describe 'angular-masonry', ->
         this
       )
 
-    it 'should append three elements to the controller', inject(($compile) =>
-      element = angular.element '''
+    it 'should append three elements to the controller', =>
+      @compile('''
         <masonry>
           <div class="masonry-brick"></div>
           <div class="masonry-brick"></div>
           <div class="masonry-brick"></div>
         </masonry>
-      '''
-      element = $compile(element)(@scope)
+      ''')(@scope)
 
       expect(@scope.msnry.addBrick.callCount).toBe 3
-    )
 
-    it 'should prepend elements when specified by attribute', inject(($compile) =>
-      element = angular.element '''
+    it 'should prepend elements when specified by attribute', =>
+      @compile('''
         <masonry>
           <div class="masonry-brick" prepend="{{true}}"></div>
         </masonry>
-      '''
-      element = $compile(element)(@scope)
+      ''')(@scope)
 
       expect(@scope.msnry.addBrick).toHaveBeenCalledWith 'prepended'
-    )
 
-    it 'should append before imagesLoaded when preserve-order is set', inject(($compile) =>
-      element = angular.element '''
+    it 'should append before imagesLoaded when preserve-order is set', =>
+      @compile('''
         <masonry load-images="true" preserve-order>
           <div class="masonry-brick"></div>
         </masonry>
-      '''
-      element = $compile(element)(@scope)
+      ''')(@scope)
 
       expect(@scope.msnry.addBrick).toHaveBeenCalledWith 'appended'
-    )
 
   describe 'MasonryCtrl.scheduleMasonryOnce', =>
     beforeEach =>
       @imagesLoadedCb = undefined
-      $.fn.imagesLoaded = (cb) => @imagesLoadedCb = cb
+      window.imagesLoaded = (el, cb) => @imagesLoadedCb = cb
 
-    it 'should call layout after imagesLoaded when preserve-order is set', inject(($compile, $timeout) =>
+    it 'should call layout after imagesLoaded when preserve-order is set', inject(($timeout) =>
       @layout = window.Masonry.prototype.layout
       @spy = sinon.spy(window.Masonry.prototype, 'layout')
 
-      element = angular.element '''
+      @compile('''
         <masonry load-images="true" preserve-order>
           <div class="masonry-brick"></div>
         </masonry>
-      '''
-      $compile(element)(@scope)
+      ''')(@scope)
 
       @scope.$digest()
       expect(@spy).toHaveBeenCalledOnce()
@@ -227,26 +192,24 @@ describe 'angular-masonry', ->
       window.Masonry.prototype.layout = @layout
     )
 
-    it 'should append before imagesLoaded when load-images is set to "false"', inject(($compile) =>
+    it 'should append before imagesLoaded when load-images is set to "false"', =>
       @appended = window.Masonry.prototype.appended
       @spy = sinon.spy(window.Masonry.prototype, 'appended')
 
-      element = angular.element '''
+      @compile('''
         <masonry>
           <div class="masonry-brick"></div>
         </masonry>
-      '''
-      $compile(element)(@scope)
+      ''')(@scope)
 
       expect(@spy).toHaveBeenCalledOnce()
       window.Masonry.prototype.appended = @appended
-    )
 
-    it 'should call layout before imagesLoaded when load-images is set to "false"', inject(($compile, $timeout) =>
+    it 'should call layout before imagesLoaded when load-images is set to "false"', inject(($timeout) =>
       @layout = window.Masonry.prototype.layout
       @spy = sinon.spy(window.Masonry.prototype, 'layout');
 
-      $compile('''
+      @compile('''
         <masonry load-images="false">
           <div class="masonry-brick"></div>
         </masonry>
