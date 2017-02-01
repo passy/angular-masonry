@@ -12,8 +12,6 @@ An [AngularJS 1](https://angularjs.org/) directive to work with David Desandro's
 2. Add `wu.masonry` to your application's module dependencies.
 3. Include dependencies in your HTML.
       ```html
-      <script src="bower_components/jquery/dist/jquery.js"></script>
-      <script src="bower_components/jquery-bridget/jquery-bridget.js"></script>
       <script src="bower_components/ev-emitter/ev-emitter.js"></script>
       <script src="bower_components/desandro-matches-selector/matches-selector.js"></script>
       <script src="bower_components/fizzy-ui-utils/utils.js"></script>
@@ -21,7 +19,11 @@ An [AngularJS 1](https://angularjs.org/) directive to work with David Desandro's
       <script src="bower_components/outlayer/item.js"></script>
       <script src="bower_components/outlayer/outlayer.js"></script>
       <script src="bower_components/masonry/masonry.js"></script>
+   
+      <!-- optional -->
       <script src="bower_components/imagesloaded/imagesloaded.js"></script>
+      <!-- /optional -->
+   
       <script src="bower_components/angular/angular.js"></script>
       <script src="bower_components/angular-masonry/angular-masonry.js"></script>
       ```
@@ -33,7 +35,7 @@ An [AngularJS 1](https://angularjs.org/) directive to work with David Desandro's
 See the [homepage](http://passy.github.io/angular-masonry) for a live example.
 
 ```html
-<div masonry>
+<div masonry load-images="true">
     <div class="masonry-brick" ng-repeat="brick in bricks">
         <img ng-src="{{ brick.src }}" alt="A masonry brick">
     </div>
@@ -44,8 +46,8 @@ You have to include the `masonry` attribute on the element holding the bricks.
 The bricks are registered at the directive through the `masonry-brick` CSS
 classname.
 
-The directive uses [`imagesloaded`](https://github.com/desandro/imagesloaded) to
-determine when all images within the `masonry-brick` have been loaded and adds
+The directive optionally uses [`imagesloaded`](https://github.com/desandro/imagesloaded)
+to determine when all images within the `masonry-brick` have been loaded and adds
 the `loaded` CSS class to the element, so you can add custom styles and
 prevent ghosting effects.
 
@@ -102,16 +104,14 @@ elements isn't set at the time they are inserted.
 
 ### `load-images`
 
-This attribute defaults to `true` and allows to disable the use of `imagesLoaded`
-altogether, so you don't have to include the dependency if your masonry layout
-doesn't actually make use of images.
+Allows usage of `imagesLoaded` plugin. Defaults to `false`.
 
 *Example:*
 
 ```html
-<masonry load-images="false">
-    <div class="masonry-brick"><p>Only text.</p></div>
-    <div class="masonry-brick"><p>And nothing but text.</p></div>
+<masonry load-images="true">
+    <div class="masonry-brick"><img src="/your/image_1.jpg" alt="image"/></div>
+    <div class="masonry-brick"><img src="/your/image_2.jpg" alt="image"/></div>
 </masonry>
 ```
 

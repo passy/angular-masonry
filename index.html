@@ -62,14 +62,14 @@
                     <button class="btn btn-primary" ng-click="add()">Add</button>
                     <button class="btn btn-danger" ng-click="remove()">Remove</button>
                 </div>
-                <div masonry>
+                <div masonry load-images="true">
                     <div class="masonry-brick" ng-repeat="brick in bricks">
                         <img ng-src="{{ brick.src }}" alt="A masonry brick">
                     </div>
                 </div>
 
                 <h2>Code</h2>
-                <pre ng-non-bindable>&lt;div <strong>masonry</strong>&gt;
+                <pre ng-non-bindable>&lt;div <strong>masonry load-images="true"</strong>&gt;
     &lt;div <strong>class="masonry-brick"</strong> ng-repeat="brick in bricks"&gt;
         &lt;img ng-src="{{ brick.src }}" alt="A masonry brick"&gt;
     &lt;/div&gt;
@@ -78,8 +78,6 @@
         </div>
 
         <a href="https://github.com/passy/angular-masonry"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
-        <script src="bower_components/jquery/dist/jquery.js"></script>
-        <script src="bower_components/jquery-bridget/jquery-bridget.js"></script>
         <script src="bower_components/get-size/get-size.js"></script>
         <script src="bower_components/ev-emitter/ev-emitter.js"></script>
         <script src="bower_components/matches-selector/matches-selector.js"></script>
@@ -101,7 +99,7 @@
                         return {
                             src: 'http://lorempixel.com/g/280/' + height + '/?' + id
                         };
-                    };
+                    }
 
                     $scope.bricks = [
                         genBrick(),
