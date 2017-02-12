@@ -88,9 +88,9 @@
           _layout();
         } else if (self.preserveOrder) {
           _add();
-          element.imagesLoaded(_layout);
+          window.imagesLoaded(element, _layout);
         } else {
-          element.imagesLoaded(function imagesLoaded() {
+          window.imagesLoaded(element, function imagesLoaded() {
             _add();
             _layout();
           });
