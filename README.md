@@ -19,15 +19,15 @@ An [AngularJS 1](https://angularjs.org/) directive to work with David Desandro's
       <script src="bower_components/outlayer/item.js"></script>
       <script src="bower_components/outlayer/outlayer.js"></script>
       <script src="bower_components/masonry/masonry.js"></script>
-   
+
       <!-- optional -->
       <script src="bower_components/imagesloaded/imagesloaded.js"></script>
       <!-- /optional -->
-   
+
       <script src="bower_components/angular/angular.js"></script>
       <script src="bower_components/angular-masonry/angular-masonry.js"></script>
       ```
-    
+
 4. Use the `masonry` directive.
 
 ## Example
@@ -118,8 +118,8 @@ Allows usage of `imagesLoaded` plugin. Defaults to `false`.
 ### `reload-on-show`
 
 The `reload-on-show` attribute triggers a reload when the masonry element (or an
-ancestor element) is shown after being hidden, useful when using `ng-show` or 
-`ng-hide`. Without this if the viewport is resized while the masonry element is 
+ancestor element) is shown after being hidden, useful when using `ng-show` or
+`ng-hide`. Without this if the viewport is resized while the masonry element is
 hidden it may not render properly when shown again.
 
 *Example:*
@@ -137,8 +137,8 @@ When `showList` changes from falsey to truthy `ctrl.reload` will be called.
 ### `reload-on-resize`
 
 The `reload-on-resize` attribute triggers a reload when the masonry element changes
-its width, useful when only the parent element is resized (and not the window) and 
-you want the elements to be rearranged. Without this if the parent is resized then 
+its width, useful when only the parent element is resized (and not the window) and
+you want the elements to be rearranged. Without this if the parent is resized then
 some blank space may be left on the sides.
 
 *Example:*
