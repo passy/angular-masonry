@@ -127,7 +127,7 @@
 
     }).directive('masonry', function masonryDirective() {
       return {
-        restrict: 'AE',
+        restrict: 'A',
         controller: 'MasonryCtrl',
         controllerAs: 'msnry',
         link: {

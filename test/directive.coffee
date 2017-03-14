@@ -22,28 +22,28 @@ describe 'angular-masonry', ->
       window.Masonry = @Masonry
 
     it 'should initialize', =>
-      @compile('<masonry></masonry>')(@scope)
+      @compile('<div masonry></div>')(@scope)
 
     it 'should call masonry on init', =>
       @compile('<div masonry></div>')(@scope)
       expect(window.Masonry).toHaveBeenCalled()
 
     it 'should pass on the column-width attribute', =>
-      @compile('<masonry column-width="200"></masonry>')(@scope)
+      @compile('<div masonry column-width="200"></div>')(@scope)
       expect(window.Masonry).toHaveBeenCalledOnce()
 
       call = window.Masonry.firstCall
       expect(call.args[1].columnWidth).toBe 200
 
     it 'should pass on the item-selector attribute', =>
-      @compile('<masonry item-selector=".mybrick"></masonry>')(@scope)
+      @compile('<div masonry item-selector=".mybrick"></div>')(@scope)
       expect(window.Masonry).toHaveBeenCalled()
 
       call = window.Masonry.firstCall
       expect(call.args[1].itemSelector).toBe '.mybrick'
 
     it 'should pass on any options provided via `masonry-options`', =>
-      @compile('<masonry masonry-options="{ isOriginLeft: true }"></masonry>')(@scope)
+      @compile('<div masonry masonry-options="{ isOriginLeft: true }"></div>')(@scope)
       expect(window.Masonry).toHaveBeenCalled()
 
       call = window.Masonry.firstCall
@@ -61,24 +61,24 @@ describe 'angular-masonry', ->
       sinon.spy(@scope, '$watch')
 
     it 'should setup a $watch when the reload-on-show is present', =>
-      @compile('<masonry reload-on-show></masonry>')(@scope)
+      @compile('<div masonry reload-on-show></div>')(@scope)
       expect(@scope.$watch).toHaveBeenCalled()
 
     it 'should not setup a $watch when the reload-on-show is missing', =>
-      @compile('<masonry></masonry>')(@scope)
+      @compile('<div masonry></div>')(@scope)
       expect(@scope.$watch).not.toHaveBeenCalled()
 
     it 'should setup a $watch when the reload-on-resize is present', =>
-      @compile('<masonry reload-on-resize></masonry>')(@scope)
+      @compile('<div masonry reload-on-resize></div>')(@scope)
       expect(@scope.$watch).toHaveBeenCalledWith('masonryContainer.offsetWidth', sinon.match.func);
 
     it 'should not setup a $watch when the reload-on-resize is missing', =>
-      @compile('<masonry></masonry>')(@scope)
+      @compile('<div masonry></div>')(@scope)
       expect(@scope.$watch).not.toHaveBeenCalledWith('masonryContainer.offsetWidth', sinon.match.func);
 
   describe 'MasonryCtrl', =>
     beforeEach =>
-      @compile('<masonry></masonry>')(@scope)
+      @compile('<div masonry></div>')(@scope)
       @ctrl = @scope.msnry
       @ctrl.destroy()
 
@@ -107,9 +107,9 @@ describe 'angular-masonry', ->
 
     it 'should register an element in the parent controller', =>
       @compile('''
-        <masonry>
+        <div masonry>
           <div class="masonry-brick"></div>
-        </masonry>
+        </div>
       ''')(@scope)
 
       expect(@scope.msnry.addBrick).toHaveBeenCalledOnce()
@@ -118,9 +118,9 @@ describe 'angular-masonry', ->
       @scope.bricks = [1, 2, 3]
 
       @compile('''
-        <masonry>
+        <div masonry>
           <div class="masonry-brick" ng-repeat="brick in bricks"></div>
-        </masonry>
+        </div>
       ''')(@scope)
 
       @scope.$digest() # Needed for initial ng-repeat
@@ -141,29 +141,29 @@ describe 'angular-masonry', ->
 
     it 'should append three elements to the controller', =>
       @compile('''
-        <masonry>
+        <div masonry>
           <div class="masonry-brick"></div>
           <div class="masonry-brick"></div>
           <div class="masonry-brick"></div>
-        </masonry>
+        </div>
       ''')(@scope)
 
       expect(@scope.msnry.addBrick.callCount).toBe 3
 
     it 'should prepend elements when specified by attribute', =>
       @compile('''
-        <masonry>
+        <div masonry>
           <div class="masonry-brick" prepend="{{true}}"></div>
-        </masonry>
+        </div>
       ''')(@scope)
 
       expect(@scope.msnry.addBrick).toHaveBeenCalledWith 'prepended'
 
     it 'should append before imagesLoaded when preserve-order is set', =>
       @compile('''
-        <masonry load-images="true" preserve-order>
+        <div masonry load-images="true" preserve-order>
           <div class="masonry-brick"></div>
-        </masonry>
+        </div>
       ''')(@scope)
 
       expect(@scope.msnry.addBrick).toHaveBeenCalledWith 'appended'
@@ -178,9 +178,9 @@ describe 'angular-masonry', ->
       @spy = sinon.spy(window.Masonry.prototype, 'layout')
 
       @compile('''
-        <masonry load-images="true" preserve-order>
+        <div masonry load-images="true" preserve-order>
           <div class="masonry-brick"></div>
-        </masonry>
+        </div>
       ''')(@scope)
 
       @scope.$digest()
@@ -197,9 +197,9 @@ describe 'angular-masonry', ->
       @spy = sinon.spy(window.Masonry.prototype, 'appended')
 
       @compile('''
-        <masonry>
+        <div masonry>
           <div class="masonry-brick"></div>
-        </masonry>
+        </div>
       ''')(@scope)
 
       expect(@spy).toHaveBeenCalledOnce()
@@ -210,9 +210,9 @@ describe 'angular-masonry', ->
       @spy = sinon.spy(window.Masonry.prototype, 'layout');
 
       @compile('''
-        <masonry load-images="false">
+        <div masonry load-images="false">
           <div class="masonry-brick"></div>
-        </masonry>
+        </div>
       ''')(@scope)
 
       @scope.$digest()
