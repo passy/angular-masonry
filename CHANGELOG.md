@@ -1,3 +1,15 @@
+<a name="0.17.0"></a>
+# [0.17.0](https://github.com/passy/angular-masonry/compare/v0.16.0...v0.17.0) (2017-03-18)
+
+
+### Features
+
+* **app:** remove dependency on jQuery ([70e6855](https://github.com/passy/angular-masonry/commit/70e6855))
+* **deps:** update AngularJS to 1.6 ([e53f7a9](https://github.com/passy/angular-masonry/commit/e53f7a9))
+* **package:** Change entrypoint and add requires/exports for commonJS (like browserify) usage ([3da4a25](https://github.com/passy/angular-masonry/commit/3da4a25))
+
+
+
 <a name="0.16.0"></a>
 # [0.16.0](https://github.com/passy/angular-masonry/compare/v0.15.0...v0.16.0) (2016-02-14)
 
