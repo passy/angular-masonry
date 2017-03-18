@@ -46,9 +46,9 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-angular@^1.5.0:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.2.tgz#d0b677242ac4bf9ae81424297c6320973af4bb5a"
+angular@^1.6.0:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.3.tgz#5d34b799234e8fa17c6a3a14e0258733935f43e7"
 
 ansi-regex@^2.0.0:
   version "2.1.1"
@@ -2525,13 +2525,13 @@ rimraf@~2.2.8:
   version "2.2.8"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
 
-"semver@2 || 3 || 4 || 5", semver@~4.3.3:
-  version "4.3.6"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-4.3.6.tgz#300bc6e0e86374f7ba61068b5b1ecd57fc6532da"
-
-semver@^5.0.1, semver@~5.3.0:
+"semver@2 || 3 || 4 || 5", semver@^5.0.1, semver@~5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.3.0.tgz#9b2ce5d3de02d17c6012ad326aa6b4d0cf54f94f"
+
+semver@~4.3.3:
+  version "4.3.6"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-4.3.6.tgz#300bc6e0e86374f7ba61068b5b1ecd57fc6532da"
 
 send@0.14.2:
   version "0.14.2"
