@@ -66,10 +66,10 @@ directive.
 *Example:*
 
 ```html
-<masonry item-selector=".mybrick">
+<div masonry item-selector=".mybrick">
     <div masonry-brick class="mybrick">Unicorns</div>
     <div masonry-brick class="mybrick">Sparkles</div>
-</masonry>
+</div>
 ```
 
 ### `column-width`
@@ -81,9 +81,9 @@ not set, Masonry will use the outer width of the first element.
 *Example:*
 
 ```html
-<masonry column-width="200">
+<div masonry column-width="200">
     <div class="masonry-brick">This will be 200px wide max.</div>
-</masonry>
+</div>
 ```
 
 ### `preserve-order`
@@ -96,10 +96,10 @@ elements isn't set at the time they are inserted.
 *Example:*
 
 ```html
-<masonry preserve-order>
+<div masonry preserve-order>
     <div class="masonry-brick"><img src="..." alt="Will always be shown 1st"></div>
     <div class="masonry-brick"><img src="..." alt="Will always be shown 2nd"></div>
-</masonry>
+</div>
 ```
 
 ### `load-images`
@@ -109,10 +109,10 @@ Allows usage of `imagesLoaded` plugin. Defaults to `false`.
 *Example:*
 
 ```html
-<masonry load-images="true">
+<div masonry load-images="true">
     <div class="masonry-brick"><img src="/your/image_1.jpg" alt="image"/></div>
     <div class="masonry-brick"><img src="/your/image_2.jpg" alt="image"/></div>
-</masonry>
+</div>
 ```
 
 ### `reload-on-show`
@@ -125,10 +125,10 @@ hidden it may not render properly when shown again.
 *Example:*
 
 ```html
-<masonry reload-on-show ng-show="showList">
+<div masonry reload-on-show ng-show="showList">
     <div class="masonry-brick">...</div>
     <div class="masonry-brick">...</div>
-</masonry>
+</div>
 ```
 
 When `showList` changes from falsey to truthy `ctrl.reload` will be called.
@@ -144,10 +144,10 @@ some blank space may be left on the sides.
 *Example:*
 
 ```html
-<masonry reload-on-resize>
+<div masonry reload-on-resize>
     <div class="masonry-brick">...</div>
     <div class="masonry-brick">...</div>
-</masonry>
+</div>
 ```
 
 
@@ -159,8 +159,8 @@ as expression either as `masonry` or `masonry-options` attribute.
 *Example:*
 
 ```html
-<masonry masonry-options="{ transitionDuration: '0.4s' }">
-</masonry>
+<div masonry masonry-options="{ transitionDuration: '0.4s' }">
+</div>
 ```
 
 Equivalent to:
