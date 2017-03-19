@@ -201,6 +201,15 @@
               }
               index = scope.$index;
             });
+            
+            var elementsize;
+            scope.$watch(function(){return element[0].offsetHeight + 'x' + element[0].offsetWidth}, function (newSize, oldSize) {
+                if(elementsize !== undefined && elementsize !== newSize){
+                    ctrl.scheduleMasonryOnce('reloadItems');
+                    ctrl.scheduleMasonryOnce('layout');
+                }
+                elementsize = newSize;
+            });
           }
         }
       };
