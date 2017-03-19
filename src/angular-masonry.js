@@ -51,7 +51,7 @@
             self.masonry[method].apply(self.masonry, args);
           });
           schedule = [];
-        }, 30);
+        }, 100);
       };
 
       function defaultLoaded($element) {
