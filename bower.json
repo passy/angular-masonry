@@ -9,7 +9,6 @@
     "bower_components",
     "test",
     "src",
-    "*.min.js",
     "*.conf.js",
     "*.html",
     "Gruntfile.js",
