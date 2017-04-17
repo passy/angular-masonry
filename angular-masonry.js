@@ -147,7 +147,7 @@
     return {
       restrict: 'AC',
       require: '^masonry',
-      scope: true,
+      //scope: true,
       link: {
         pre: function preLink(scope, element, attrs, ctrl) {
           var id = scope.$id, index;
