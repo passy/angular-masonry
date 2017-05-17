@@ -1,5 +1,7 @@
 # AngularJS Masonry Directive [![Build Status](https://travis-ci.org/passy/angular-masonry.svg?branch=master)](https://travis-ci.org/passy/angular-masonry)[![Dependency Status](https://gemnasium.com/passy/angular-masonry.svg)](https://gemnasium.com/passy/angular-masonry) [![Code Climate](https://codeclimate.com/github/passy/angular-masonry/badges/gpa.svg)](https://codeclimate.com/github/passy/angular-masonry)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/passy/angular-masonry.svg)](https://greenkeeper.io/)
+
 [Homepage](https://passy.github.io/angular-masonry)
 
 An [AngularJS 1](https://angularjs.org/) directive to work with David Desandro's [Masonry](http://masonry.desandro.com/).
